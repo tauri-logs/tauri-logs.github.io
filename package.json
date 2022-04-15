@@ -3,11 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "ng:gen": "ng generate component player-view",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "build:prod": "ng build --configuration production --base-href https://github",
+    "test:headless": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
   "dependencies": {
