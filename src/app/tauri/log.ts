@@ -1,18 +1,22 @@
-class Log {
+import {Encounter} from "./encounter";
+import {Guild} from "./guild";
+import {Map} from "./map";
+
+export class Log {
   deahts_total: number;
   deaths_fight: number;
   difficulty: number;
   encounter_data: Encounter;
   encounter_id: number;
   fight_time: number;
-  guilddata: object;
+  guilddata: Guild;
   guildid: number;
   guildrid: number;
   item_count: number;
   killtime: number;
   log_id: number;
   map_id: number;
-  mapentry: object;
+  mapentry: Map;
   member_count: number;
   pos: number;
   resurrects_fight: number;
@@ -20,8 +24,8 @@ class Log {
   wipes: number;
 
   constructor(deahts_total: number, deaths_fight: number, difficulty: number, encounter_data: Encounter,
-              encounter_id: number, fight_time: number, guilddata: object, guildid: number, guildrid: number,
-              item_count: number, killtime: number, log_id: number, map_id: number, mapentry: object,
+              encounter_id: number, fight_time: number, guilddata: Guild, guildid: number, guildrid: number,
+              item_count: number, killtime: number, log_id: number, map_id: number, mapentry: Map,
               member_count: number, pos: number, resurrects_fight: number, rid: number, wipes: number) {
     this.deahts_total = deahts_total;
     this.deaths_fight = deaths_fight;

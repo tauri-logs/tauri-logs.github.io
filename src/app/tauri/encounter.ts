@@ -1,4 +1,4 @@
-class Encounter {
+export class Encounter {
   encounter_difficulty: number;
   encounter_id: number;
   encounter_index: number;

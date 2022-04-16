@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TauriService} from "../tauri/tauri.service";
+import {Log} from "../tauri/log";
 
 @Component({
   selector: 'app-player-view',
