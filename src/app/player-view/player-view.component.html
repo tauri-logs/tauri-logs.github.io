@@ -1,3 +1,8 @@
 <h1>Stepan</h1>
 <h2>Calamity</h2>
 <!--poslední parsy-->
+<div *ngIf="playerLogs.length > 0">
+  <table>
+    <tr *ngFor="let log of playerLogs">{{log.encounter_data.encounter_name}}</tr>
+  </table>
+</div>

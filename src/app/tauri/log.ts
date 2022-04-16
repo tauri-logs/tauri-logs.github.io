@@ -2,7 +2,7 @@ class Log {
   deahts_total: number;
   deaths_fight: number;
   difficulty: number;
-  encounter_data: object;
+  encounter_data: Encounter;
   encounter_id: number;
   fight_time: number;
   guilddata: object;
@@ -19,7 +19,7 @@ class Log {
   rid: number;
   wipes: number;
 
-  constructor(deahts_total: number, deaths_fight: number, difficulty: number, encounter_data: object,
+  constructor(deahts_total: number, deaths_fight: number, difficulty: number, encounter_data: Encounter,
               encounter_id: number, fight_time: number, guilddata: object, guildid: number, guildrid: number,
               item_count: number, killtime: number, log_id: number, map_id: number, mapentry: object,
               member_count: number, pos: number, resurrects_fight: number, rid: number, wipes: number) {

@@ -8,7 +8,8 @@
   "files": [
     "src/main.ts",
     "src/polyfills.ts",
-    "src/app/tauri/log.ts"
+    "src/app/tauri/log.ts",
+    "src/app/tauri/encounter.ts"
   ],
   "include": [
     "src/**/*.d.ts"

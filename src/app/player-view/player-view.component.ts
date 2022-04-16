@@ -8,11 +8,16 @@ import {TauriService} from "../tauri/tauri.service";
 })
 export class PlayerViewComponent implements OnInit {
 
+  public playerLogs: Log[] = [];
+
   constructor(private tauriService: TauriService) { }
 
   ngOnInit(): void {
     this.tauriService.getStepanRaidLogs().subscribe(
-      response => {console.log(response)}
+      response => {
+        console.log(response)
+        this.playerLogs = response;
+      }
     )
   }
 
