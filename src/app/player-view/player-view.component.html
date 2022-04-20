@@ -3,9 +3,32 @@
 <!--poslední parsy-->
 <div *ngIf="playerLogs.length > 0">
   <table>
-    <table *ngFor="let week of playerLogs">
-      {{week.startDate}}
-      <tr *ngFor="let log of week.logs">{{log.encounter_data.encounter_name}}</tr>
-    </table>
+    <thead style="display: flex">
+    <mat-form-field appearance="fill" style="background-color: #424242;">
+      <mat-label>Filter range</mat-label>
+      <mat-date-range-input [rangePicker]="filterRange">
+        <input matStartDate [(ngModel)]="startFilter">
+        <input matEndDate [(ngModel)]="endFilter">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="filterRange"></mat-datepicker-toggle>
+      <mat-date-range-picker #filterRange></mat-date-range-picker>
+    </mat-form-field>
+    <mat-form-field class="example-form-field" style="background-color: #424242;">
+      <mat-label>Amount of logs</mat-label>
+      <input matInput type="number" [(ngModel)]="amountOfLogsFilter">
+    </mat-form-field>
+    <button mat-raised-button (click)="debug()">Search</button>
+    </thead>
+    <tbody>
+      <mat-expansion-panel *ngFor="let week of playerLogs">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{week.startDate.getDate()}}.{{week.startDate.getMonth()}}.{{week.startDate.getFullYear()}}
+             – {{week.endDate.getDate()}}.{{week.endDate.getMonth()}}.{{week.endDate.getFullYear()}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <tr style="height: 10vh" *ngFor="let log of week.logs">{{log.encounter_data.encounter_name}}</tr>
+      </mat-expansion-panel>
+    </tbody>
   </table>
 </div>

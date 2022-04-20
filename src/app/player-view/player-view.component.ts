@@ -3,6 +3,8 @@ import {TauriService} from "../tauri/tauri.service";
 import {Log} from "../tauri/log";
 import {RaidMapEnum} from "../tauri/map";
 import {Week} from "../tauri/week";
+import {MatDialog} from "@angular/material/dialog";
+import {SpecificLogComponent} from "../specific-log/specific-log.component";
 
 @Component({
   selector: 'app-player-view',
@@ -12,8 +14,12 @@ import {Week} from "../tauri/week";
 export class PlayerViewComponent implements OnInit {
 
   public playerLogs: Week[] = [];
+  public startFilter: Date = new Date();
+  public endFilter: Date = new Date();
+  public amountOfLogsFilter: number = 0;
 
-  constructor(private tauriService: TauriService) { }
+  constructor(private tauriService: TauriService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.tauriService.getStepanRaidLogs(50).subscribe(
@@ -24,6 +30,14 @@ export class PlayerViewComponent implements OnInit {
         console.log(this.playerLogs)
       }
     )
+  }
+
+  showSpecificLog() {
+    this.dialog.open(SpecificLogComponent);
+  }
+
+  debug(): void {
+    // console.log(this.s);
   }
 
 }

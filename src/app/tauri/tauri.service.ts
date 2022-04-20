@@ -50,5 +50,18 @@ export class TauriService {
     return weeks;
   }
 
+  getLogDetails(id: number) {
+    return this.http.post(environment.apiUrl, {
+      "url": "raid-log",
+      "params": {
+        "r": "[EN] Evermoon",
+        "id": id
+      }
+    }, {headers: {'Content-Type': 'application/json'}}).pipe(
+      map(response => {
+        //@ts-ignore
+        return response.response
+      }));
+  }
 
 }
