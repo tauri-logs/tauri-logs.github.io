@@ -13,7 +13,7 @@ export class Log {
   guildid: number;
   guildrid: number;
   item_count: number;
-  killtime: number;
+  killtime: number; //* 1000 to get ms and convert to Date
   log_id: number;
   map_id: number;
   mapentry: Map;

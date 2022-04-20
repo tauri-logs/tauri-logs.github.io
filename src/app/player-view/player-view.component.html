@@ -3,6 +3,9 @@
 <!--poslední parsy-->
 <div *ngIf="playerLogs.length > 0">
   <table>
-    <tr *ngFor="let log of playerLogs">{{log.encounter_data.encounter_name}}</tr>
+    <table *ngFor="let week of playerLogs">
+      {{week.startDate}}
+      <tr *ngFor="let log of week.logs">{{log.encounter_data.encounter_name}}</tr>
+    </table>
   </table>
 </div>

@@ -13,3 +13,7 @@ export class Map {
     this.type = type;
   }
 }
+
+export enum RaidMapEnum {
+  SOO= 1136
+}
