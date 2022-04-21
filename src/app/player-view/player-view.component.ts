@@ -32,8 +32,10 @@ export class PlayerViewComponent implements OnInit {
     )
   }
 
-  showSpecificLog() {
-    this.dialog.open(SpecificLogComponent);
+  showSpecificLog(id: number) {
+    this.dialog.open(SpecificLogComponent, {
+      data: {id: id}
+    });
   }
 
   debug(): void {

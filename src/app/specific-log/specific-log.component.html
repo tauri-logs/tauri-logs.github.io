@@ -1,4 +1,15 @@
 <h2 mat-dialog-title>Specific log</h2>
 <mat-dialog-content>
-
+<table matSort (matSortChange)="sortData($event)" [matSortStart]="'desc'">
+  <thead>
+  <tr>
+    <th *ngFor="let header of headerKeys" [mat-sort-header]="header" style="padding-left: 10px; padding-right: 10px">{{$any(headers)[header]}}</th>
+  </tr>
+  </thead>
+  <tbody *ngIf="sortedMembers.length > 0">
+    <tr *ngFor="let member of sortedMembers">
+      <td *ngFor="let header of headerKeys" style="padding-left: 10px; padding-right: 10px">{{$any(member)[header]}}</td>
+    </tr>
+  </tbody>
+</table>
 </mat-dialog-content>
