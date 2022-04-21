@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TauriService} from "../tauri/tauri.service";
-import {Log} from "../tauri/log";
-import {RaidMapEnum} from "../tauri/map";
+import {Log} from "../tauri/models/log";
+import {RaidMapEnum} from "../tauri/models/map";
 import {Week} from "../tauri/week";
 import {MatDialog} from "@angular/material/dialog";
 import {SpecificLogComponent} from "../specific-log/specific-log.component";

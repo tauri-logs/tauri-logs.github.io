@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {map} from 'rxjs/operators';
-import {Log} from "./log";
+import {Log} from "./models/log";
 import {Week} from "./week";
 
 @Injectable({
