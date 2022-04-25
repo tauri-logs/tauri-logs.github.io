@@ -56,5 +56,35 @@ export const raceImage = [
   "gilnean",
   "panda",
   "panda",
-  'panda'
+  "panda"
+]
+
+export const reverseRace = [
+  "Unknown",
+  "Human",
+  "Orc",
+  "Dwarf",
+  "Night elf",
+  "Undead",
+  "Tauren",
+  "Gnome",
+  "Troll",
+  "Goblin",
+  "Blood elf",
+  "Draenei",
+  "Fel orc",
+  "Naga",
+  "Broken",
+  "Skeleton",
+  "Vrykul",
+  "Tuskarr",
+  "Forest troll",
+  "Taunka",
+  "Northrend skeleton",
+  "Ice troll",
+  "Worgen",
+  "Gilnean",
+  "Pandaren neutral",
+  "Pandaren alliance",
+  "Pandaren horde"
 ]

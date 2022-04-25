@@ -3,14 +3,16 @@
 <table matSort (matSortChange)="sortData($event)" [matSortStart]="'desc'">
   <thead>
   <tr>
-    <th *ngFor="let header of headers" [mat-sort-header]="header.key" style="padding-left: 10px; padding-right: 10px">{{header.text}}</th>
+    <th *ngFor="let header of headers" [mat-sort-header]="header.key"
+        [style]="header.getHeaderStyle()">{{header.text}}</th>
   </tr>
   </thead>
   <tbody *ngIf="sortedMembers.length > 0">
     <tr *ngFor="let member of sortedMembers">
-      <td *ngFor="let header of headers" style="padding-left: 10px; padding-right: 10px">
+      <td *ngFor="let header of headers" [style]="header.getColStyle(member)">
         <span *ngIf="!header.img">{{$any(member)[header.key]}}</span>
-        <img *ngIf="header.img" width="21" height="21" [src]="getImg(member, header)">
+        <img *ngIf="header.img" width="21" height="21" [src]="header.img.getImage(member, header.key)"
+             [matTooltip]="header.img.getTooltip(member, header.key)" [matTooltipPosition]="'above'">
       </td>
     </tr>
   </tbody>

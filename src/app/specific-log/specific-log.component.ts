@@ -6,8 +6,10 @@ import {Member} from "../tauri/models/member";
 import {Sort} from "@angular/material/sort";
 import copy from "fast-copy";
 import {RaidDetailHeader} from "../tauri/models/raidDetailHeader";
-import {raceImage} from "../tauri/models/raceEnum";
+import {raceImage, reverseRace} from "../tauri/models/raceEnum";
 import {genderImage} from "../tauri/models/genderEnum";
+import {reverseSpec} from "../tauri/models/specEnum";
+import {Icon} from "../tauri/models/Icon";
 
 export interface DialogData {
   id: number;
@@ -21,12 +23,12 @@ export interface DialogData {
 export class SpecificLogComponent implements OnInit {
 
   public headers = [
-    new RaidDetailHeader('race', '', true, '', 'races'),
-    new RaidDetailHeader('spec', '', true, '', 'specs'),
-    new RaidDetailHeader('ilvl', 'Ilvl'),
-    new RaidDetailHeader('name', 'Name'),
-    new RaidDetailHeader('dmg_done', 'Damage'),
-    new RaidDetailHeader('heal_done', 'Healing'),
+    new RaidDetailHeader('ilvl', '', '2px'),
+    new RaidDetailHeader('race', '', '2px', new Icon(reverseRace, 'races')),
+    new RaidDetailHeader('spec', '', '2px', new Icon(reverseSpec, 'specs')),
+    new RaidDetailHeader('name', 'Name', '2px'),
+    new RaidDetailHeader('dmg_done', 'Damage', '20px'),
+    new RaidDetailHeader('heal_done', 'Healing', '20px'),
   ]
 
   // public readonly headers = {
@@ -76,15 +78,5 @@ export class SpecificLogComponent implements OnInit {
     );
   }
 
-  getImg(member: Member, header: RaidDetailHeader): string {
-    let name : string = `a`;
-    if (header.key === 'race') {
-      name = `${raceImage[member.race]}-${genderImage[member.gender]}.webp`;
-    } else {
-      //@ts-ignore
-      name = `${member[header.key]}.png`;
-    }
-    return header.getImagePath(name);
-  }
 
 }
