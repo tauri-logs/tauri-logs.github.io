@@ -1,13 +1,14 @@
 import {Trinket} from "./trinket";
 import {ClassEnum} from "./classEnum";
 import {RaceEnum} from "./raceEnum";
+import {GenderEnum} from "./genderEnum";
 
 export interface Member {
   valid_player: boolean;
   guid: number;
   race: RaceEnum;
   class: ClassEnum;
-  gender: number;
+  gender: GenderEnum;
   name: string;
   link: string;
   spec: number;

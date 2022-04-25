@@ -22,5 +22,39 @@ export const enum RaceEnum {
   NORTHREND_SKELETON,
   ICE_TROLL,
   WORGEN,
-  GILNEAN
+  GILNEAN,
+  PANDAREN_NEUTRAL,
+  PANDAREN_ALLIANCE,
+  PANDAREN_HORDE
 }
+
+// https://wowpedia.fandom.com/wiki/Category:WoW_Icons:_UI_CharacterCreate_Races
+export const raceImage = [
+  "unknown",
+  "human",
+  "orc",
+  "dwarf",
+  "nightelf",
+  "undead",
+  "tauren",
+  "gnome",
+  "troll",
+  "goblin",
+  "bloodelf",
+  "draenei",
+  "fel_orc",
+  "naga",
+  "broken",
+  "skeleton",
+  "vrykul",
+  "tuskarr",
+  "forest_troll",
+  "taunka",
+  "northrend_skeleton",
+  "ice_troll",
+  "worgen",
+  "gilnean",
+  "panda",
+  "panda",
+  'panda'
+]

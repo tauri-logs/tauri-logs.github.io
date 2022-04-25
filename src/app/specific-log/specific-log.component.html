@@ -8,7 +8,10 @@
   </thead>
   <tbody *ngIf="sortedMembers.length > 0">
     <tr *ngFor="let member of sortedMembers">
-      <td *ngFor="let header of headers" style="padding-left: 10px; padding-right: 10px">{{$any(member)[header.key]}}</td>
+      <td *ngFor="let header of headers" style="padding-left: 10px; padding-right: 10px">
+        <span *ngIf="!header.img">{{$any(member)[header.key]}}</span>
+        <img *ngIf="header.img" width="21" height="21" [src]="getImg(member, header)">
+      </td>
     </tr>
   </tbody>
 </table>
