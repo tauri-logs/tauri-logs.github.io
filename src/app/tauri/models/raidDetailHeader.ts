@@ -5,18 +5,22 @@ import {classColor} from "./classEnum";
 export class RaidDetailHeader {
   key: string;
   text: string;
-  padding: string;
   img: Icon | undefined;
+  private readonly padding: string;
 
-  constructor(key: string, text: string, padding: string, img?: Icon) {
+  constructor(key: string, text: string, img?: Icon) {
     this.key = key;
     this.text = text;
-    this.padding = padding;
     this.img = img;
+    if (['ilvl', 'race', 'spec', 'name'].includes(key)) {
+      this.padding = '0vw';
+    } else {
+      this.padding = '1vw';
+    }
   }
 
   getHeaderStyle(): string {
-    return `padding: 10px ${this.padding} 10px ${this.padding};`;
+    return `padding: 1vh ${this.padding};`;
   }
 
   getColStyle(member: Member) {
@@ -24,6 +28,6 @@ export class RaidDetailHeader {
     if (this.key === 'name') {
       styles = `color: ${classColor[member.class]};`;
     }
-    return `padding: 10px ${this.padding} 10px ${this.padding}; ${styles}`
+    return `padding: 1vh ${this.padding}; ${styles}`
   }
 }

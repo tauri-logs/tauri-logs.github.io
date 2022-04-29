@@ -17,6 +17,8 @@ import { SpecificLogComponent } from './specific-log/specific-log.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSortModule} from "@angular/material/sort";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatTableModule} from "@angular/material/table";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -25,21 +27,23 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     PlayerViewComponent,
     SpecificLogComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MatExpansionModule,
-        BrowserAnimationsModule,
-        MatDatepickerModule,
-        MatInputModule,
-        MatNativeDateModule,
-        FormsModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatSortModule,
-        MatTooltipModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatExpansionModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    FormsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatSortModule,
+    MatTooltipModule,
+    MatTableModule,
+    MatIconModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

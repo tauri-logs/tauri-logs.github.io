@@ -34,7 +34,8 @@ export class PlayerViewComponent implements OnInit {
 
   showSpecificLog(id: number) {
     this.dialog.open(SpecificLogComponent, {
-      data: {id: id}
+      data: {id: id},
+      minHeight: '90vh'
     });
   }
 

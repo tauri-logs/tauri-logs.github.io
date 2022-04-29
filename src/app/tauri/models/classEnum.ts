@@ -9,6 +9,7 @@ export const enum ClassEnum {
   SHAMAN,
   MAGE,
   WARLOCK,
+  IDK,
   DRUID
 }
 
@@ -23,5 +24,6 @@ export const classColor = [
   '#0070DD',
   '#3FC7EB',
   '#8788EE',
+  '#505050',
   '#FF7C0A'
 ]

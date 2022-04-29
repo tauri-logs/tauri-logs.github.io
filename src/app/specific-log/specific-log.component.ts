@@ -6,10 +6,10 @@ import {Member} from "../tauri/models/member";
 import {Sort} from "@angular/material/sort";
 import copy from "fast-copy";
 import {RaidDetailHeader} from "../tauri/models/raidDetailHeader";
-import {raceImage, reverseRace} from "../tauri/models/raceEnum";
-import {genderImage} from "../tauri/models/genderEnum";
+import {reverseRace} from "../tauri/models/raceEnum";
 import {reverseSpec} from "../tauri/models/specEnum";
 import {Icon} from "../tauri/models/Icon";
+import {formatNumber} from "@angular/common";
 
 export interface DialogData {
   id: number;
@@ -22,14 +22,18 @@ export interface DialogData {
 })
 export class SpecificLogComponent implements OnInit {
 
-  public headers = [
-    new RaidDetailHeader('ilvl', '', '2px'),
-    new RaidDetailHeader('race', '', '2px', new Icon(reverseRace, 'races')),
-    new RaidDetailHeader('spec', '', '2px', new Icon(reverseSpec, 'specs')),
-    new RaidDetailHeader('name', 'Name', '2px'),
-    new RaidDetailHeader('dmg_done', 'Damage', '20px'),
-    new RaidDetailHeader('heal_done', 'Healing', '20px'),
-  ]
+  get headers(): RaidDetailHeader[] {
+    return this._headers;
+  }
+  set headers(value: RaidDetailHeader[]) {
+    this._headers = value;
+    this.rows = value.map(function (header) {
+      return header.key
+    })
+  }
+
+  public rows: string[] = [];
+  private _headers : RaidDetailHeader[] = [];
 
   // public readonly headers = {
   //   race : "",
@@ -62,6 +66,14 @@ export class SpecificLogComponent implements OnInit {
         this.sortedMembers = response.members;
       }
     )
+    this.headers = [
+      new RaidDetailHeader('ilvl', '' ),
+      new RaidDetailHeader('race', '', new Icon(reverseRace, 'races')),
+      new RaidDetailHeader('spec', '', new Icon(reverseSpec, 'specs')),
+      new RaidDetailHeader('name', 'Name'),
+      new RaidDetailHeader('dmg_done', 'Damage'),
+      new RaidDetailHeader('heal_done', 'Healing')
+    ]
   }
 
   sortData(sort: Sort) {
@@ -78,5 +90,14 @@ export class SpecificLogComponent implements OnInit {
     );
   }
 
+  getMemberAttribute(member : Member, key: string): string {
+    //@ts-ignore
+    let attribute = member[key];
+    if (typeof attribute === 'number') {
+      return formatNumber(attribute, 'en-US');
+    } else {
+      return attribute;
+    }
+  }
 
 }
