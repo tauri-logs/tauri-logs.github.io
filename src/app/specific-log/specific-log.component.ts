@@ -6,10 +6,12 @@ import {Member} from "../tauri/models/member";
 import {Sort} from "@angular/material/sort";
 import copy from "fast-copy";
 import {RaidDetailHeader} from "../tauri/models/raidDetailHeader";
-import {reverseRace} from "../tauri/models/raceEnum";
+import {raceImage, reverseRace} from "../tauri/models/raceEnum";
 import {reverseSpec} from "../tauri/models/specEnum";
 import {Icon} from "../tauri/models/Icon";
 import {formatNumber} from "@angular/common";
+import {genderImage} from "../tauri/models/genderEnum";
+import {classColor} from "../tauri/models/classEnum";
 
 export interface DialogData {
   id: number;
@@ -30,6 +32,7 @@ export class SpecificLogComponent implements OnInit {
     this.rows = value.map(function (header) {
       return header.key
     })
+    this.rows.unshift('character')
   }
 
   public rows: string[] = [];
@@ -64,13 +67,10 @@ export class SpecificLogComponent implements OnInit {
       response => {
         this.raidDetail = response;
         this.sortedMembers = response.members;
+        this.sortData({active: 'dmg_done', direction: 'desc'})
       }
     )
     this.headers = [
-      new RaidDetailHeader('ilvl', '' ),
-      new RaidDetailHeader('race', '', new Icon(reverseRace, 'races')),
-      new RaidDetailHeader('spec', '', new Icon(reverseSpec, 'specs')),
-      new RaidDetailHeader('name', 'Name'),
       new RaidDetailHeader('dmg_done', 'Damage'),
       new RaidDetailHeader('heal_done', 'Healing')
     ]
@@ -100,4 +100,30 @@ export class SpecificLogComponent implements OnInit {
     }
   }
 
+
+
+  getTooltip(member: Member, key: string) : string {
+    //@ts-ignore
+    return this.tooltipObject[member[key]]
+  }
+
+  getRaceImage(member: Member): string {
+    return `/assets/races/${raceImage[member.race]}-${genderImage[member.gender]}.webp`;
+  }
+
+  getRaceTooltip(member: Member): string {
+    return reverseRace[member.race];
+  }
+
+  getSpecImage(member: Member): string {
+    return `/assets/specs/${member.spec}.png`;;
+  }
+
+  getSpecTooltip(member: Member): string {
+    return reverseSpec[member.spec];
+  }
+
+  getClassColor(member: Member): string {
+    return `color: ${classColor[member.class]};`;
+  }
 }

@@ -1,24 +1,47 @@
 <mat-dialog-content style="max-height: 90vh;">
   <span style="display: flex; justify-content: space-between;">
     <h3>Specific log - {{data.id}}</h3>
-    <button mat-icon-button mat-dialog-close>
-        <mat-icon>close</mat-icon>
-    </button>
+    <span>
+      <button mat-icon-button>
+          <mat-icon>settings</mat-icon>
+      </button>
+      <button mat-icon-button mat-dialog-close>
+          <mat-icon>close</mat-icon>
+      </button>
+    </span>
   </span>
-  <table mat-table [dataSource]="sortedMembers" class="mat-elevation-z0"
-         matSort (matSortChange)="sortData($event)" [matSortStart]="'desc'"
-         [style]="'width: 70vw; height: 80vh'">
+  <table *ngIf="sortedMembers !== []" mat-table [dataSource]="sortedMembers"
+         class="mat-elevation-z0 modal-size"
+         matSort (matSortChange)="sortData($event)"
+         [matSortStart]="'desc'"
+         matSortActive="dmg_done"
+         matSortDirection="desc">
+    <ng-container [matColumnDef]="'character'">
+      <th mat-header-cell *matHeaderCellDef style="padding: 1vh 1vw;">
+        Character
+      </th>
+      <td mat-cell *matCellDef="let member" style="padding: 1vh 1vw;">
+        <span>{{member.ilvl}}</span>
+        <img width="21" height="21" [src]="getRaceImage(member)" style="padding: 0 10px"
+             [matTooltip]="getRaceTooltip(member)" [matTooltipPosition]="'above'">
+        <img width="21" height="21" [src]="getSpecImage(member)"
+             [matTooltip]="getSpecTooltip(member)" [matTooltipPosition]="'above'">
+        <span [style]="getClassColor(member) + 'padding: 0 10px;'">{{member.name}}</span>
+      </td>
+    </ng-container>
     <ng-container *ngFor="let header of headers" [matColumnDef]="header.key">
-      <th mat-header-cell *matHeaderCellDef [mat-sort-header]="header.key" [style]="header.getHeaderStyle()">
+      <th mat-header-cell *matHeaderCellDef [mat-sort-header]="header.key" style="padding: 1vh 1vw;">
         {{header.text}}
       </th>
-      <td mat-cell *matCellDef="let member" [style]="header.getColStyle(member)">
-        <span *ngIf="!header.img">{{getMemberAttribute(member, header.key)}}</span>
-        <img *ngIf="header.img" width="21" height="21" [src]="header.img.getImage(member, header.key)"
-             [matTooltip]="header.img.getTooltip(member, header.key)" [matTooltipPosition]="'above'">
+      <td mat-cell *matCellDef="let member" style="padding: 1vh 1vw;">
+        <span>{{getMemberAttribute(member, header.key)}}</span>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="rows; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: rows;"></tr>
   </table>
+  <div *ngIf="sortedMembers === []" class="modal-size modal-loading">
+    <mat-spinner></mat-spinner>
+    <p>Log is being loaded from the server.</p>
+  </div>
 </mat-dialog-content>

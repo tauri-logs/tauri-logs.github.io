@@ -19,6 +19,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -27,23 +28,24 @@ import {MatIconModule} from "@angular/material/icon";
     PlayerViewComponent,
     SpecificLogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatExpansionModule,
-    BrowserAnimationsModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatNativeDateModule,
-    FormsModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatSortModule,
-    MatTooltipModule,
-    MatTableModule,
-    MatIconModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatExpansionModule,
+        BrowserAnimationsModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatNativeDateModule,
+        FormsModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatSortModule,
+        MatTooltipModule,
+        MatTableModule,
+        MatIconModule,
+        MatProgressSpinnerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

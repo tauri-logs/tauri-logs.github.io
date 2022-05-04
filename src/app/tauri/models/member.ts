@@ -2,6 +2,7 @@ import {Trinket} from "./trinket";
 import {ClassEnum} from "./classEnum";
 import {RaceEnum} from "./raceEnum";
 import {GenderEnum} from "./genderEnum";
+import {SpecEnum} from "./specEnum";
 
 export interface Member {
   valid_player: boolean;
@@ -11,7 +12,7 @@ export interface Member {
   gender: GenderEnum;
   name: string;
   link: string;
-  spec: number;
+  spec: SpecEnum;
   dmg_done: number;
   dmg_taken: number;
   dmg_absorb: number;

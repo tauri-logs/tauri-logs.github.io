@@ -1,0 +1,11 @@
+.modal-size {
+  width: 70vw;
+  height: 80vh;
+}
+
+.modal-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
