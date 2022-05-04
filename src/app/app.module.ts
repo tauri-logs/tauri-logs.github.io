@@ -21,6 +21,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { LogViewSettingsComponent } from './log-view-settings/log-view-settings.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -30,24 +31,25 @@ import { LogViewSettingsComponent } from './log-view-settings/log-view-settings.
     SpecificLogComponent,
     LogViewSettingsComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MatExpansionModule,
-        BrowserAnimationsModule,
-        MatDatepickerModule,
-        MatInputModule,
-        MatNativeDateModule,
-        FormsModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatSortModule,
-        MatTooltipModule,
-        MatTableModule,
-        MatIconModule,
-        MatProgressSpinnerModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatExpansionModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    FormsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatSortModule,
+    MatTooltipModule,
+    MatTableModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    DragDropModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

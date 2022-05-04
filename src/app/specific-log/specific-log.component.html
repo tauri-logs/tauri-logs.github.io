@@ -2,7 +2,7 @@
   <span style="display: flex; justify-content: space-between;">
     <h3>Specific log - {{data.id}}</h3>
     <span>
-      <button mat-icon-button>
+      <button mat-icon-button (click)="showSettings()">
           <mat-icon>settings</mat-icon>
       </button>
       <button mat-icon-button mat-dialog-close>

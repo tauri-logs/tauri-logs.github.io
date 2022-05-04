@@ -1,1 +1,13 @@
-<p>log-view-settings works!</p>
+<mat-dialog-content style="max-height: 90vh;">
+  <span style="display: flex; justify-content: space-between;">
+    <h3>Setup what you see in logs</h3>
+    <button mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+    </button>
+  </span>
+  <div cdkDropList class="headers-list" (cdkDropListDropped)="drop($event)">
+    <div class="header" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+  </div>
+
+</mat-dialog-content>
+
