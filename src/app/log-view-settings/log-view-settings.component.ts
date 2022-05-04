@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {RaidDetailHeader} from "../tauri/models/raidDetailHeader";
 
 @Component({
   selector: 'app-log-view-settings',
@@ -8,14 +10,12 @@ import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 })
 export class LogViewSettingsComponent implements OnInit {
 
-  movies = ['santa', 'maria', 'mia']
-
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public headers: RaidDetailHeader[]) { }
 
   ngOnInit(): void {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.headers, event.previousIndex, event.currentIndex);
   }
 }

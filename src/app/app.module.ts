@@ -22,6 +22,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { LogViewSettingsComponent } from './log-view-settings/log-view-settings.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {CookieService} from "ngx-cookie-service";
 
 @NgModule({
   declarations: [
@@ -48,9 +50,10 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     MatTableModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    DragDropModule
+    DragDropModule,
+    MatCheckboxModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

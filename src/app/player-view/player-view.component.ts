@@ -27,7 +27,6 @@ export class PlayerViewComponent implements OnInit {
         // console.log(response)
         const mapLogs : Log[] = this.tauriService.extractLogsByMapID(response, RaidMapEnum.SOO);
         this.playerLogs = this.tauriService.sortByLockout(mapLogs);
-        console.log(this.playerLogs)
       }
     )
   }

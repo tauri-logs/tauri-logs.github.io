@@ -13,8 +13,9 @@ import {formatNumber} from "@angular/common";
 import {genderImage} from "../tauri/models/genderEnum";
 import {classColor} from "../tauri/models/classEnum";
 import {LogViewSettingsComponent} from "../log-view-settings/log-view-settings.component";
+import {first} from "rxjs/operators";
 
-export interface DialogData {
+interface DialogData {
   id: number;
 }
 
@@ -25,19 +26,8 @@ export interface DialogData {
 })
 export class SpecificLogComponent implements OnInit {
 
-  get headers(): RaidDetailHeader[] {
-    return this._headers;
-  }
-  set headers(value: RaidDetailHeader[]) {
-    this._headers = value;
-    this.rows = value.map(function (header) {
-      return header.key
-    })
-    this.rows.unshift('character')
-  }
-
   public rows: string[] = [];
-  private _headers : RaidDetailHeader[] = [];
+  public headers : RaidDetailHeader[] = [];
 
   // public readonly headers = {
   //   race : "",
@@ -73,15 +63,22 @@ export class SpecificLogComponent implements OnInit {
       }
     )
     this.headers = [
-      new RaidDetailHeader('dmg_done', 'Damage'),
-      new RaidDetailHeader('heal_done', 'Healing')
+      new RaidDetailHeader('dmg_done', 'Damage', true),
+      new RaidDetailHeader('heal_done', 'Healing', true)
     ]
+    this.refreshHeaders();
+  }
+
+  refreshHeaders() {
+    this.rows = this.headers.filter(header => header.active).map(header => header.key)
+    this.rows.unshift('character')
   }
 
   showSettings() {
     this.dialog.open(LogViewSettingsComponent, {
+      data: this.headers,
       minHeight: '90vh'
-    });
+    }).afterClosed().pipe(first()).subscribe(value => this.refreshHeaders());
   }
 
   sortData(sort: Sort) {

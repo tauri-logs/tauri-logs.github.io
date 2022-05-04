@@ -1,15 +1,15 @@
 import {Icon} from "./Icon";
-import {Member} from "./member";
-import {classColor} from "./classEnum";
 
 export class RaidDetailHeader {
   key: string;
   text: string;
+  active: boolean;
   img: Icon | undefined;
 
-  constructor(key: string, text: string, img?: Icon) {
+  constructor(key: string, text: string, active: boolean = false, img?: Icon) {
     this.key = key;
     this.text = text;
+    this.active = active;
     this.img = img;
   }
 
