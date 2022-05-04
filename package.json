@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "ng:gen": "ng generate component specific-log",
+    "ng:gen": "ng generate component log-view-settings",
     "start": "ng serve",
     "build:prod": "ng build --configuration production --base-href https://github",
     "test:headless": "ng test --watch=false --browsers=ChromeHeadless"

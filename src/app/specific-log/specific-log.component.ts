@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {TauriService} from "../tauri/tauri.service";
 import {RaidDetail} from "../tauri/models/raidDetail";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {Member} from "../tauri/models/member";
 import {Sort} from "@angular/material/sort";
 import copy from "fast-copy";
@@ -12,6 +12,7 @@ import {Icon} from "../tauri/models/Icon";
 import {formatNumber} from "@angular/common";
 import {genderImage} from "../tauri/models/genderEnum";
 import {classColor} from "../tauri/models/classEnum";
+import {LogViewSettingsComponent} from "../log-view-settings/log-view-settings.component";
 
 export interface DialogData {
   id: number;
@@ -60,6 +61,7 @@ export class SpecificLogComponent implements OnInit {
   public sortedMembers: Member[] = [];
 
   constructor(private tauriService: TauriService,
+              private dialog: MatDialog,
               @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit(): void {
@@ -74,6 +76,12 @@ export class SpecificLogComponent implements OnInit {
       new RaidDetailHeader('dmg_done', 'Damage'),
       new RaidDetailHeader('heal_done', 'Healing')
     ]
+  }
+
+  showSettings() {
+    this.dialog.open(LogViewSettingsComponent, {
+      minHeight: '90vh'
+    });
   }
 
   sortData(sort: Sort) {
@@ -99,8 +107,6 @@ export class SpecificLogComponent implements OnInit {
       return attribute;
     }
   }
-
-
 
   getTooltip(member: Member, key: string) : string {
     //@ts-ignore

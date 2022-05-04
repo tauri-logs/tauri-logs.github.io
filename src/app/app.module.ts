@@ -20,13 +20,15 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { LogViewSettingsComponent } from './log-view-settings/log-view-settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideBarComponent,
     PlayerViewComponent,
-    SpecificLogComponent
+    SpecificLogComponent,
+    LogViewSettingsComponent
   ],
     imports: [
         BrowserModule,
