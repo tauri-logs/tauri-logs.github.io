@@ -42,9 +42,8 @@ export class SpecificLogComponent implements OnInit {
       response => {
         this.raidDetail = response;
         this.raidDetail?.members.forEach(member =>
-          member.dps = Math.round(member.dmg_done/(this.data.time/1000))
+          member.dps = Math.round(member.dmg_done/(this.data.time))
         );
-        console.log(this.data.time)
         this.sortedMembers = response.members;
         this.sortData({active: 'dmg_done', direction: 'desc'});
       }

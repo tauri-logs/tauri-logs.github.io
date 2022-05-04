@@ -24,7 +24,6 @@ export class PlayerViewComponent implements OnInit {
   ngOnInit(): void {
     this.tauriService.getStepanRaidLogs(50).subscribe(
       response => {
-        // console.log(response)
         const mapLogs : Log[] = this.tauriService.extractLogsByMapID(response, RaidMapEnum.SOO);
         this.playerLogs = this.tauriService.sortByLockout(mapLogs);
       }
@@ -33,7 +32,7 @@ export class PlayerViewComponent implements OnInit {
 
   showSpecificLog(log: Log) {
     this.dialog.open(SpecificLogComponent, {
-      data: {id: log.log_id, time: log.fight_time},
+      data: {id: log.log_id, time: log.fight_time/1000},
       minHeight: '90vh'
     });
   }
