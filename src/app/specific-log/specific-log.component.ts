@@ -17,6 +17,7 @@ import {first} from "rxjs/operators";
 
 interface DialogData {
   id: number;
+  time: number;
 }
 
 @Component({
@@ -29,24 +30,6 @@ export class SpecificLogComponent implements OnInit {
   public rows: string[] = [];
   public headers : RaidDetailHeader[] = [];
 
-  // public readonly headers = {
-  //   race : "",
-  //   spec : "",
-  //   name : "Name",
-  //   dmg_done : "Damage done",
-  //   dmg_taken : "Damage taken",
-  //   dmg_absorb : "Damage absorbed",
-  //   heal_done : "Healing done",
-  //   absorb_done : "Absorbs",
-  //   overheal : "Overhealing",
-  //   heal_taken : "Healing taken",
-  //   interrupts : "Interrupts",
-  //   dispells : "Dispells",
-  //   ilvl : "",
-  //   trinket_0 : "Trinket 1",
-  //   trinket_1 : "Trinket 2"
-  // }
-
   public raidDetail : RaidDetail | undefined;
   public sortedMembers: Member[] = [];
 
@@ -58,13 +41,27 @@ export class SpecificLogComponent implements OnInit {
     this.tauriService.getLogDetails(this.data.id).subscribe(
       response => {
         this.raidDetail = response;
+        this.raidDetail?.members.forEach(member =>
+          member.dps = Math.round(member.dmg_done/(this.data.time/1000))
+        );
+        console.log(this.data.time)
         this.sortedMembers = response.members;
-        this.sortData({active: 'dmg_done', direction: 'desc'})
+        this.sortData({active: 'dmg_done', direction: 'desc'});
       }
     )
     this.headers = [
       new RaidDetailHeader('dmg_done', 'Damage', true),
-      new RaidDetailHeader('heal_done', 'Healing', true)
+      new RaidDetailHeader('heal_done', 'Healing', true),
+      new RaidDetailHeader('dps', 'DPS', false),
+      new RaidDetailHeader('dmg_taken', 'Damage taken', false),
+      new RaidDetailHeader('dmg_absorb', 'Absorbed dmg', false),
+      new RaidDetailHeader('absorb_done', 'Absorbs done', false),
+      new RaidDetailHeader('overheal', 'Overhealing', false),
+      new RaidDetailHeader('heal_taken', 'Healing taken', false),
+      new RaidDetailHeader('interrupts', 'Interrupts', false),
+      new RaidDetailHeader('dispells', 'Dispells', false),
+      // new RaidDetailHeader('trinket_0', 'Trinket 1', false),
+      // new RaidDetailHeader('trinket_1', 'Trinket 2', false)
     ]
     this.refreshHeaders();
   }
@@ -119,7 +116,7 @@ export class SpecificLogComponent implements OnInit {
   }
 
   getSpecImage(member: Member): string {
-    return `/assets/specs/${member.spec}.png`;;
+    return `/assets/specs/${member.spec}.png`;
   }
 
   getSpecTooltip(member: Member): string {

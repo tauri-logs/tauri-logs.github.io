@@ -27,7 +27,7 @@
              – {{week.endDate.getDate()}}.{{week.endDate.getMonth()}}.{{week.endDate.getFullYear()}}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <tr style="height: 10vh" (click)="showSpecificLog(log.log_id)" *ngFor="let log of week.logs">
+        <tr style="height: 10vh" (click)="showSpecificLog(log)" *ngFor="let log of week.logs">
           {{log.encounter_data.encounter_name}}
         </tr>
       </mat-expansion-panel>

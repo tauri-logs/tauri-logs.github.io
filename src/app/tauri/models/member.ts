@@ -26,4 +26,5 @@ export interface Member {
   talents: string;
   trinket_0: Trinket;
   trinket_1: Trinket;
+  dps?: number;
 }
