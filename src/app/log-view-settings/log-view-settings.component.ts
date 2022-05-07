@@ -10,7 +10,11 @@ import {RaidDetailHeader} from "../tauri/models/raidDetailHeader";
 })
 export class LogViewSettingsComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public headers: RaidDetailHeader[]) { }
+  characterHeader?: RaidDetailHeader;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public headers: RaidDetailHeader[]) {
+    this.characterHeader = headers.pop();
+  }
 
   ngOnInit(): void {
   }

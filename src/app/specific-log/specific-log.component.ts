@@ -14,6 +14,9 @@ import {genderImage} from "../tauri/models/genderEnum";
 import {classColor} from "../tauri/models/classEnum";
 import {LogViewSettingsComponent} from "../log-view-settings/log-view-settings.component";
 import {first} from "rxjs/operators";
+import {CookieService} from "ngx-cookie-service";
+import {MultipleRaidDetailHeaders} from "../tauri/models/multipleRaidDetailHeaders";
+import {RaidDetailHeaderCookie} from "../tauri/models/raidDetailHeaderCookie";
 
 interface DialogData {
   id: number;
@@ -27,28 +30,49 @@ interface DialogData {
 })
 export class SpecificLogComponent implements OnInit {
 
-  public rows: string[] = [];
-  public headers : RaidDetailHeader[] = [];
+  private obtainedResponse: boolean = false;
+  private setupHeaders: boolean = false;
 
-  public raidDetail : RaidDetail | undefined;
+  public rows: string[] = [];
+  public headers: RaidDetailHeader[] = [];
+
+  public raidDetail?: RaidDetail;
   public sortedMembers: Member[] = [];
+
+  public readonly characterHeader = new RaidDetailHeader('character', 'Character', true);
+  private defaultHeaders: MultipleRaidDetailHeaders = new MultipleRaidDetailHeaders(this.headers);
+
+  private readonly cookieName = 'logHeaders';
 
   constructor(private tauriService: TauriService,
               private dialog: MatDialog,
-              @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+              @Inject(MAT_DIALOG_DATA) public data: DialogData,
+              private cookieService: CookieService) {
+  }
 
   ngOnInit(): void {
     this.tauriService.getLogDetails(this.data.id).subscribe(
       response => {
         this.raidDetail = response;
         this.raidDetail?.members.forEach(member =>
-          member.dps = Math.round(member.dmg_done/(this.data.time))
+          member.dps = Math.round(member.dmg_done / (this.data.time))
         );
         this.sortedMembers = response.members;
         this.sortData({active: 'dmg_done', direction: 'desc'});
+        this.obtainedResponse = true
       }
     )
-    this.headers = [
+    this.initDefaultHeaders();
+    this.setHeaders();
+    this.setupHeaders = true
+  }
+
+  initDefaultHeaders() {
+    this.defaultHeaders = new MultipleRaidDetailHeaders([
+      new RaidDetailHeader('ilvl', 'Ilvl', false),
+      new RaidDetailHeader('race', 'Race', false, new Icon(this.getRaceTooltip, this.getRaceImage)),
+      new RaidDetailHeader('spec', 'Spec', false, new Icon(this.getSpecTooltip, this.getSpecImage)),
+      new RaidDetailHeader('name', 'Name', false, undefined, this.getClassColor),
       new RaidDetailHeader('dmg_done', 'Damage', true),
       new RaidDetailHeader('heal_done', 'Healing', true),
       new RaidDetailHeader('dps', 'DPS', false),
@@ -59,18 +83,41 @@ export class SpecificLogComponent implements OnInit {
       new RaidDetailHeader('heal_taken', 'Healing taken', false),
       new RaidDetailHeader('interrupts', 'Interrupts', false),
       new RaidDetailHeader('dispells', 'Dispells', false),
-      // new RaidDetailHeader('trinket_0', 'Trinket 1', false),
-      // new RaidDetailHeader('trinket_1', 'Trinket 2', false)
-    ]
-    this.refreshHeaders();
+      new RaidDetailHeader('trinket_0', 'Trinket 1', true, new Icon(this.getTrinket1Tooltip, this.getTrinket1Image, 28)),
+      new RaidDetailHeader('trinket_1', 'Trinket 2', true),
+    ])
+  }
+
+  setHeaders() {
+    if (this.cookieService.check(this.cookieName)) {
+      const cookie: RaidDetailHeaderCookie[] = JSON.parse(this.cookieService.get(this.cookieName))
+      this.rows = cookie.filter(value => value.active).map(value => value.key)
+      // start at 1 to skip 'character'
+      for (let i = 1; i < cookie.length; i++) {
+        //@ts-ignore
+        const header = this.defaultHeaders.headersDictionary[cookie[i].key]
+        header.active = cookie[i].active
+        this.headers.push(header)
+      }
+    } else {
+      this.headers = this.defaultHeaders.headers
+      this.refreshHeaders()
+    }
   }
 
   refreshHeaders() {
-    this.rows = this.headers.filter(header => header.active).map(header => header.key)
-    this.rows.unshift('character')
+    this.rows = this.headers.filter(header => header.active)
+      .map(header => header.key)
+    const cookie: RaidDetailHeaderCookie[] = this.headers.map(value => new RaidDetailHeaderCookie(value))
+    if (this.characterHeader.active) {
+      this.rows.unshift(this.characterHeader.key)
+    }
+    cookie.unshift(new RaidDetailHeaderCookie(this.characterHeader))
+    this.cookieService.set(this.cookieName, JSON.stringify(cookie));
   }
 
   showSettings() {
+    this.headers.push(this.characterHeader)
     this.dialog.open(LogViewSettingsComponent, {
       data: this.headers,
       minHeight: '90vh'
@@ -85,13 +132,13 @@ export class SpecificLogComponent implements OnInit {
     }
     const isAsc = sort.direction === 'asc';
     this.sortedMembers = data.sort((a, b) => {
-      //@ts-ignore
-      return (a[sort.active] < b[sort.active] ? -1 : 1) * (isAsc ? 1 : -1);
+        //@ts-ignore
+        return (a[sort.active] < b[sort.active] ? -1 : 1) * (isAsc ? 1 : -1);
       }
     );
   }
 
-  getMemberAttribute(member : Member, key: string): string {
+  getMemberAttribute(member: Member, key: string): string {
     //@ts-ignore
     let attribute = member[key];
     if (typeof attribute === 'number') {
@@ -101,28 +148,35 @@ export class SpecificLogComponent implements OnInit {
     }
   }
 
-  getTooltip(member: Member, key: string) : string {
-    //@ts-ignore
-    return this.tooltipObject[member[key]]
-  }
-
-  getRaceImage(member: Member): string {
+  getRaceImage: (member: Member) => string = function (member: Member): string {
     return `/assets/races/${raceImage[member.race]}-${genderImage[member.gender]}.webp`;
-  }
+  };
 
-  getRaceTooltip(member: Member): string {
+  getRaceTooltip: (member: Member) => string = function (member: Member): string {
     return reverseRace[member.race];
-  }
+  };
 
-  getSpecImage(member: Member): string {
+  getSpecImage: (member: Member) => string = function (member: Member): string {
     return `/assets/specs/${member.spec}.png`;
-  }
+  };
 
-  getSpecTooltip(member: Member): string {
+  getSpecTooltip: (member: Member) => string = function (member: Member): string {
     return reverseSpec[member.spec];
+  };
+
+  getTrinket1Image: (member: Member) => string = function (member: Member): string {
+    return `http://mop-static.tauri.hu/images/icons/medium/inv_jewelry_orgrimmarraid_trinket_02.png`;
+  };
+
+  getTrinket1Tooltip: (member: Member) => string = function (member: Member): string {
+    return reverseSpec[member.spec];
+  };
+
+  getClassColor: (member: Member) => string = function (member: Member): string {
+    return `color: ${classColor[member.class]};`;
   }
 
-  getClassColor(member: Member): string {
-    return `color: ${classColor[member.class]};`;
+  dataLoaded(): boolean {
+    return this.obtainedResponse && this.setupHeaders
   }
 }

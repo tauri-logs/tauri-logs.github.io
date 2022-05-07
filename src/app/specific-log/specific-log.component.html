@@ -10,37 +10,43 @@
       </button>
     </span>
   </span>
-  <table *ngIf="sortedMembers !== []" mat-table [dataSource]="sortedMembers"
+  <table *ngIf="dataLoaded()" mat-table [dataSource]="sortedMembers"
          class="mat-elevation-z0 modal-size"
          matSort (matSortChange)="sortData($event)"
          [matSortStart]="'desc'"
          matSortActive="dmg_done"
          matSortDirection="desc">
-    <ng-container [matColumnDef]="'character'">
-      <th mat-header-cell *matHeaderCellDef style="padding: 1vh 1vw;">
+    <ng-container [matColumnDef]="characterHeader.key">
+      <th mat-header-cell *matHeaderCellDef class="header-col">
         Character
       </th>
-      <td mat-cell *matCellDef="let member" style="padding: 1vh 1vw;">
+      <td mat-cell *matCellDef="let member" class="header-col">
+        <div style="display: flex">
+          <!--TODO: align-items: end/center/start -->
         <span>{{member.ilvl}}</span>
         <img width="21" height="21" [src]="getRaceImage(member)" style="padding: 0 10px"
              [matTooltip]="getRaceTooltip(member)" [matTooltipPosition]="'above'">
         <img width="21" height="21" [src]="getSpecImage(member)"
              [matTooltip]="getSpecTooltip(member)" [matTooltipPosition]="'above'">
         <span [style]="getClassColor(member) + 'padding: 0 10px;'">{{member.name}}</span>
+        </div>
       </td>
     </ng-container>
     <ng-container *ngFor="let header of headers" [matColumnDef]="header.key">
-      <th mat-header-cell *matHeaderCellDef [mat-sort-header]="header.key" style="padding: 1vh 1vw;">
+      <th mat-header-cell *matHeaderCellDef [mat-sort-header]="header.key" class="header-col">
         {{header.text}}
       </th>
-      <td mat-cell *matCellDef="let member" style="padding: 1vh 1vw;">
-        <span>{{getMemberAttribute(member, header.key)}}</span>
+      <td mat-cell *matCellDef="let member" class="header-col">
+        <span *ngIf="!header.img" [style]="header.style(member)">{{getMemberAttribute(member, header.key)}}</span>
+        <img *ngIf="header.img" [width]="header.img.dimension" [height]="header.img.dimension"
+             [src]="header.img.path(member)" class="header-col"
+             [matTooltip]="header.img.tooltip(member)" [matTooltipPosition]="'above'"/>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="rows; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: rows;"></tr>
   </table>
-  <div *ngIf="sortedMembers === []" class="modal-size modal-loading">
+  <div *ngIf="!dataLoaded()" class="modal-size modal-loading">
     <mat-spinner></mat-spinner>
     <p>Log is being loaded from the server.</p>
   </div>

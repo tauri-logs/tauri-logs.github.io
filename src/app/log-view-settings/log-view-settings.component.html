@@ -6,13 +6,19 @@
     </button>
   </span>
   <div cdkDropList class="headers-list" (cdkDropListDropped)="drop($event)">
+    <div *ngIf="characterHeader" class="header">
+      <span>
+        <mat-checkbox [(ngModel)]="characterHeader.active">
+          Character
+        </mat-checkbox>
+      </span>
+    </div>
     <div class="header" *ngFor="let header of headers" cdkDrag>
       <span>
         <mat-checkbox [(ngModel)]="header.active">
           {{header.text}}
         </mat-checkbox>
       </span>
-
     </div>
   </div>
 </mat-dialog-content>
