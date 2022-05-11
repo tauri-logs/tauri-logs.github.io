@@ -27,4 +27,6 @@ export interface Member {
   trinket_0: Trinket;
   trinket_1: Trinket;
   dps?: number;
+  percentage_dmg_done?: number;
+  percentage_heal_done?: number;
 }

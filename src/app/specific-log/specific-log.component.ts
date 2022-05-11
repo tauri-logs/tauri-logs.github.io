@@ -54,9 +54,17 @@ export class SpecificLogComponent implements OnInit {
     this.tauriService.getLogDetails(this.data.id).subscribe(
       response => {
         this.raidDetail = response;
-        this.raidDetail?.members.forEach(member =>
+        let totalDmg: number = 0;
+        let totalHealing: number = 0;
+        this.raidDetail?.members.forEach(member => {
+          totalDmg += member.dmg_done;
+          totalHealing += member.heal_done;
+        });
+        this.raidDetail?.members.forEach(member => {
           member.dps = Math.round(member.dmg_done / (this.data.time))
-        );
+          member.percentage_dmg_done = (member.dmg_done / totalDmg) * 100;
+          member.percentage_heal_done = (member.heal_done / totalHealing) * 100;
+        });
         this.sortedMembers = response.members;
         this.sortData({active: 'dmg_done', direction: 'desc'});
         this.obtainedResponse = true
@@ -76,6 +84,8 @@ export class SpecificLogComponent implements OnInit {
       new RaidDetailHeader('dmg_done', 'Damage', true),
       new RaidDetailHeader('heal_done', 'Healing', true),
       new RaidDetailHeader('dps', 'DPS', false),
+      new RaidDetailHeader('percentage_dmg_done', '% of DMG', false),
+      new RaidDetailHeader('percentage_heal_done', '% of Healing', false),
       new RaidDetailHeader('dmg_taken', 'Damage taken', false),
       new RaidDetailHeader('dmg_absorb', 'Absorbed dmg', false),
       new RaidDetailHeader('absorb_done', 'Absorbs done', false),
