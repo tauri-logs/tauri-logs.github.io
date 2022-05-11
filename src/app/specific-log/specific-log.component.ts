@@ -83,8 +83,8 @@ export class SpecificLogComponent implements OnInit {
       new RaidDetailHeader('heal_taken', 'Healing taken', false),
       new RaidDetailHeader('interrupts', 'Interrupts', false),
       new RaidDetailHeader('dispells', 'Dispells', false),
-      new RaidDetailHeader('trinket_0', 'Trinket 1', true, new Icon(this.getTrinket1Tooltip, this.getTrinket1Image, 28)),
-      new RaidDetailHeader('trinket_1', 'Trinket 2', true),
+      new RaidDetailHeader('trinket_0', 'Trinket 1', true, new Icon(this.getTrinket0Tooltip, this.getTrinket0Image, 28)),
+      new RaidDetailHeader('trinket_1', 'Trinket 2', true, new Icon(this.getTrinket1Tooltip, this.getTrinket1Image, 28)),
     ])
   }
 
@@ -164,12 +164,20 @@ export class SpecificLogComponent implements OnInit {
     return reverseSpec[member.spec];
   };
 
+  getTrinket0Image: (member: Member) => string = function (member: Member): string {
+    return `http://mop-static.tauri.hu/images/icons/medium/${member.trinket_0.icon}.png`;
+  };
+
+  getTrinket0Tooltip: (member: Member) => string = function (member: Member): string {
+    return `${member.trinket_0.name}\n${member.trinket_0.ilevel} ilvl`;
+  };
+
   getTrinket1Image: (member: Member) => string = function (member: Member): string {
-    return `http://mop-static.tauri.hu/images/icons/medium/inv_jewelry_orgrimmarraid_trinket_02.png`;
+    return `http://mop-static.tauri.hu/images/icons/medium/${member.trinket_1.icon}.png`;
   };
 
   getTrinket1Tooltip: (member: Member) => string = function (member: Member): string {
-    return reverseSpec[member.spec];
+    return `${member.trinket_0.name}\n${member.trinket_1.ilevel} ilvl`;
   };
 
   getClassColor: (member: Member) => string = function (member: Member): string {
