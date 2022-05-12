@@ -17,10 +17,12 @@ import {first} from "rxjs/operators";
 import {CookieService} from "ngx-cookie-service";
 import {MultipleRaidDetailHeaders} from "../tauri/models/multipleRaidDetailHeaders";
 import {RaidDetailHeaderCookie} from "../tauri/models/raidDetailHeaderCookie";
+import {Guild} from "../tauri/models/guild";
 
 interface DialogData {
   id: number;
   time: number;
+  guild: Guild;
 }
 
 @Component({

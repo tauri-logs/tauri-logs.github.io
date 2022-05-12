@@ -1,7 +1,7 @@
 import {Faction} from "./faction";
 
 export interface Guild {
-  faction: Faction;
-  leadername: string;
-  name: string;
+  faction?: Faction;
+  leadername?: string;
+  name?: string;
 }

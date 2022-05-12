@@ -32,7 +32,7 @@ export class PlayerViewComponent implements OnInit {
 
   showSpecificLog(log: Log) {
     this.dialog.open(SpecificLogComponent, {
-      data: {id: log.log_id, time: log.fight_time/1000},
+      data: {id: log.log_id, time: log.fight_time/1000, guild: log.guilddata},
       minHeight: '90vh'
     });
   }

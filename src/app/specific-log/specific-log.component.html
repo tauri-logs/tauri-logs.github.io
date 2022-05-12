@@ -10,6 +10,7 @@
       </button>
     </span>
   </span>
+  <h3 *ngIf="data.guild?.name" [ngStyle]="{'color': data.guild?.faction ? '#e57373':'#29b6f6'}">Guild raid - {{data.guild.name}}</h3>
   <table *ngIf="dataLoaded()" mat-table [dataSource]="sortedMembers"
          class="mat-elevation-z0 modal-size"
          matSort (matSortChange)="sortData($event)"
