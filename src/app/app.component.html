@@ -4,13 +4,12 @@
   <h1>Logs</h1>
 </a>
 </header>
-<!--navigation pane-->
 <div style="display: flex;">
+  <!--side pane-->
   <app-side-bar></app-side-bar>
-  <app-player-view></app-player-view>
+  <!--content dependent on routing-->
+  <router-outlet></router-outlet>
 </div>
-<!--content dependent on routing-->
-<router-outlet></router-outlet>
 <!--footer-->
 <footer>
   <span>Open source. &copy; Me 2021</span>

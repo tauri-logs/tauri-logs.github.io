@@ -1,5 +1,10 @@
-<div style="width: 20vw">
-  <input type="text" [placeholder]="'Najdi hráče'"/>
+<div class="navBar" style="padding: 2vw;">
+  <input class="textInput" matInput type="text"
+         [(ngModel)]="playerName" [placeholder]="'Najdi hráče'"
+         (keydown.enter)="goToPlayerView(playerName)">
+  <button class="searchButton" mat-raised-button (click)="goToPlayerView(playerName)">
+    Search for player
+  </button>
 <!--  Raidy-->
 <!--  bossové-->
 </div>

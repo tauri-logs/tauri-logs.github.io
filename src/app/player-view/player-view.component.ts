@@ -5,6 +5,8 @@ import {RaidMapEnum} from "../tauri/models/map";
 import {Week} from "../tauri/week";
 import {MatDialog} from "@angular/material/dialog";
 import {SpecificLogComponent} from "../specific-log/specific-log.component";
+import {ActivatedRoute} from "@angular/router";
+import {Character} from "../tauri/models/character";
 
 @Component({
   selector: 'app-player-view',
@@ -17,17 +19,27 @@ export class PlayerViewComponent implements OnInit {
   public startFilter: Date = new Date();
   public endFilter: Date = new Date();
   public amountOfLogsFilter: number = 0;
+  public character?: Character;
 
   constructor(private tauriService: TauriService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.tauriService.getStepanRaidLogs(50).subscribe(
-      response => {
-        const mapLogs : Log[] = this.tauriService.extractLogsByMapID(response, RaidMapEnum.SOO);
-        this.playerLogs = this.tauriService.sortByLockout(mapLogs);
-      }
-    )
+    this.route.params.subscribe(params => {
+      let playerName = params['name'];
+      this.tauriService.getCharacter(playerName, "[EN] Evermoon").subscribe(
+        response => {
+          this.character = response;
+        }
+      );
+      this.tauriService.getPlayerRaidLogs(playerName,"[EN] Evermoon", 50).subscribe(
+        response => {
+          const mapLogs : Log[] = this.tauriService.extractLogsByMapID(response, RaidMapEnum.SOO);
+          this.playerLogs = this.tauriService.sortByLockout(mapLogs);
+        }
+      );
+    })
   }
 
   showSpecificLog(log: Log) {

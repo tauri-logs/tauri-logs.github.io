@@ -10,7 +10,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
-import {MatNativeDateModule} from "@angular/material/core";
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import {FormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import { SpecificLogComponent } from './specific-log/specific-log.component';
@@ -24,6 +24,7 @@ import { LogViewSettingsComponent } from './log-view-settings/log-view-settings.
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CookieService} from "ngx-cookie-service";
+import {MY_DATE_FORMATS} from "./tauri/dateFormat";
 
 @NgModule({
   declarations: [
@@ -53,7 +54,11 @@ import {CookieService} from "ngx-cookie-service";
     DragDropModule,
     MatCheckboxModule
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService,
+    {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS},
+    {provide: MAT_DATE_LOCALE, useValue: navigator.language}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

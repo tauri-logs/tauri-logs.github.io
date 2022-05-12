@@ -154,7 +154,7 @@ export class SpecificLogComponent implements OnInit {
     //@ts-ignore
     let attribute = member[key];
     if (typeof attribute === 'number') {
-      return formatNumber(attribute, 'en-US');
+      return formatNumber(attribute, 'en');
     } else {
       return attribute;
     }

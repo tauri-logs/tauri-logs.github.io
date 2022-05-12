@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {map} from 'rxjs/operators';
 import {Log} from "./models/log";
 import {Week} from "./week";
+import {Character} from "./models/character";
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +14,32 @@ export class TauriService {
 
   constructor(private http: HttpClient) { }
 
-  getStepanRaidLogs(limit: number): Observable<Log[]> {
+  getPlayerRaidLogs(name: string, realm: string, limit: number): Observable<Log[]> {
     return this.http.post(environment.apiUrl, {
       "url": "raid-player",
       "params": {
-        "r": "[EN] Evermoon",
-        "cn": "Stepan",
+        "r": realm,
+        "cn": name,
         "limit": limit
       }
     }, {headers: {'Content-Type': 'application/json'}}).pipe(
       map(response => {
         //@ts-ignore
-        return response.response.logs
+        return response.response.logs;
+      }));
+  }
+
+  getCharacter(charName: string, realm: string): Observable<Character> {
+    return this.http.post(environment.apiUrl, {
+      url    : 'character-sheet',
+      params : {
+        r: realm,
+        n: charName
+      }
+    }, {headers: {'Content-Type': 'application/json'}}).pipe(
+      map(response => {
+        //@ts-ignore
+        return response.response;
       }));
   }
 
