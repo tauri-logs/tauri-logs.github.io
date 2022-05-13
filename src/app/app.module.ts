@@ -24,7 +24,6 @@ import { LogViewSettingsComponent } from './log-view-settings/log-view-settings.
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CookieService} from "ngx-cookie-service";
-import {MY_DATE_FORMATS} from "./tauri/dateFormat";
 
 @NgModule({
   declarations: [
@@ -56,7 +55,6 @@ import {MY_DATE_FORMATS} from "./tauri/dateFormat";
   ],
   providers: [
     CookieService,
-    {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS},
     {provide: MAT_DATE_LOCALE, useValue: navigator.language}
   ],
   bootstrap: [AppComponent]

@@ -1,7 +1,5 @@
 .navBar {
   width: 20vw;
-  height: 100%;
-  background-color: #424242;
   padding: 2vw;
   display: flex;
   flex-direction: column;
@@ -15,4 +13,9 @@
 
 .searchButton {
   margin-top: 3vh;
+}
+
+input {
+  background-color: #424242;
+  color: white;
 }

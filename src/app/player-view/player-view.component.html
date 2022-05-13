@@ -5,7 +5,7 @@
   <div *ngIf="playerLogs.length > 0">
     <table>
       <thead style="display: flex">
-      <mat-form-field appearance="fill" style="background-color: #424242;">
+      <mat-form-field class="dateRange">
         <mat-label>Filter range</mat-label>
         <mat-date-range-input [rangePicker]="filterRange">
           <input matStartDate [(ngModel)]="startFilter">
@@ -14,7 +14,7 @@
         <mat-datepicker-toggle matSuffix [for]="filterRange"></mat-datepicker-toggle>
         <mat-date-range-picker #filterRange></mat-date-range-picker>
       </mat-form-field>
-      <mat-form-field class="example-form-field" style="background-color: #424242;">
+      <mat-form-field class="numberInput">
         <mat-label>Amount of logs</mat-label>
         <input matInput type="number" [(ngModel)]="amountOfLogsFilter">
       </mat-form-field>

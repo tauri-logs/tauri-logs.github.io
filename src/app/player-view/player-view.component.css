@@ -1,0 +1,15 @@
+input {
+  background-color: #424242;
+}
+
+.dateRange {
+  background-color: #424242;
+}
+
+:host ::ng-deep .mat-form-field-flex {
+  height: 45px;
+}
+
+.numberInput {
+  background-color: #424242;
+}

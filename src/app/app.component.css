@@ -1,9 +1,35 @@
 header {
   display: flex;
+  height: 5vh;
+  align-items: center;
+  background-color: black;
+}
+
+.mainHeading {
+  font-size: 4vh;
+  font-weight: bold;
+  text-decoration: none;
+  color: darkorange;
 }
 
 footer {
   display: flex;
-  justify-content: space-evenly;
-  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+  font-size: 1.5vh;
+  background-color: black;
+  color: pink;
+}
+
+.body {
+  color: white;
+  display: flex;
+  background-color: black;
+  height: 90vh;
+}
+
+.sideBar {
+  height: 100%;
+  background-color: #424242;
 }

@@ -1,12 +1,12 @@
 <!--text-->
 <header>
-<a [routerLink]="['/']">
-  <h1>Logs</h1>
+<a [routerLink]="['/']" class="mainHeading">
+  <span>Logs</span>
 </a>
 </header>
-<div style="display: flex;">
+<div class="body">
   <!--side pane-->
-  <app-side-bar></app-side-bar>
+  <app-side-bar class="sideBar"></app-side-bar>
   <!--content dependent on routing-->
   <router-outlet></router-outlet>
 </div>
