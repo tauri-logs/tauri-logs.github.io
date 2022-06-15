@@ -13,3 +13,18 @@ input {
 .numberInput {
   background-color: #424242;
 }
+
+#logs_table {
+  display: flex;
+  flex-direction: column;
+}
+
+.log_tr {
+  height: 10vh;
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+  border-bottom-color: gray;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}

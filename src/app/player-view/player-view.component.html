@@ -20,7 +20,7 @@
       </mat-form-field>
       <button mat-raised-button (click)="debug()">Search</button>
       </thead>
-      <tbody>
+      <tbody id="logs_table">
       <mat-expansion-panel *ngFor="let week of playerLogs">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -28,7 +28,7 @@
             – {{week.endDate.getDate()}}.{{week.endDate.getMonth()}}.{{week.endDate.getFullYear()}}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <tr style="height: 10vh" (click)="showSpecificLog(log)" *ngFor="let log of week.logs">
+        <tr class="log_tr" (click)="showSpecificLog(log)" *ngFor="let log of week.logs">
           {{log.encounter_data.encounter_name}}
         </tr>
       </mat-expansion-panel>
