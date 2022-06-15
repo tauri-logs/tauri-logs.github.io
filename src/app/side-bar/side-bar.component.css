@@ -6,9 +6,13 @@
 }
 
 .textInput {
+  border-top: none;
+  border-left: none;
+  border-right: none;
   border-bottom: solid;
   border-color: white;
   border-width: 1px;
+  outline: none;
 }
 
 .searchButton {
