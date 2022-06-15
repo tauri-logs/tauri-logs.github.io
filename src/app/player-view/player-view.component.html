@@ -2,7 +2,7 @@
   <h1>{{character.name}}</h1>
   <h2>{{character.guildName}}</h2>
   <!--poslední parsy-->
-  <div *ngIf="playerLogs.length > 0">
+  <div>
     <table>
       <thead style="display: flex">
       <mat-form-field class="dateRange">
@@ -18,7 +18,9 @@
         <mat-label>Amount of logs</mat-label>
         <input matInput type="number" [(ngModel)]="amountOfLogsFilter">
       </mat-form-field>
-      <button mat-raised-button (click)="debug()">Search</button>
+      <button mat-raised-button
+              [matTooltip]="'filters ' + amountOfLogsFilter + ' logs and afterwards extracts only SOO logs'"
+              (click)="filter()">Search</button>
       </thead>
       <tbody id="logs_table">
       <mat-expansion-panel *ngFor="let week of playerLogs">
@@ -35,4 +37,9 @@
       </tbody>
     </table>
   </div>
+</div>
+<div *ngIf="!character" class="loading">
+  <mat-spinner></mat-spinner>
+  <p>Retrieving character data from Tauri.</p>
+  <p class="small-text">(Tauri api might be down if you have enough time to read this.)</p>
 </div>

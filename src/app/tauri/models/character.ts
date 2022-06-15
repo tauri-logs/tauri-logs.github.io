@@ -1,10 +1,11 @@
 import {ClassEnum} from "./classEnum";
 import {RaceEnum} from "./raceEnum";
+import {RealmEnum} from "./realmEnum";
 
 export interface Character {
   name: string;
   level: number;
-  realm: string;
+  realm: RealmEnum;
   class: ClassEnum;
   race: RaceEnum;
   guildName: string;

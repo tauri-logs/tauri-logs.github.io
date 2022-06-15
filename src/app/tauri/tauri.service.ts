@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {environment} from "../../environments/environment";
 import {map} from 'rxjs/operators';
 import {Log} from "./models/log";
@@ -45,6 +45,12 @@ export class TauriService {
 
   extractLogsByMapID(logs: Log[], mapID: number) : Log[] {
     return logs.filter(log => log.map_id === mapID);
+  }
+
+  extractLogsByDateRangeAndMapID(logs: Log[], startDate: Date, endDate: Date, mapID: number) : Log[] {
+    const startStamp = startDate.valueOf() / 1000;
+    const endStamp = endDate.valueOf() / 1000;
+    return logs.filter(log => log.map_id === mapID && startStamp <= log.killtime && log.killtime <= endStamp);
   }
 
   sortByLockout(logs: Log[]) : Week[] {
