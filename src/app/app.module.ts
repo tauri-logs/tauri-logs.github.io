@@ -24,6 +24,7 @@ import { LogViewSettingsComponent } from './log-view-settings/log-view-settings.
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CookieService} from "ngx-cookie-service";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {CookieService} from "ngx-cookie-service";
     MatIconModule,
     MatProgressSpinnerModule,
     DragDropModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [
     CookieService,

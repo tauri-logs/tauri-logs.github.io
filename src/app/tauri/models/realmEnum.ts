@@ -3,3 +3,9 @@ export const enum RealmEnum {
   "TAURI" = "[HU] Tauri WoW Server",
   "WOD" = "[HU] Warriors of Darkness",
 }
+
+export const REALM_ARRAY: RealmEnum[] = [
+  RealmEnum.EVERMOON,
+  RealmEnum.TAURI,
+  RealmEnum.WOD
+]

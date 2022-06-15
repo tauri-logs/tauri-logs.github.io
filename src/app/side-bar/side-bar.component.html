@@ -2,6 +2,9 @@
   <input class="textInput" matInput type="text"
          [(ngModel)]="playerName" [placeholder]="'Najdi hráče'"
          (keydown.enter)="goToPlayerView(playerName)">
+  <mat-select id="realmSelect" [(ngModel)]="playerRealm">
+    <mat-option *ngFor="let realm of realms" [value]=realm>{{realm}}</mat-option>
+  </mat-select>
   <button class="searchButton" mat-raised-button (click)="goToPlayerView(playerName)">
     Search for player
   </button>

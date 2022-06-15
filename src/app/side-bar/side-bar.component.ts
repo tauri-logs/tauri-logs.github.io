@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {REALM_ARRAY, RealmEnum} from "../tauri/models/realmEnum";
 
 @Component({
   selector: 'app-side-bar',
@@ -9,6 +10,8 @@ import {Router} from "@angular/router";
 export class SideBarComponent implements OnInit {
 
   playerName: string = '';
+  playerRealm: RealmEnum = RealmEnum.EVERMOON;
+  realms: RealmEnum[] = REALM_ARRAY;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
