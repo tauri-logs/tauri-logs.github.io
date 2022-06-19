@@ -7,7 +7,12 @@ import {MatDialog} from "@angular/material/dialog";
 import {SpecificLogComponent} from "../specific-log/specific-log.component";
 import {ActivatedRoute} from "@angular/router";
 import {Character} from "../tauri/models/character";
-import {RealmEnum} from "../tauri/models/realmEnum";
+import {REALM_ARRAY, RealmEnum} from "../tauri/models/realmEnum";
+import {Member} from "../tauri/models/member";
+import {raceImage, reverseRace} from "../tauri/models/raceEnum";
+import {genderImage} from "../tauri/models/genderEnum";
+import {reverseSpec} from "../tauri/models/specEnum";
+import {classColor} from "../tauri/models/classEnum";
 
 @Component({
   selector: 'app-player-view',
@@ -31,12 +36,21 @@ export class PlayerViewComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.character = undefined;
       const playerName = params['name'];
-      if (playerName.length) {
-        this.tauriService.getCharacter(playerName, RealmEnum.EVERMOON).subscribe(
+      const playerRealm: RealmEnum = params['realm'];
+      if (playerName.length && REALM_ARRAY.includes(playerRealm)) {
+        this.tauriService.getCharacter(playerName, playerRealm).subscribe(
           response => {
             this.character = response;
             this.amountOfLogsFilter = 50;
             this.filter();
+          },
+          error => {
+            //TODO: implement popup service
+            if (error.status === 502) {
+              console.log("Tauri api is down");
+            } else {
+              console.log(error.error.errorstring);
+            }
           }
         );
       }
@@ -64,4 +78,15 @@ export class PlayerViewComponent implements OnInit {
     });
   }
 
+  getRaceImage: (character: Character) => string = function (character: Character): string {
+    return `/assets/races/${raceImage[character.race]}-${genderImage[character.gender]}.webp`;
+  };
+
+  getRaceTooltip: (character: Character) => string = function (character: Character): string {
+    return reverseRace[character.race];
+  };
+
+  getClassColor: (character: Character) => string = function (character: Character): string {
+    return `color: ${classColor[character.class]};`;
+  }
 }

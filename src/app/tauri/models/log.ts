@@ -22,4 +22,5 @@ export interface Log {
   resurrects_fight: number;
   rid: number;
   wipes: number;
+  killDate?: Date;
 }

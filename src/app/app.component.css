@@ -30,5 +30,11 @@ footer {
 }
 
 .sideBar {
+  width: 16vw;
+  padding: 2vw;
   background-color: #424242;
+}
+
+.emptySpace {
+  width: 20vw;
 }

@@ -18,6 +18,7 @@ import {CookieService} from "ngx-cookie-service";
 import {MultipleRaidDetailHeaders} from "../tauri/models/multipleRaidDetailHeaders";
 import {RaidDetailHeaderCookie} from "../tauri/models/raidDetailHeaderCookie";
 import {Guild} from "../tauri/models/guild";
+import {environment} from "../../environments/environment";
 
 interface DialogData {
   id: number;
@@ -177,7 +178,7 @@ export class SpecificLogComponent implements OnInit {
   };
 
   getTrinket0Image: (member: Member) => string = function (member: Member): string {
-    return `http://mop-static.tauri.hu/images/icons/medium/${member.trinket_0.icon}.png`;
+    return `${environment.iconUrl}medium/${member.trinket_0.icon}.png`;
   };
 
   getTrinket0Tooltip: (member: Member) => string = function (member: Member): string {
@@ -185,7 +186,7 @@ export class SpecificLogComponent implements OnInit {
   };
 
   getTrinket1Image: (member: Member) => string = function (member: Member): string {
-    return `http://mop-static.tauri.hu/images/icons/medium/${member.trinket_1.icon}.png`;
+    return `${environment.iconUrl}medium/${member.trinket_1.icon}.png`;
   };
 
   getTrinket1Tooltip: (member: Member) => string = function (member: Member): string {

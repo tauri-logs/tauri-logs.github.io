@@ -17,8 +17,9 @@ export class SideBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToPlayerView(playerName: string) {
-    this.router.navigate(['/player', playerName]);
+  goToPlayerView(playerName: string, playerRealm: RealmEnum) {
+    //TODO: handle promise rejection
+    this.router.navigate(['/player', playerName, playerRealm]);
   }
 
 }

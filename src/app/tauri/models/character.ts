@@ -1,6 +1,7 @@
 import {ClassEnum} from "./classEnum";
 import {RaceEnum} from "./raceEnum";
 import {RealmEnum} from "./realmEnum";
+import {GenderEnum} from "./genderEnum";
 
 export interface Character {
   name: string;
@@ -10,4 +11,7 @@ export interface Character {
   race: RaceEnum;
   guildName: string;
   title: string;
+  gender: GenderEnum;
+  tname: string; //name with title
+  faction_string_class: string; //Horde or Alliance
 }

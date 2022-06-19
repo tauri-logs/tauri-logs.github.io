@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {PlayerViewComponent} from "./player-view/player-view.component";
 
 const routes: Routes = [
-  {path: 'player/:name', component: PlayerViewComponent}
+  {path: 'player/:name/:realm', component: PlayerViewComponent}
 ];
 
 @NgModule({

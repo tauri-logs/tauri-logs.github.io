@@ -1,6 +1,4 @@
 .navBar {
-  width: 20vw;
-  padding: 2vw;
   display: flex;
   flex-direction: column;
 }

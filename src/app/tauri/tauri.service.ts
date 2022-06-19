@@ -6,6 +6,12 @@ import {map} from 'rxjs/operators';
 import {Log} from "./models/log";
 import {Week} from "./week";
 import {Character} from "./models/character";
+import {RealmEnum} from "./models/realmEnum";
+import {Member} from "./models/member";
+import {raceImage, reverseRace} from "./models/raceEnum";
+import {genderImage} from "./models/genderEnum";
+import {reverseSpec} from "./models/specEnum";
+import {classColor} from "./models/classEnum";
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +35,7 @@ export class TauriService {
       }));
   }
 
-  getCharacter(charName: string, realm: string): Observable<Character> {
+  getCharacter(charName: string, realm: RealmEnum): Observable<Character> {
     return this.http.post(environment.apiUrl, {
       url    : 'character-sheet',
       params : {
@@ -60,11 +66,12 @@ export class TauriService {
       let weekStart = week.startDate.valueOf() / 1000;
       weeks.push(week);
       for (let log of logs) {
-        if (log.killtime <  weekStart) {
+        if (log.killtime < weekStart) {
           week = Week.getWeekByTimestamp(log.killtime);
           weekStart = week.startDate.valueOf() / 1000;
           weeks.push(week);
         }
+        log.killDate = new Date(log.killtime * 1000);
         week.logs.push(log);
       }
     }

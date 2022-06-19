@@ -13,3 +13,7 @@
 .header-col {
   padding: 1vh 1vw;
 }
+
+#guild_name {
+  margin-top: 0;
+}

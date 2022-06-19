@@ -1,13 +1,11 @@
 <div class="navBar">
   <input class="textInput" matInput type="text"
-         [(ngModel)]="playerName" [placeholder]="'Najdi hráče'"
-         (keydown.enter)="goToPlayerView(playerName)">
+         [(ngModel)]="playerName" [placeholder]="'Player name'"
+         (keydown.enter)="goToPlayerView(playerName, playerRealm)">
   <mat-select id="realmSelect" [(ngModel)]="playerRealm">
     <mat-option *ngFor="let realm of realms" [value]=realm>{{realm}}</mat-option>
   </mat-select>
-  <button class="searchButton" mat-raised-button (click)="goToPlayerView(playerName)">
+  <button class="searchButton" mat-raised-button (click)="goToPlayerView(playerName, playerRealm)">
     Search for player
   </button>
-<!--  Raidy-->
-<!--  bossové-->
 </div>
