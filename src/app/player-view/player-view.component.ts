@@ -13,6 +13,7 @@ import {raceImage, reverseRace} from "../tauri/models/raceEnum";
 import {genderImage} from "../tauri/models/genderEnum";
 import {reverseSpec} from "../tauri/models/specEnum";
 import {classColor} from "../tauri/models/classEnum";
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-player-view',
@@ -79,7 +80,7 @@ export class PlayerViewComponent implements OnInit {
   }
 
   getRaceImage: (character: Character) => string = function (character: Character): string {
-    return `./assets/races/${raceImage[character.race]}-${genderImage[character.gender]}.webp`;
+    return `${environment.baseHref}/assets/races/${raceImage[character.race]}-${genderImage[character.gender]}.webp`;
   };
 
   getRaceTooltip: (character: Character) => string = function (character: Character): string {
