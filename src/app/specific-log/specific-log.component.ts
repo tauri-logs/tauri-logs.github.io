@@ -162,7 +162,7 @@ export class SpecificLogComponent implements OnInit {
   }
 
   getRaceImage: (member: Member) => string = function (member: Member): string {
-    return `/assets/races/${raceImage[member.race]}-${genderImage[member.gender]}.webp`;
+    return `./assets/races/${raceImage[member.race]}-${genderImage[member.gender]}.webp`;
   };
 
   getRaceTooltip: (member: Member) => string = function (member: Member): string {
@@ -170,7 +170,7 @@ export class SpecificLogComponent implements OnInit {
   };
 
   getSpecImage: (member: Member) => string = function (member: Member): string {
-    return `/assets/specs/${member.spec}.png`;
+    return `./assets/specs/${member.spec}.png`;
   };
 
   getSpecTooltip: (member: Member) => string = function (member: Member): string {

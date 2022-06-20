@@ -79,7 +79,7 @@ export class PlayerViewComponent implements OnInit {
   }
 
   getRaceImage: (character: Character) => string = function (character: Character): string {
-    return `/assets/races/${raceImage[character.race]}-${genderImage[character.gender]}.webp`;
+    return `./assets/races/${raceImage[character.race]}-${genderImage[character.gender]}.webp`;
   };
 
   getRaceTooltip: (character: Character) => string = function (character: Character): string {
