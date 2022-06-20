@@ -4,5 +4,5 @@ export const environment = {
   resetDay: 3,
   resetHour: 6,
   iconUrl: 'http://mop-static.tauri.hu/images/icons/',
-  baseHref: '/logs'
+  baseHref: ''
 };

@@ -5,7 +5,7 @@
     "ng": "ng",
     "ng:gen": "ng generate component log-view-settings",
     "start": "ng serve",
-    "build:prod": "ng build --configuration production --base-href /logs/",
+    "build:prod": "ng build --configuration production --base-href /",
     "test:headless": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
