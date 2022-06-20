@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {PlayerViewComponent} from "./player-view/player-view.component";
+import {PlayerViewComponent} from './player-view/player-view.component';
 
 const routes: Routes = [
   {path: 'player/:name/:realm', component: PlayerViewComponent}
