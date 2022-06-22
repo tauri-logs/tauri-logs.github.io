@@ -6,7 +6,7 @@ import {Member} from "../tauri/models/member";
 import {Sort} from "@angular/material/sort";
 import copy from "fast-copy";
 import {RaidDetailHeader} from "../tauri/models/raidDetailHeader";
-import {raceImage, reverseRace} from "../tauri/models/raceEnum";
+import {allianceRaces, RaceEnum, raceImage, reverseRace} from "../tauri/models/raceEnum";
 import {reverseSpec} from "../tauri/models/specEnum";
 import {Icon} from "../tauri/models/Icon";
 import {formatNumber} from "@angular/common";
@@ -19,6 +19,8 @@ import {MultipleRaidDetailHeaders} from "../tauri/models/multipleRaidDetailHeade
 import {RaidDetailHeaderCookie} from "../tauri/models/raidDetailHeaderCookie";
 import {Guild} from "../tauri/models/guild";
 import {environment} from "../../environments/environment";
+import {Faction} from "../tauri/models/faction";
+import {Trinket} from "../tauri/models/trinket";
 
 interface DialogData {
   id: number;
@@ -178,19 +180,19 @@ export class SpecificLogComponent implements OnInit {
   };
 
   getTrinket0Image: (member: Member) => string = function (member: Member): string {
-    return `${environment.iconUrl}medium/${member.trinket_0.icon}.png`;
+    return TauriService.getTrinketImgUrl(member.race, member.trinket_0);
   };
 
   getTrinket0Tooltip: (member: Member) => string = function (member: Member): string {
-    return `${member.trinket_0.name}\n${member.trinket_0.ilevel} ilvl`;
+    return TauriService.getTrinketTooltip(member.trinket_0);
   };
 
   getTrinket1Image: (member: Member) => string = function (member: Member): string {
-    return `${environment.iconUrl}medium/${member.trinket_1.icon}.png`;
+    return TauriService.getTrinketImgUrl(member.race, member.trinket_1);
   };
 
   getTrinket1Tooltip: (member: Member) => string = function (member: Member): string {
-    return `${member.trinket_0.name}\n${member.trinket_1.ilevel} ilvl`;
+    return TauriService.getTrinketTooltip(member.trinket_1);
   };
 
   getClassColor: (member: Member) => string = function (member: Member): string {

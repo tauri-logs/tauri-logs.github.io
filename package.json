@@ -1,6 +1,6 @@
 {
   "name": "logs",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "ng:gen": "ng generate component log-view-settings",

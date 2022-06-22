@@ -8,10 +8,12 @@ import {Week} from "./week";
 import {Character} from "./models/character";
 import {RealmEnum} from "./models/realmEnum";
 import {Member} from "./models/member";
-import {raceImage, reverseRace} from "./models/raceEnum";
+import {allianceRaces, RaceEnum, raceImage, reverseRace} from "./models/raceEnum";
 import {genderImage} from "./models/genderEnum";
 import {reverseSpec} from "./models/specEnum";
 import {classColor} from "./models/classEnum";
+import {Trinket} from "./models/trinket";
+import {Faction} from "./models/faction";
 
 @Injectable({
   providedIn: 'root'
@@ -90,6 +92,22 @@ export class TauriService {
         //@ts-ignore
         return response.response
       }));
+  }
+
+  static getTrinketImgUrl(race: RaceEnum, trinket?: Trinket): string {
+    let imgUrl: string;
+    if (trinket) {
+      imgUrl = `${environment.iconUrl}medium/${trinket.icon}.png`;
+    } else {
+      // doesn't really matter if it's neutral here, since it's used only for img generation
+      const faction = allianceRaces.includes(race) ? Faction.ALLIANCE : Faction.HORDE;
+      imgUrl = `${environment.baseHref}/assets/factions/${faction}.png`;
+    }
+    return imgUrl;
+  }
+
+  static getTrinketTooltip(trinket?: Trinket): string {
+    return trinket ? `${trinket.name}\n${trinket.ilevel} ilvl` : `Trinket data are not available for old logs.`;
   }
 
 }

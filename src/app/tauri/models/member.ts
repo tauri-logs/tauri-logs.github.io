@@ -23,9 +23,9 @@ export interface Member {
   interrupts: number;
   dispells: number;
   ilvl: number;
-  talents: string;
-  trinket_0: Trinket;
-  trinket_1: Trinket;
+  talents?: string;
+  trinket_0?: Trinket;
+  trinket_1?: Trinket;
   dps?: number;
   percentage_dmg_done?: number;
   percentage_heal_done?: number;

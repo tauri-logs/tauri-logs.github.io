@@ -28,6 +28,12 @@ export const enum RaceEnum {
   PANDAREN_HORDE
 }
 
+export const hordeRaces = [RaceEnum.ORC, RaceEnum.UNDEAD, RaceEnum.TAUREN, RaceEnum.TROLL, RaceEnum.GOBLIN,
+  RaceEnum.BLOODELF, RaceEnum.PANDAREN_HORDE]
+
+export const allianceRaces = [RaceEnum.HUMAN, RaceEnum.DWARF, RaceEnum.NIGHT_ELF, RaceEnum.GNOME, RaceEnum.DRAENEI,
+  RaceEnum.WORGEN, RaceEnum.PANDAREN_ALLIANCE]
+
 // https://wowpedia.fandom.com/wiki/Category:WoW_Icons:_UI_CharacterCreate_Races
 export const raceImage = [
   "unknown",
