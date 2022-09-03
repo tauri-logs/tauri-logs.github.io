@@ -8,7 +8,7 @@ import copy from "fast-copy";
 import {RaidDetailHeader} from "../tauri/models/raidDetailHeader";
 import {allianceRaces, RaceEnum, raceImage, reverseRace} from "../tauri/models/raceEnum";
 import {reverseSpec} from "../tauri/models/specEnum";
-import {Icon} from "../tauri/models/Icon";
+import {Icon} from "../tauri/models/icon";
 import {formatNumber} from "@angular/common";
 import {genderImage} from "../tauri/models/genderEnum";
 import {classColor} from "../tauri/models/classEnum";
@@ -21,6 +21,7 @@ import {Guild} from "../tauri/models/guild";
 import {environment} from "../../environments/environment";
 import {Faction} from "../tauri/models/faction";
 import {Trinket} from "../tauri/models/trinket";
+import {Composition} from "../tauri/models/composition";
 
 interface DialogData {
   id: number;
@@ -43,6 +44,9 @@ export class SpecificLogComponent implements OnInit {
 
   public raidDetail?: RaidDetail;
   public sortedMembers: Member[] = [];
+
+  // retarded data structure for material angular table
+  public composition?: {role: string, count: number}[];
 
   public readonly characterHeader = new RaidDetailHeader('character', 'Character', true);
   private defaultHeaders: MultipleRaidDetailHeaders = new MultipleRaidDetailHeaders(this.headers);
@@ -160,6 +164,16 @@ export class SpecificLogComponent implements OnInit {
       return formatNumber(attribute, 'en');
     } else {
       return attribute;
+    }
+  }
+
+  setComposition() {
+    if (!this.composition) {
+      const composition = new Composition(this.sortedMembers);
+      const values = Object.values(composition);
+      this.composition = Object.keys(composition).map((key, index) => {
+        return {role: key, count: values[index]}
+      });
     }
   }
 

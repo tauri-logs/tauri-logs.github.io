@@ -71,3 +71,20 @@ export const reverseSpec = {
   103 : 'Feral druid',
   102 : 'Balance druid'
 }
+
+export const tankSpecs = [
+  SpecEnum.WARRIOR_PROTECTION,
+  SpecEnum.PALADIN_PROTECTION,
+  SpecEnum.DK_BLOOD,
+  SpecEnum.MONK_BREWMASTER,
+  SpecEnum.DRUID_GUARDIAN
+];
+
+export const healerSpecs = [
+  SpecEnum.PALADIN_HOLY,
+  SpecEnum.PRIEST_HOLY,
+  SpecEnum.PRIEST_DISCO,
+  SpecEnum.SHAMAN_RESTORATION,
+  SpecEnum.MONK_MISTWEAVER,
+  SpecEnum.DRUID_RESTORATION
+];

@@ -1,4 +1,4 @@
-import {Icon} from "./Icon";
+import {Icon} from "./icon";
 import {Member} from "./member";
 
 export class RaidDetailHeader {

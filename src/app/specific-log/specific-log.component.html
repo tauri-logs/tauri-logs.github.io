@@ -10,8 +10,30 @@
       </button>
     </span>
   </div>
-  <h3 *ngIf="data.guild?.name" id="guild_name" [ngStyle]="{'color': data.guild?.faction ? '#e57373':'#29b6f6'}">
-    Guild raid - {{data.guild.name}}</h3>
+  <div id="additional_info" style="display: flex; flex-direction: row; justify-content: space-between;">
+    <h3 *ngIf="data.guild?.name" id="guild_name" [ngStyle]="{'color': data.guild?.faction ? '#e57373':'#29b6f6'}">
+      Guild raid - {{data.guild.name}}</h3>
+    <h3 *ngIf="!data.guild?.name" id="random_raid">Random raid</h3>
+    <mat-expansion-panel (opened)="setComposition()" style="width: 20%; min-width: 200px">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Composition
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table mat-table *ngIf="composition" [dataSource]="composition" style="width: 100%">
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef>Role</th>
+          <td mat-cell *matCellDef="let element">{{element.role}}</td>
+        </ng-container>
+        <ng-container matColumnDef="count">
+          <th mat-header-cell *matHeaderCellDef>Count</th>
+          <td mat-cell *matCellDef="let element">{{element.count}}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="['role', 'count']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['role', 'count'];"></tr>
+      </table>
+    </mat-expansion-panel>
+  </div>
   <table *ngIf="dataLoaded()" mat-table [dataSource]="sortedMembers"
          class="mat-elevation-z0 modal-size"
          matSort (matSortChange)="sortData($event)"
