@@ -45,9 +45,6 @@ export class SpecificLogComponent implements OnInit {
   public raidDetail?: RaidDetail;
   public sortedMembers: Member[] = [];
 
-  // retarded data structure for material angular table
-  public composition?: {role: string, count: number}[];
-
   public readonly characterHeader = new RaidDetailHeader('character', 'Character', true);
   private defaultHeaders: MultipleRaidDetailHeaders = new MultipleRaidDetailHeaders(this.headers);
 
@@ -164,16 +161,6 @@ export class SpecificLogComponent implements OnInit {
       return formatNumber(attribute, 'en');
     } else {
       return attribute;
-    }
-  }
-
-  setComposition() {
-    if (!this.composition) {
-      const composition = new Composition(this.sortedMembers);
-      const values = Object.values(composition);
-      this.composition = Object.keys(composition).map((key, index) => {
-        return {role: key, count: values[index]}
-      });
     }
   }
 

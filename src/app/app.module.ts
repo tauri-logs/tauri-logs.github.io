@@ -25,6 +25,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CookieService} from "ngx-cookie-service";
 import {MatSelectModule} from "@angular/material/select";
+import { CompositionTableComponent } from './specific-log/composition-table/composition-table.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatSelectModule} from "@angular/material/select";
     SideBarComponent,
     PlayerViewComponent,
     SpecificLogComponent,
-    LogViewSettingsComponent
+    LogViewSettingsComponent,
+    CompositionTableComponent
   ],
   imports: [
     BrowserModule,
