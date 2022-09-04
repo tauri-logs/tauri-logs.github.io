@@ -29,3 +29,9 @@
   justify-content: space-between;
   margin-bottom: 5px;
 }
+
+#additional_info_expansion_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

@@ -88,3 +88,32 @@ export const healerSpecs = [
   SpecEnum.MONK_MISTWEAVER,
   SpecEnum.DRUID_RESTORATION
 ];
+
+export const meleeSpecs = [
+  SpecEnum.WARRIOR_ARMS,
+  SpecEnum.WARRIOR_FURY,
+  SpecEnum.ROGUE_ASSASSINATION,
+  SpecEnum.ROGUE_COMBAT,
+  SpecEnum.ROGUE_SUBTLETY,
+  SpecEnum.DK_FROST,
+  SpecEnum.DK_UNHOLY,
+  SpecEnum.MONK_WINDWALKER,
+  SpecEnum.DRUID_FERAL,
+  SpecEnum.PALADIN_RETRIBUTION,
+  SpecEnum.SHAMAN_ENHANCEMENT
+];
+
+export const rangedSpecs = [
+  SpecEnum.HUNTER_MARKSMANSHIP,
+  SpecEnum.HUNTER_BM,
+  SpecEnum.HUNTER_SURVIVAL,
+  SpecEnum.PRIEST_SHADOW,
+  SpecEnum.MAGE_FROST,
+  SpecEnum.MAGE_FIRE,
+  SpecEnum.MAGE_ARCANE,
+  SpecEnum.WARLOCK_AFFLICTION,
+  SpecEnum.WARLOCK_DEMONOLOGY,
+  SpecEnum.WARLOCK_DESTRUCTION,
+  SpecEnum.SHAMAN_ELEMENTAL,
+  SpecEnum.DRUID_BALANCE
+];

@@ -4,16 +4,18 @@ import {RaidDetail} from "../../tauri/models/raidDetail";
 import {SOO_DIFFICULTIES} from "../../tauri/models/raidDifficulty";
 import {Member} from "../../tauri/models/member";
 import {TableModel} from "./models/tableModel";
+import {Composition} from "../../tauri/models/composition";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TableDataConvertService {
 
-  constructor() {}
+  constructor() {
+  }
 
   getLogStatisticsTableModel(raidDetail: RaidDetail): TableModel {
-    return new TableModel('Log Statistics', ['Name', 'Value'], this.getLogStatistics(raidDetail));
+    return new TableModel(['Log Statistics', ''], this.getLogStatistics(raidDetail));
   }
 
   private getLogStatistics(raidDetail: RaidDetail): TablePair[] {
@@ -30,7 +32,17 @@ export class TableDataConvertService {
     ];
   }
 
-  getComposition(members: Member[]) {
+  getCompositionTableModel(members: Member[]): TableModel {
+    return new TableModel(['Composition', ''], this.getComposition(members));
+  }
 
+  private getComposition(members: Member[]): TablePair[] {
+    const composition = new Composition(members);
+    return [
+      new TablePair('Tank', composition.tanks.toString()),
+      new TablePair('Healer', composition.healers.toString()),
+      new TablePair('DPS', (composition.mdps + composition.rdps).toString()),
+      new TablePair('Total', composition.total.toString())
+    ]
   }
 }

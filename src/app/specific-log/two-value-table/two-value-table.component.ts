@@ -3,10 +3,10 @@ import {TableModel} from "./models/tableModel";
 
 @Component({
   selector: 'app-log-statistics-table',
-  templateUrl: './log-statistics-table.component.html',
-  styleUrls: ['./log-statistics-table.component.css']
+  templateUrl: './two-value-table.component.html',
+  styleUrls: ['./two-value-table.css']
 })
-export class LogStatisticsTableComponent implements OnInit {
+export class TwoValueTable implements OnInit {
 
   @Input() tableModel?: TableModel;
 

@@ -1,10 +1,11 @@
 import {Member} from "./member";
-import {healerSpecs, tankSpecs} from "./specEnum";
+import {healerSpecs, rangedSpecs, tankSpecs} from "./specEnum";
 
 export class Composition {
   public tanks: number = 0;
   public healers: number = 0;
-  public dps: number = 0;
+  public mdps: number = 0;
+  public rdps: number = 0;
   public total: number = 0;
 
   constructor(members: Member[]) {
@@ -13,10 +14,12 @@ export class Composition {
         this.tanks++;
       } else if (healerSpecs.includes(member.spec)) {
         this.healers++;
+      } else if (rangedSpecs.includes(member.spec)) {
+        this.rdps++;
       } else {
-        this.dps++;
+        this.mdps++;
       }
     }
-    this.total = this.tanks + this.healers + this.dps;
+    this.total = this.tanks + this.healers + this.rdps + this.mdps;
   }
 }

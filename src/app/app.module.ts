@@ -10,7 +10,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
+import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import {FormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import { SpecificLogComponent } from './specific-log/specific-log.component';
@@ -25,8 +25,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CookieService} from "ngx-cookie-service";
 import {MatSelectModule} from "@angular/material/select";
-import { CompositionTableComponent } from './specific-log/composition-table/composition-table.component';
-import { LogStatisticsTableComponent } from './specific-log/log-statistics-table/log-statistics-table.component';
+import { TwoValueTable } from './specific-log/two-value-table/two-value-table.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +34,7 @@ import { LogStatisticsTableComponent } from './specific-log/log-statistics-table
     PlayerViewComponent,
     SpecificLogComponent,
     LogViewSettingsComponent,
-    CompositionTableComponent,
-    LogStatisticsTableComponent
+    TwoValueTable
   ],
   imports: [
     BrowserModule,

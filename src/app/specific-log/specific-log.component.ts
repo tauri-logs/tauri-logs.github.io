@@ -19,7 +19,7 @@ import {MultipleRaidDetailHeaders} from "../tauri/models/multipleRaidDetailHeade
 import {RaidDetailHeaderCookie} from "../tauri/models/raidDetailHeaderCookie";
 import {Guild} from "../tauri/models/guild";
 import {environment} from "../../environments/environment";
-import {TableDataConvertService} from "./log-statistics-table/table-data-convert.service";
+import {TableDataConvertService} from "./two-value-table/table-data-convert.service";
 
 interface DialogData {
   id: number;
