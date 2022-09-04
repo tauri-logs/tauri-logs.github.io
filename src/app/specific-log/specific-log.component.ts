@@ -19,9 +19,7 @@ import {MultipleRaidDetailHeaders} from "../tauri/models/multipleRaidDetailHeade
 import {RaidDetailHeaderCookie} from "../tauri/models/raidDetailHeaderCookie";
 import {Guild} from "../tauri/models/guild";
 import {environment} from "../../environments/environment";
-import {Faction} from "../tauri/models/faction";
-import {Trinket} from "../tauri/models/trinket";
-import {Composition} from "../tauri/models/composition";
+import {TableDataConvertService} from "./log-statistics-table/table-data-convert.service";
 
 interface DialogData {
   id: number;
@@ -51,6 +49,7 @@ export class SpecificLogComponent implements OnInit {
   private readonly cookieName = 'logHeaders';
 
   constructor(private tauriService: TauriService,
+              public tableDataConvertService: TableDataConvertService,
               private dialog: MatDialog,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
               private cookieService: CookieService) {

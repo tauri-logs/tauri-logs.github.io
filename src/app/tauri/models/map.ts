@@ -8,5 +8,5 @@ export interface Map {
 }
 
 export enum RaidMapEnum {
-  SOO= 1136
+  SOO = 1136
 }

@@ -22,3 +22,10 @@
   margin-top: 0;
   color: darkorange;
 }
+
+#additional_info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}

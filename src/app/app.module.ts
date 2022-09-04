@@ -26,6 +26,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CookieService} from "ngx-cookie-service";
 import {MatSelectModule} from "@angular/material/select";
 import { CompositionTableComponent } from './specific-log/composition-table/composition-table.component';
+import { LogStatisticsTableComponent } from './specific-log/log-statistics-table/log-statistics-table.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CompositionTableComponent } from './specific-log/composition-table/comp
     PlayerViewComponent,
     SpecificLogComponent,
     LogViewSettingsComponent,
-    CompositionTableComponent
+    CompositionTableComponent,
+    LogStatisticsTableComponent
   ],
   imports: [
     BrowserModule,

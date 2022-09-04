@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "ng:gen": "ng generate component log-view-settings",
+    "ng:gen": "ng generate component log-statistics-table",
     "start": "ng serve",
     "build:prod": "ng build --configuration production --base-href / && shx cp dist/logs/index.html dist/logs/404.html",
     "test:headless": "ng test --watch=false --browsers=ChromeHeadless"

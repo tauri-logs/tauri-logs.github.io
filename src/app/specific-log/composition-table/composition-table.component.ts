@@ -10,7 +10,7 @@ import {Member} from "../../tauri/models/member";
 export class CompositionTableComponent implements OnInit {
 
   @Input() members?: Member[];
-  // retarded data structure for material angular table
+  // retarded tableModel structure for material angular table
   public composition?: {role: string, count: number}[];
 
   constructor() { }
