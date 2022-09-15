@@ -23,4 +23,5 @@ export interface Log {
   rid: number;
   wipes: number;
   killDate?: Date;
+  difficultyName?: string;
 }

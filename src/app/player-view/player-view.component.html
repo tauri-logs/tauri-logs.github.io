@@ -40,7 +40,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <tr class="log_tr" (click)="showSpecificLog(log)" *ngFor="let log of week.logs">
-            <td>{{log.encounter_data.encounter_name}}</td>
+            <td>{{log.encounter_data.encounter_name}} {{log.difficultyName}}</td>
             <td>{{log.killDate | date: 'dd. HH:mm'}}</td>
           </tr>
         </mat-expansion-panel>

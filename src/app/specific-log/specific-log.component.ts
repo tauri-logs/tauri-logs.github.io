@@ -25,6 +25,7 @@ interface DialogData {
   id: number;
   time: number;
   guild: Guild;
+  boss: string;
 }
 
 @Component({

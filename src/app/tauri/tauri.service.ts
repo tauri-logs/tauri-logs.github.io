@@ -14,6 +14,7 @@ import {reverseSpec} from "./models/specEnum";
 import {classColor} from "./models/classEnum";
 import {Trinket} from "./models/trinket";
 import {Faction} from "./models/faction";
+import {SOO_DIFFICULTIES} from "./models/raidDifficulty";
 
 @Injectable({
   providedIn: 'root'
@@ -74,6 +75,8 @@ export class TauriService {
           weeks.push(week);
         }
         log.killDate = new Date(log.killtime * 1000);
+        // @ts-ignore
+        log.difficultyName = SOO_DIFFICULTIES[log.difficulty];
         week.logs.push(log);
       }
     }

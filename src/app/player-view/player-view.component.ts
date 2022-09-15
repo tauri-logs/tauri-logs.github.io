@@ -74,7 +74,12 @@ export class PlayerViewComponent implements OnInit {
 
   showSpecificLog(log: Log) {
     this.dialog.open(SpecificLogComponent, {
-      data: {id: log.log_id, time: log.fight_time / 1000, guild: log.guilddata},
+      data: {
+        id: log.log_id,
+        time: log.fight_time / 1000,
+        guild: log.guilddata,
+        boss: `${log.encounter_data.encounter_name} ${log.difficultyName}`
+      },
       minHeight: '90vh'
     });
   }
