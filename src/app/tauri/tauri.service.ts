@@ -107,7 +107,7 @@ export class TauriService {
   }
 
   static getTrinketTooltip(trinket?: Trinket): string {
-    return trinket ? `${trinket.name}\n${trinket.ilevel} ilvl` : `Trinket data are not available for old logs.`;
+    return trinket ? `${trinket.name} ${trinket.ilevel}+ ilvl` : `Trinket data are not available for old logs.`;
   }
 
 }
