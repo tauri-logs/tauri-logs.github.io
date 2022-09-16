@@ -35,3 +35,9 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+/*remove row height scaling (default 1vh 1vw)*/
+:host ::ng-deep .header-col {
+  padding-top: 0;
+  padding-bottom: 0;
+}
