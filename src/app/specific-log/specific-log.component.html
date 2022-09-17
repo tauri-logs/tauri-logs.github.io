@@ -43,7 +43,8 @@
                [matTooltip]="getRaceTooltip(member)" [matTooltipPosition]="'above'">
           <img width="21" height="21" [src]="getSpecImage(member)"
                [matTooltip]="getSpecTooltip(member)" [matTooltipPosition]="'above'">
-          <span [style]="getClassColor(member) + 'padding: 0 10px;'">{{member.name}}</span>
+          <span (click)="goToMemberView(member)" [style]="getClassColor(member) + 'padding: 0 10px;cursor: pointer;'"
+          >{{member.name}}</span>
         </div>
       </td>
     </ng-container>

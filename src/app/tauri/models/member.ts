@@ -11,7 +11,7 @@ export interface Member {
   class: ClassEnum;
   gender: GenderEnum;
   name: string;
-  link: string;
+  link: string; //  r=[EN] Evermoon&amp;n=Ivan&amp;gn=Pretty Solid Guild
   spec: SpecEnum;
   dmg_done: number;
   dmg_taken: number;

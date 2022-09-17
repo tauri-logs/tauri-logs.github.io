@@ -20,6 +20,7 @@ import {RaidDetailHeaderCookie} from "../tauri/models/raidDetailHeaderCookie";
 import {Guild} from "../tauri/models/guild";
 import {environment} from "../../environments/environment";
 import {TableDataConvertService} from "./two-value-table/table-data-convert.service";
+import {Router} from "@angular/router";
 
 interface DialogData {
   id: number;
@@ -52,6 +53,7 @@ export class SpecificLogComponent implements OnInit {
   constructor(private tauriService: TauriService,
               public tableDataConvertService: TableDataConvertService,
               private dialog: MatDialog,
+              private router: Router,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
               private cookieService: CookieService) {
   }
@@ -86,6 +88,7 @@ export class SpecificLogComponent implements OnInit {
       new RaidDetailHeader('ilvl', 'Ilvl', false),
       new RaidDetailHeader('race', 'Race', false, new Icon(this.getRaceTooltip, this.getRaceImage)),
       new RaidDetailHeader('spec', 'Spec', false, new Icon(this.getSpecTooltip, this.getSpecImage)),
+      //TODO: Do I want name header to support link to player?
       new RaidDetailHeader('name', 'Name', false, undefined, this.getClassColor),
       new RaidDetailHeader('dps', 'DPS', true),
       new RaidDetailHeader('dmg_done', 'Damage', false),
@@ -152,6 +155,13 @@ export class SpecificLogComponent implements OnInit {
         return (a[sort.active] < b[sort.active] ? -1 : 1) * (isAsc ? 1 : -1);
       }
     );
+  }
+
+  goToMemberView(member: Member) {
+    const realm = member.link.substr(member.link.indexOf('['), member.link.indexOf('&') - 2);
+    //TODO: handle promise rejection
+    this.router.navigate(['/player', member.name, realm]);
+    this.dialog.closeAll();
   }
 
   getMemberAttribute(member: Member, key: string): string {
