@@ -21,6 +21,8 @@
       <div id="additional_info_expansion_content">
         <app-log-statistics-table [tableModel]="tableDataConvertService.getLogStatisticsTableModel(raidDetail)"
         style="margin-right: 10px"></app-log-statistics-table>
+        <app-log-statistics-table [tableModel]="tableDataConvertService.getAdditionalInfoModel(raidDetail)"
+        style="margin-right: 10px"></app-log-statistics-table>
         <app-log-statistics-table [tableModel]="tableDataConvertService.getCompositionTableModel(raidDetail.members)">
         </app-log-statistics-table>
       </div>

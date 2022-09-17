@@ -5,6 +5,7 @@ import {SOO_DIFFICULTIES} from "../../tauri/models/raidDifficulty";
 import {Member} from "../../tauri/models/member";
 import {TableModel} from "./models/tableModel";
 import {Composition} from "../../tauri/models/composition";
+import {getLogByDifficultyAndEncounter} from "../../tauri/firstLogs";
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,26 @@ export class TableDataConvertService {
       new TablePair('Healer', composition.healers.toString()),
       new TablePair('DPS', (composition.mdps + composition.rdps).toString()),
       new TablePair('Total', composition.total.toString())
+    ]
+  }
+
+  getAdditionalInfoModel(raidDetail: RaidDetail): TableModel {
+    return new TableModel(['Additional info', ''], this.getAdditionalInfo(raidDetail), ['', 'padding-left: 10px;']);
+  }
+
+  private getAdditionalInfo(raidDetail: RaidDetail): TablePair[] {
+    let avgIlvl = 0; // for loop for performance over reduce
+    for (let member of raidDetail.members) {
+      avgIlvl += member.ilvl;
+    }
+    avgIlvl /= raidDetail.member_count;
+    const firstLog = getLogByDifficultyAndEncounter(raidDetail.difficulty, raidDetail.encounter_data.encounter_index);
+    const formattedKillTime = `${Math.floor(firstLog.killTime / 60)}:${Math.floor((firstLog.killTime % 60))}`;
+    return [
+      new TablePair('Average ilvl', avgIlvl.toString()),
+      new TablePair('1. HC kill ilvl', firstLog.avgIlvl.toString()),
+      new TablePair('1. HC kill time', formattedKillTime),
+      new TablePair('Kill with trash?', false.toString()), //TODO: implement
     ]
   }
 }

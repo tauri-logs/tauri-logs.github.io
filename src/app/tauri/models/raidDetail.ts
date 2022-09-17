@@ -14,7 +14,7 @@ export interface RaidDetail {
   killtime: number;
   wipes: number;
   deahts_total: number;
-  fight_time: number;
+  fight_time: number; // divide by 1000 to get seconds
   deaths_fight: number;
   resurrects_fight: number;
   encounter_id: number;

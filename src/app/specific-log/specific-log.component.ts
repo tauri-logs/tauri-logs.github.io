@@ -69,7 +69,7 @@ export class SpecificLogComponent implements OnInit {
           totalHealing += member.heal_done;
         });
         this.raidDetail?.members.forEach(member => {
-          member.dps = Math.round(member.dmg_done / (this.data.time))
+          member.dps = Math.round(member.dmg_done / (response.fight_time / 1000))
           member.percentage_dmg_done = (member.dmg_done / totalDmg) * 100;
           member.percentage_heal_done = (member.heal_done / totalHealing) * 100;
         });
