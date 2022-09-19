@@ -47,6 +47,6 @@ export class TableDataConvertService {
   }
 
   private formatNumber(number: number, digits: number): string {
-    return number.toLocaleString('en-US', {minimumSignificantDigits: digits});
+    return number.toLocaleString('en-US', {minimumIntegerDigits: digits});
   }
 }
