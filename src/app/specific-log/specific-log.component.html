@@ -55,8 +55,11 @@
       <td mat-cell *matCellDef="let member" class="header-col">
         <span *ngIf="!header.img" [style]="header.style(member)">{{getMemberAttribute(member, header.key)}}</span>
         <img *ngIf="header.img" [width]="header.img.dimension" [height]="header.img.dimension"
-             [src]="header.img.path(member)" class="header-col"
+             [src]="header.img.path(member)" class="header-col" style="padding-left: 0; padding-right: 0;"
              [matTooltip]="header.img.tooltip(member)" [matTooltipPosition]="'above'"/>
+        <img *ngIf="header.key === 'trinkets' && header.img" [width]="header.img.dimension" [height]="header.img.dimension"
+             [src]="getTrinket1Image(member)" class="header-col" style="padding-left: 10px; padding-right: 0;"
+             [matTooltip]="getTrinket1Tooltip(member)" [matTooltipPosition]="'above'"/>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="rows; sticky: true"></tr>

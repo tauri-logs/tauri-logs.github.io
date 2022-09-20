@@ -24,7 +24,7 @@ export class TableDataConvertService {
         //@ts-ignore
         `${raidDetail.encounter_data.encounter_name} ${SOO_DIFFICULTIES[raidDetail.difficulty]}`
       ),
-      new TablePair('Wipes', this.formatNumber(raidDetail.wipes, 2)),
+      new TablePair('Wipes', this.formatNumber(raidDetail.wipes, 1)),
       new TablePair('Duration',
         `${this.formatNumber(Math.floor(raidDetail.fight_time / 60000), 2)}:${this.formatNumber(Math.floor((raidDetail.fight_time % 60000) / 1000), 2)}`
       ),
