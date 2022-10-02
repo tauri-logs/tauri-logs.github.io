@@ -27,6 +27,7 @@ input {
 }
 
 .log_tr {
+  cursor: pointer;
   height: 10vh;
   border-bottom-style: solid;
   border-bottom-width: thin;

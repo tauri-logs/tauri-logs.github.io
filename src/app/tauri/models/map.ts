@@ -1,12 +1,8 @@
-import {Expansion} from "./expansion";
+import {ExpansionEnum} from "./enums/expansionEnum";
 
 export interface Map {
-  expansion: Expansion;
+  expansion: ExpansionEnum;
   id: number;
   name: string;
   type: number;
-}
-
-export enum RaidMapEnum {
-  SOO = 1136
 }

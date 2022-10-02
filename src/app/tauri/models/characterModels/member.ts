@@ -1,16 +1,10 @@
-import {Trinket} from "./trinket";
-import {ClassEnum} from "./classEnum";
-import {RaceEnum} from "./raceEnum";
-import {GenderEnum} from "./genderEnum";
-import {SpecEnum} from "./specEnum";
+import {Trinket} from "../trinket";
+import {SpecEnum} from "../enums/specEnum";
+import {BaseCharacter} from "./baseCharacter";
 
-export interface Member {
+export interface Member extends BaseCharacter {
   valid_player: boolean;
   guid: number;
-  race: RaceEnum;
-  class: ClassEnum;
-  gender: GenderEnum;
-  name: string;
   link: string; //  r=[EN] Evermoon&amp;n=Ivan&amp;gn=Pretty Solid Guild
   spec: SpecEnum;
   dmg_done: number;

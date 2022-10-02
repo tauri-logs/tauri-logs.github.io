@@ -1,4 +1,4 @@
-import {Log} from "./models/log";
+import {Log} from "./models/logModels/log";
 import {environment} from "../../environments/environment";
 
 export class Week {

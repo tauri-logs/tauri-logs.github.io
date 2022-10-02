@@ -1,4 +1,4 @@
-export const SOO_DIFFICULTIES = {
+export const RAID_DIFFICULTIES = {
   3: '10NM',
   4: '25NM',
   5: '10HC',

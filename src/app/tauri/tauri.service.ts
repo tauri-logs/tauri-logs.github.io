@@ -3,18 +3,18 @@ import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {environment} from "../../environments/environment";
 import {map} from 'rxjs/operators';
-import {Log} from "./models/log";
+import {Log} from "./models/logModels/log";
 import {Week} from "./week";
-import {Character} from "./models/character";
-import {RealmEnum} from "./models/realmEnum";
-import {Member} from "./models/member";
-import {allianceRaces, RaceEnum, raceImage, reverseRace} from "./models/raceEnum";
-import {genderImage} from "./models/genderEnum";
-import {reverseSpec} from "./models/specEnum";
-import {classColor} from "./models/classEnum";
+import {Character} from "./models/characterModels/character";
+import {RealmEnum} from "./models/enums/realmEnum";
+import {Member} from "./models/characterModels/member";
+import {allianceRaces, RaceEnum, raceImage, reverseRace} from "./models/enums/raceEnum";
+import {genderImage} from "./models/enums/genderEnum";
+import {reverseSpec} from "./models/enums/specEnum";
+import {classColor} from "./models/enums/classEnum";
 import {Trinket} from "./models/trinket";
-import {Faction} from "./models/faction";
-import {SOO_DIFFICULTIES} from "./models/raidDifficulty";
+import {FactionEnum} from "./models/enums/factionEnum";
+import {RAID_DIFFICULTIES} from "./models/enums/raidDifficulty";
 
 @Injectable({
   providedIn: 'root'
@@ -76,7 +76,7 @@ export class TauriService {
         }
         log.killDate = new Date(log.killtime * 1000);
         // @ts-ignore
-        log.difficultyName = SOO_DIFFICULTIES[log.difficulty];
+        log.difficultyName = RAID_DIFFICULTIES[log.difficulty];
         week.logs.push(log);
       }
     }
@@ -103,7 +103,7 @@ export class TauriService {
       imgUrl = `${environment.iconUrl}medium/${trinket.icon}.png`;
     } else {
       // doesn't really matter if it's neutral here, since it's used only for img generation
-      const faction = allianceRaces.includes(race) ? Faction.ALLIANCE : Faction.HORDE;
+      const faction = allianceRaces.includes(race) ? FactionEnum.ALLIANCE : FactionEnum.HORDE;
       imgUrl = `${environment.baseHref}/assets/factions/${faction}.png`;
     }
     return imgUrl;

@@ -1,4 +1,4 @@
-export const enum Expansion {
+export const enum ExpansionEnum {
   VANILLA,
   TBC,
   WOTLK,

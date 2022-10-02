@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {TablePair} from "./models/tablePair";
-import {RaidDetail} from "../../tauri/models/raidDetail";
-import {SOO_DIFFICULTIES} from "../../tauri/models/raidDifficulty";
-import {Member} from "../../tauri/models/member";
+import {RaidDetail} from "../../tauri/models/logModels/raidDetail";
+import {RAID_DIFFICULTIES} from "../../tauri/models/enums/raidDifficulty";
+import {Member} from "../../tauri/models/characterModels/member";
 import {TableModel} from "./models/tableModel";
 import {Composition} from "../../tauri/models/composition";
 
@@ -22,7 +22,7 @@ export class TableDataConvertService {
     return [
       new TablePair('Boss',
         //@ts-ignore
-        `${raidDetail.encounter_data.encounter_name} ${SOO_DIFFICULTIES[raidDetail.difficulty]}`
+        `${raidDetail.encounter_data.encounter_name} ${RAID_DIFFICULTIES[raidDetail.difficulty]}`
       ),
       new TablePair('Wipes', this.formatNumber(raidDetail.wipes, 1)),
       new TablePair('Duration',
