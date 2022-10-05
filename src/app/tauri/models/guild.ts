@@ -1,7 +1,7 @@
-import {Faction} from "./faction";
+import {FactionEnum} from "./enums/factionEnum";
 
 export interface Guild {
-  faction?: Faction;
+  faction?: FactionEnum;
   leadername?: string;
   name?: string;
 }

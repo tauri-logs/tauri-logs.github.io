@@ -1,26 +1,27 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {TauriService} from "../tauri/tauri.service";
-import {RaidDetail} from "../tauri/models/raidDetail";
+import {RaidDetail} from "../tauri/models/logModels/raidDetail";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
-import {Member} from "../tauri/models/member";
+import {Member} from "../tauri/models/characterModels/member";
 import {Sort} from "@angular/material/sort";
 import copy from "fast-copy";
-import {RaidDetailHeader} from "../tauri/models/raidDetailHeader";
-import {allianceRaces, RaceEnum, raceImage, reverseRace} from "../tauri/models/raceEnum";
-import {reverseSpec} from "../tauri/models/specEnum";
-import {Icon} from "../tauri/models/icon";
+import {RaidDetailHeader} from "../tauri/models/raidDetailHeader/raidDetailHeader";
+import {allianceRaces, RaceEnum, raceImage, reverseRace} from "../tauri/models/enums/raceEnum";
+import {reverseSpec} from "../tauri/models/enums/specEnum";
+import {Icon} from "../tauri/models/raidDetailHeader/icon";
 import {formatNumber} from "@angular/common";
-import {genderImage} from "../tauri/models/genderEnum";
-import {classColor} from "../tauri/models/classEnum";
+import {genderImage} from "../tauri/models/enums/genderEnum";
+import {classColor} from "../tauri/models/enums/classEnum";
 import {LogViewSettingsComponent} from "../log-view-settings/log-view-settings.component";
 import {first} from "rxjs/operators";
 import {CookieService} from "ngx-cookie-service";
-import {MultipleRaidDetailHeaders} from "../tauri/models/multipleRaidDetailHeaders";
-import {RaidDetailHeaderCookie} from "../tauri/models/raidDetailHeaderCookie";
+import {MultipleRaidDetailHeaders} from "../tauri/models/raidDetailHeader/multipleRaidDetailHeaders";
+import {RaidDetailHeaderCookie} from "../tauri/models/raidDetailHeader/raidDetailHeaderCookie";
 import {Guild} from "../tauri/models/guild";
 import {environment} from "../../environments/environment";
 import {TableDataConvertService} from "./two-value-table/table-data-convert.service";
 import {Router} from "@angular/router";
+import {Cookie} from "../tauri/models/cookie";
 
 interface DialogData {
   id: number;
@@ -102,20 +103,22 @@ export class SpecificLogComponent implements OnInit {
       new RaidDetailHeader('heal_taken', 'Healing taken', false),
       new RaidDetailHeader('interrupts', 'Interrupts', false),
       new RaidDetailHeader('dispells', 'Dispells', false),
-      new RaidDetailHeader('trinket_0', 'Trinket 1', true, new Icon(this.getTrinket0Tooltip, this.getTrinket0Image, 28)),
-      new RaidDetailHeader('trinket_1', 'Trinket 2', true, new Icon(this.getTrinket1Tooltip, this.getTrinket1Image, 28)),
+      //could be done with Icon array, but w/e
+      new RaidDetailHeader('trinkets', 'Trinkets', true, new Icon(this.getTrinket0Tooltip, this.getTrinket0Image, 28)),
     ])
   }
 
   setHeaders() {
-    if (this.cookieService.check(this.cookieName)) {
-      const cookie: RaidDetailHeaderCookie[] = JSON.parse(this.cookieService.get(this.cookieName))
-      this.rows = cookie.filter(value => value.active).map(value => value.key)
+    const cookie: Cookie = this.cookieService.check(this.cookieName) ? JSON.parse(this.cookieService.get(this.cookieName)) : null;
+    console.log(cookie);
+    if (cookie && cookie.version && cookie.version === environment.cookieVersion) {
+      const cookieHeaders: RaidDetailHeaderCookie[] = cookie.value;
+      this.rows = cookieHeaders.filter(value => value.active).map(value => value.key)
       // start at 1 to skip 'character'
-      for (let i = 1; i < cookie.length; i++) {
+      for (let i = 1; i < cookieHeaders.length; i++) {
         //@ts-ignore
-        const header = this.defaultHeaders.headersDictionary[cookie[i].key]
-        header.active = cookie[i].active
+        const header = this.defaultHeaders.headersDictionary[cookieHeaders[i].key]
+        header.active = cookieHeaders[i].active
         this.headers.push(header)
       }
     } else {
@@ -127,11 +130,11 @@ export class SpecificLogComponent implements OnInit {
   refreshHeaders() {
     this.rows = this.headers.filter(header => header.active)
       .map(header => header.key)
-    const cookie: RaidDetailHeaderCookie[] = this.headers.map(value => new RaidDetailHeaderCookie(value))
+    const cookie: Cookie = new Cookie(environment.cookieVersion, this.headers.map(value => new RaidDetailHeaderCookie(value)))
     if (this.characterHeader.active) {
       this.rows.unshift(this.characterHeader.key)
     }
-    cookie.unshift(new RaidDetailHeaderCookie(this.characterHeader))
+    cookie.value.unshift(new RaidDetailHeaderCookie(this.characterHeader))
     this.cookieService.set(this.cookieName, JSON.stringify(cookie));
   }
 

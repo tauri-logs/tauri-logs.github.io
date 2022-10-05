@@ -1,5 +1,5 @@
 import {Icon} from "./icon";
-import {Member} from "./member";
+import {Member} from "../characterModels/member";
 
 export class RaidDetailHeader {
   key: string;

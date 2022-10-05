@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {RaidDetailHeader} from "../tauri/models/raidDetailHeader";
+import {RaidDetailHeader} from "../tauri/models/raidDetailHeader/raidDetailHeader";
 
 @Component({
   selector: 'app-log-view-settings',

@@ -4,5 +4,6 @@ export const environment = {
   resetDay: 3,
   resetHour: 6,
   iconUrl: 'https://mop-static.tauri.hu/images/icons/',
-  baseHref: ''
+  baseHref: '',
+  cookieVersion: 1
 };

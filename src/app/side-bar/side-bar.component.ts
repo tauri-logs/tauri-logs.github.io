@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {REALM_ARRAY, RealmEnum} from "../tauri/models/realmEnum";
+import {REALM_ARRAY, RealmEnum} from "../tauri/models/enums/realmEnum";
 
 @Component({
   selector: 'app-side-bar',

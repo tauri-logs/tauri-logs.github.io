@@ -1,5 +1,5 @@
-import {Member} from "./member";
-import {healerSpecs, rangedSpecs, tankSpecs} from "./specEnum";
+import {Member} from "./characterModels/member";
+import {healerSpecs, rangedSpecs, tankSpecs} from "./enums/specEnum";
 
 export class Composition {
   public tanks: number = 0;

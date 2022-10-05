@@ -1,19 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {TauriService} from "../tauri/tauri.service";
-import {Log} from "../tauri/models/log";
-import {RaidMapEnum} from "../tauri/models/map";
+import {Log} from "../tauri/models/logModels/log";
 import {Week} from "../tauri/week";
 import {MatDialog} from "@angular/material/dialog";
 import {SpecificLogComponent} from "../specific-log/specific-log.component";
 import {ActivatedRoute} from "@angular/router";
-import {Character} from "../tauri/models/character";
-import {REALM_ARRAY, RealmEnum} from "../tauri/models/realmEnum";
-import {Member} from "../tauri/models/member";
-import {raceImage, reverseRace} from "../tauri/models/raceEnum";
-import {genderImage} from "../tauri/models/genderEnum";
-import {reverseSpec} from "../tauri/models/specEnum";
-import {classColor} from "../tauri/models/classEnum";
+import {Character} from "../tauri/models/characterModels/character";
+import {REALM_ARRAY, RealmEnum} from "../tauri/models/enums/realmEnum";
+import {Member} from "../tauri/models/characterModels/member";
+import {raceImage, reverseRace} from "../tauri/models/enums/raceEnum";
+import {genderImage} from "../tauri/models/enums/genderEnum";
+import {reverseSpec} from "../tauri/models/enums/specEnum";
+import {classColor} from "../tauri/models/enums/classEnum";
 import {environment} from '../../environments/environment';
+import {RaidMapEnum} from "../tauri/models/enums/raidMapEnum";
 
 @Component({
   selector: 'app-player-view',
