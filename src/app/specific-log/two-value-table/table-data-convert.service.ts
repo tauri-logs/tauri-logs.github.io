@@ -21,14 +21,9 @@ export class TableDataConvertService {
 
   private getLogStatistics(raidDetail: RaidDetail): TablePair[] {
     return [
-      new TablePair('Boss',
-        //@ts-ignore
-        `${raidDetail.encounter_data.encounter_name} ${RAID_DIFFICULTIES[raidDetail.difficulty]}`
-      ),
+      new TablePair('Boss', raidDetail.encounter_data.encounter_name),
+      new TablePair('Difficulty', RAID_DIFFICULTIES[raidDetail.difficulty]),
       new TablePair('Wipes', this.formatNumber(raidDetail.wipes, 1)),
-      new TablePair('Duration',
-        `${this.formatNumber(Math.floor(raidDetail.fight_time / 60000), 2)}:${this.formatNumber(Math.floor((raidDetail.fight_time % 60000) / 1000), 2)}`
-      ),
       new TablePair('Ressurects/Deaths', `${this.formatNumber(raidDetail.resurrects_fight, 2)}/${this.formatNumber(raidDetail.deaths_fight, 2)}`),
     ];
   }
@@ -52,22 +47,45 @@ export class TableDataConvertService {
   }
 
   getAdditionalInfoModel(raidDetail: RaidDetail): TableModel {
-    return new TableModel(['Additional info', ''], this.getAdditionalInfo(raidDetail), ['', 'padding-left: 10px;']);
+    return new TableModel(['First HC kill', 'This kill'], this.getAdditionalInfo(raidDetail), ['', 'padding-left: 10px;']);
   }
 
   private getAdditionalInfo(raidDetail: RaidDetail): TablePair[] {
+    console.log("s")
     let avgIlvl = 0; // for loop for performance over reduce
+    let dmgDone = 0;
     for (let member of raidDetail.members) {
       avgIlvl += member.ilvl;
+      dmgDone += member.dmg_done;
     }
     avgIlvl /= raidDetail.member_count;
+    const avgDps =  Math.round((dmgDone * 1000) / (raidDetail.member_count * raidDetail.fight_time));
     const firstLog = getLogByDifficultyAndEncounter(raidDetail.difficulty, raidDetail.encounter_data.encounter_index);
-    const formattedKillTime = `${Math.floor(firstLog.killTime / 60)}:${Math.floor((firstLog.killTime % 60))}`;
+    const formattedFirstKillTime = `${Math.floor(firstLog.killTime / 60)}:${Math.floor((firstLog.killTime % 60))}`;
+    const formattedKillTIme = `${this.formatNumber(Math.floor(raidDetail.fight_time / 60000), 2)}:${this.formatNumber(Math.floor((raidDetail.fight_time % 60000) / 1000), 2)}`
     return [
-      new TablePair('Average ilvl', avgIlvl.toString()),
-      new TablePair('1. HC kill ilvl', firstLog.avgIlvl.toString()),
-      new TablePair('1. HC kill time', formattedKillTime),
-      new TablePair('Kill with trash?', false.toString()), //TODO: implement
+      new TablePair(firstLog.avgIlvl.toFixed(2).toString(), avgIlvl.toFixed(2).toString()),
+      new TablePair(formattedFirstKillTime, formattedKillTIme),
+      new TablePair(firstLog.avgDps.toLocaleString(), avgDps.toLocaleString()),
+      new TablePair(this.formatToShortNotation(firstLog.dmgDone, 2), this.formatToShortNotation(dmgDone, 2)),
     ]
+  }
+
+  //ES2020 supports this natively, but I can't use it, since webpack 4 doesn't support it
+  private formatToShortNotation(number: number, digits: number): string {
+    const lookup = [
+      {value: 1, symbol: ""},
+      {value: 1e3, symbol: "K"},
+      {value: 1e6, symbol: "M"},
+      {value: 1e9, symbol: "B"},
+      {value: 1e12, symbol: "T"},
+      {value: 1e15, symbol: "P"},
+      {value: 1e18, symbol: "E"}
+    ];
+    const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+    const item = lookup.slice().reverse().find(function (item) {
+      return number >= item.value;
+    });
+    return item ? (number / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
   }
 }

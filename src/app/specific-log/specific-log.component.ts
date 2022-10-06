@@ -22,6 +22,8 @@ import {environment} from "../../environments/environment";
 import {TableDataConvertService} from "./two-value-table/table-data-convert.service";
 import {Router} from "@angular/router";
 import {Cookie} from "../tauri/models/cookie";
+import {SOO_10_HC, SOO_25_HC} from "../tauri/firstLogs";
+import {TableModel} from "./two-value-table/models/tableModel";
 
 interface DialogData {
   id: number;
@@ -46,13 +48,17 @@ export class SpecificLogComponent implements OnInit {
   public raidDetail?: RaidDetail;
   public sortedMembers: Member[] = [];
 
+  public logStatisticsTableModel?: TableModel;
+  public additionalInfoTableModel?: TableModel;
+  public compositionTableModel?: TableModel;
+
   public readonly characterHeader = new RaidDetailHeader('character', 'Character', true);
   private defaultHeaders: MultipleRaidDetailHeaders = new MultipleRaidDetailHeaders(this.headers);
 
   private readonly cookieName = 'logHeaders';
 
   constructor(private tauriService: TauriService,
-              public tableDataConvertService: TableDataConvertService,
+              private tableDataConvertService: TableDataConvertService,
               private dialog: MatDialog,
               private router: Router,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -77,6 +83,11 @@ export class SpecificLogComponent implements OnInit {
         this.sortedMembers = response.members;
         this.sortData({active: 'dmg_done', direction: 'desc'});
         this.obtainedResponse = true
+
+        // setup table models
+        this.logStatisticsTableModel = this.tableDataConvertService.getLogStatisticsTableModel(this.raidDetail)
+        this.additionalInfoTableModel = this.tableDataConvertService.getAdditionalInfoModel(this.raidDetail)
+        this.compositionTableModel = this.tableDataConvertService.getCompositionTableModel(this.raidDetail.members)
       }
     )
     this.initDefaultHeaders();
@@ -110,7 +121,6 @@ export class SpecificLogComponent implements OnInit {
 
   setHeaders() {
     const cookie: Cookie = this.cookieService.check(this.cookieName) ? JSON.parse(this.cookieService.get(this.cookieName)) : null;
-    console.log(cookie);
     if (cookie && cookie.version && cookie.version === environment.cookieVersion) {
       const cookieHeaders: RaidDetailHeaderCookie[] = cookie.value;
       this.rows = cookieHeaders.filter(value => value.active).map(value => value.key)

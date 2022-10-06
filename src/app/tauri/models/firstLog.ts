@@ -3,5 +3,6 @@ export interface FirstLog {
   logId: number,
   avgDps: number,
   avgIlvl: number,
-  killTime: number
+  killTime: number,
+  dmgDone: number
 }

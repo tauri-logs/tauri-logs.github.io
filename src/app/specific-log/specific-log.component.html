@@ -19,12 +19,11 @@
         <mat-panel-title>Additional info</mat-panel-title>
       </mat-expansion-panel-header>
       <div id="additional_info_expansion_content">
-        <app-log-statistics-table [tableModel]="tableDataConvertService.getLogStatisticsTableModel(raidDetail)"
-        style="margin-right: 10px"></app-log-statistics-table>
-        <app-log-statistics-table [tableModel]="tableDataConvertService.getAdditionalInfoModel(raidDetail)"
-        style="margin-right: 10px"></app-log-statistics-table>
-        <app-log-statistics-table [tableModel]="tableDataConvertService.getCompositionTableModel(raidDetail.members)">
-        </app-log-statistics-table>
+        <app-two-value-table [tableModel]="logStatisticsTableModel"
+                             style="margin-right: 10px"></app-two-value-table>
+        <app-two-value-table [tableModel]="additionalInfoTableModel"
+                             style="margin-right: 10px"></app-two-value-table>
+        <app-two-value-table [tableModel]="compositionTableModel"></app-two-value-table>
       </div>
     </mat-expansion-panel>
   </div>

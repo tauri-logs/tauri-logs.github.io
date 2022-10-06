@@ -1,11 +1,12 @@
 import {Encounter} from "../encounter";
 import {Guild} from "../guild";
 import {Map} from "../map";
+import {RaidDifficulty} from "../enums/raidDifficulty";
 
 export interface LogBase {
   deahts_total: number;
   deaths_fight: number;
-  difficulty: number;
+  difficulty: RaidDifficulty;
   encounter_data: Encounter;
   encounter_id: number;
   fight_time: number;

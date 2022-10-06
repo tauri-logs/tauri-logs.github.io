@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {TableModel} from "./models/tableModel";
 
 @Component({
-  selector: 'app-log-statistics-table',
+  selector: 'app-two-value-table',
   templateUrl: './two-value-table.component.html',
   styleUrls: ['./two-value-table.css']
 })

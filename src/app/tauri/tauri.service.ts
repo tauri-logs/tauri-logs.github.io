@@ -15,6 +15,7 @@ import {classColor} from "./models/enums/classEnum";
 import {Trinket} from "./models/trinket";
 import {FactionEnum} from "./models/enums/factionEnum";
 import {RAID_DIFFICULTIES} from "./models/enums/raidDifficulty";
+import {RaidDetail} from "./models/logModels/raidDetail";
 
 @Injectable({
   providedIn: 'root'
@@ -83,7 +84,7 @@ export class TauriService {
     return weeks;
   }
 
-  getLogDetails(id: number) {
+  getLogDetails(id: number): Observable<RaidDetail> {
     return this.http.post(environment.apiUrl, {
       "url": "raid-log",
       "params": {
