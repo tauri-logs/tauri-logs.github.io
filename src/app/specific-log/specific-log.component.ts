@@ -19,11 +19,11 @@ import {MultipleRaidDetailHeaders} from "../tauri/models/raidDetailHeader/multip
 import {RaidDetailHeaderCookie} from "../tauri/models/raidDetailHeader/raidDetailHeaderCookie";
 import {Guild} from "../tauri/models/guild";
 import {environment} from "../../environments/environment";
-import {TableDataConvertService} from "./two-value-table/table-data-convert.service";
+import {TableDataConvertService} from "./multiple-value-table/table-data-convert.service";
 import {Router} from "@angular/router";
 import {Cookie} from "../tauri/models/cookie";
 import {SOO_10_HC, SOO_25_HC} from "../tauri/firstLogs";
-import {TableModel} from "./two-value-table/models/tableModel";
+import {TableModel} from "./multiple-value-table/models/tableModel";
 
 interface DialogData {
   id: number;

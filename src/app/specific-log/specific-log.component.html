@@ -19,11 +19,11 @@
         <mat-panel-title>Additional info</mat-panel-title>
       </mat-expansion-panel-header>
       <div id="additional_info_expansion_content">
-        <app-two-value-table [tableModel]="logStatisticsTableModel"
-                             style="margin-right: 10px"></app-two-value-table>
-        <app-two-value-table [tableModel]="additionalInfoTableModel"
-                             style="margin-right: 10px"></app-two-value-table>
-        <app-two-value-table [tableModel]="compositionTableModel"></app-two-value-table>
+        <app-multiple-value-table [tableModel]="logStatisticsTableModel"
+                                  style="margin-right: 10px"></app-multiple-value-table>
+        <app-multiple-value-table [tableModel]="additionalInfoTableModel"
+                                  style="margin-right: 10px"></app-multiple-value-table>
+        <app-multiple-value-table [tableModel]="compositionTableModel"></app-multiple-value-table>
       </div>
     </mat-expansion-panel>
   </div>
