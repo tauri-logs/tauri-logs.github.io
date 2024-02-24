@@ -49,6 +49,7 @@
 }
 
 .logo {
+  cursor: default;
   font-weight: bold;
   font-size: 8rem;
   color: var(--logo-color);
