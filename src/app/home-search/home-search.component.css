@@ -15,6 +15,7 @@
 }
 
 .search-input-wrapper {
+  margin-top: 0.5rem;
   display: flex;
   border-radius: 50px;
   border: 2px solid var(--ligher-dark-color);
@@ -46,6 +47,10 @@
 
 .realm-select {
   width: 15rem;
+  border: 1px solid var(--ligher-dark-color);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
 }
 
 .footer {
@@ -88,5 +93,5 @@ a:hover {
 }
 
 .empty-space {
-  height: 15em;
+  height: 20em;
 }

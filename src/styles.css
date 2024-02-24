@@ -8,5 +8,7 @@ html, body {
   --darker-dark-color: #171717;
   --ligher-dark-color: #303134;
   --logo-color: #cc6f00;
+
+  background-color: var(--background-dark-color);
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
