@@ -3,5 +3,10 @@
 html, body {
   height: 100%;
   font-size: 16px;
+
+  --background-dark-color: #202124;
+  --darker-dark-color: #171717;
+  --ligher-dark-color: #303134;
+  --logo-color: #cc6f00;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
