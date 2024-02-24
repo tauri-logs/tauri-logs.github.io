@@ -6,6 +6,7 @@ import {Member} from "../../tauri/models/characterModels/member";
 import {TableModel} from "./models/tableModel";
 import {Composition} from "../../tauri/models/composition";
 import {getLogByDifficultyAndEncounter} from "../../tauri/firstLogs";
+import {MultipleValueTableStyles} from "./models/MultipleValueTableStyles";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,10 @@ export class TableDataConvertService {
   }
 
   getLogStatisticsTableModel(raidDetail: RaidDetail): TableModel {
-    return new TableModel(['Log Statistics', ''], this.getLogStatistics(raidDetail));
+    return new TableModel(
+      ['Log Statistics', ''],
+      this.getLogStatistics(raidDetail)
+    );
   }
 
   private getLogStatistics(raidDetail: RaidDetail): TablePair[] {
@@ -47,7 +51,11 @@ export class TableDataConvertService {
   }
 
   getAdditionalInfoModel(raidDetail: RaidDetail): TableModel {
-    return new TableModel(['First HC kill', 'This kill'], this.getAdditionalInfo(raidDetail), ['', 'padding-left: 10px;']);
+    return new TableModel(
+      ['First HC kill', 'This kill'],
+      this.getAdditionalInfo(raidDetail),
+      new MultipleValueTableStyles('', 'padding-left: 10px;')
+    );
   }
 
   private getAdditionalInfo(raidDetail: RaidDetail): TablePair[] {
@@ -59,7 +67,7 @@ export class TableDataConvertService {
       dmgDone += member.dmg_done;
     }
     avgIlvl /= raidDetail.member_count;
-    const avgDps =  Math.round((dmgDone * 1000) / (raidDetail.member_count * raidDetail.fight_time));
+    const avgDps = Math.round((dmgDone * 1000) / (raidDetail.member_count * raidDetail.fight_time));
     const firstLog = getLogByDifficultyAndEncounter(raidDetail.difficulty, raidDetail.encounter_data.encounter_index);
     const formattedFirstKillTime = `${Math.floor(firstLog.killTime / 60)}:${Math.floor((firstLog.killTime % 60))}`;
     const formattedKillTIme = `${this.formatNumber(Math.floor(raidDetail.fight_time / 60000), 2)}:${this.formatNumber(Math.floor((raidDetail.fight_time % 60000) / 1000), 2)}`
