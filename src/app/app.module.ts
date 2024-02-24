@@ -26,6 +26,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CookieService} from "ngx-cookie-service";
 import {MatSelectModule} from "@angular/material/select";
 import { TwoValueTable } from './specific-log/multiple-value-table/multiple-value-table.component';
+import { HomeSearchComponent } from './home-search/home-search.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TwoValueTable } from './specific-log/multiple-value-table/multiple-valu
     PlayerViewComponent,
     SpecificLogComponent,
     LogViewSettingsComponent,
-    TwoValueTable
+    TwoValueTable,
+    HomeSearchComponent
   ],
   imports: [
     BrowserModule,
