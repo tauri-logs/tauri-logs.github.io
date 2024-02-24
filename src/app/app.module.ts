@@ -27,6 +27,7 @@ import {CookieService} from "ngx-cookie-service";
 import {MatSelectModule} from "@angular/material/select";
 import { TwoValueTable } from './specific-log/multiple-value-table/multiple-value-table.component';
 import { HomeSearchComponent } from './home-search/home-search.component';
+import { LogoComponent } from './logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HomeSearchComponent } from './home-search/home-search.component';
     SpecificLogComponent,
     LogViewSettingsComponent,
     TwoValueTable,
-    HomeSearchComponent
+    HomeSearchComponent,
+    LogoComponent
   ],
   imports: [
     BrowserModule,

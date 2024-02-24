@@ -48,13 +48,6 @@
   width: 15rem;
 }
 
-.logo {
-  cursor: default;
-  font-weight: bold;
-  font-size: 8rem;
-  color: var(--logo-color);
-}
-
 .footer {
   display: flex;
   justify-content: center;
