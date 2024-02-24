@@ -25,7 +25,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CookieService} from "ngx-cookie-service";
 import {MatSelectModule} from "@angular/material/select";
-import { TwoValueTable } from './specific-log/two-value-table/two-value-table.component';
+import { TwoValueTable } from './specific-log/multiple-value-table/multiple-value-table.component';
 
 @NgModule({
   declarations: [

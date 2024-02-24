@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TwoValueTable } from './two-value-table.component';
+import { TwoValueTable } from './multiple-value-table.component';
 
 describe('LogStatisticsTableComponent', () => {
   let component: TwoValueTable;
