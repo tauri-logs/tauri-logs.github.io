@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 })
 export class HomeSearchComponent implements OnInit {
 
+  currentYear: number = new Date().getFullYear();
   playerName: string = '';
   playerRealm: RealmEnum = RealmEnum.EVERMOON;
   realms: RealmEnum[] = REALM_ARRAY;

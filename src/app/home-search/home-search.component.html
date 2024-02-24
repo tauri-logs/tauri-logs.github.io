@@ -1,11 +1,28 @@
-<div class="navBar">
-  <input class="textInput" matInput type="text"
-         [(ngModel)]="playerName" [placeholder]="'Player name'"
-         (keydown.enter)="goToPlayerView(playerName, playerRealm)">
-  <mat-select id="realmSelect" [(ngModel)]="playerRealm">
-    <mat-option *ngFor="let realm of realms" [value]=realm>{{realm}}</mat-option>
-  </mat-select>
-  <button class="searchButton" mat-raised-button (click)="goToPlayerView(playerName, playerRealm)">
-    Search for player
-  </button>
+<div class="container" style="background-color: #202124">
+  <div class="search">
+    <div class="logo">
+      <span>Logs</span>
+    </div>
+    <div class="search-input-wrapper">
+      <input class="search-input" matInput type="search"
+             [(ngModel)]="playerName" [placeholder]="'Player name'"
+             (keydown.enter)="goToPlayerView(playerName, playerRealm)">
+    </div>
+
+    <div class="search-buttons">
+      <div class="realm-select">
+        <mat-select id="realmSelect" [(ngModel)]="playerRealm">
+          <mat-option *ngFor="let realm of realms" [value]=realm>{{ realm }}</mat-option>
+        </mat-select>
+      </div>
+      <button class="searchButton" mat-raised-button (click)="goToPlayerView(playerName, playerRealm)">
+        Search for player
+      </button>
+    </div>
+  </div>
+  <div class="empty-space">
+  </div>
+  <div class="footer">
+    <span>Open source</span>
+  </div>
 </div>
