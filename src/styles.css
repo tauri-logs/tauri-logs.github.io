@@ -10,5 +10,6 @@ html, body {
   --logo-color: #cc6f00;
 
   background-color: var(--background-dark-color);
+  color: white;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

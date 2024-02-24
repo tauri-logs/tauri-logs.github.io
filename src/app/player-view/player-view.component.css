@@ -1,29 +1,53 @@
 #player_view {
-  width: 60vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+
+  --light-grey: #424242;
+}
+
+.header {
+  display: flex;
+  padding-left: 2rem;
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.filter-date-range {
+  padding-left: 1rem;
 }
 
 input {
-  background-color: #424242;
+  background-color: var(--light-grey);
 }
 
 .dateRange {
-  background-color: #424242;
+  background-color: var(--light-grey);
 }
 
 :host ::ng-deep .mat-form-field-flex {
   height: 45px;
 }
 
-.numberInput {
-  background-color: #424242;
+.number-input-wrapper {
+  background-color: var(--light-grey);
+}
+
+thead {
+  background-color: var(--light-grey);
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 #logs_table {
   display: flex;
   flex-direction: column;
+}
+
+mat-expansion-panel:nth-child(odd) {
+  background-color: var(--ligher-dark-color);
 }
 
 .log_tr {
