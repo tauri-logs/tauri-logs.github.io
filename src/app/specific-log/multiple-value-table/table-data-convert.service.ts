@@ -72,23 +72,23 @@ export class TableDataConvertService {
     return [
       new KillComparisonTableData(
         'Average ilvl',
-        firstLog.avgIlvl.toFixed(2).toString(),
-        avgIlvl.toFixed(2).toString()
+        avgIlvl.toFixed(2).toString(),
+        firstLog.avgIlvl.toFixed(2).toString()
       ),
       new KillComparisonTableData(
         'Kill time',
-        formattedFirstKillTime,
-        formattedKillTIme
+        formattedKillTIme,
+        formattedFirstKillTime
       ),
       new KillComparisonTableData(
         'Average DPS',
-        firstLog.avgDps.toLocaleString(),
-        avgDps.toLocaleString()
+        avgDps.toLocaleString(),
+        firstLog.avgDps.toLocaleString()
       ),
       new KillComparisonTableData(
         'Total DMG done',
-        this.formatToShortNotation(firstLog.dmgDone, 2),
-        this.formatToShortNotation(dmgDone, 2)
+        this.formatToShortNotation(dmgDone, 2),
+        this.formatToShortNotation(firstLog.dmgDone, 2)
       ),
     ]
   }
