@@ -1,0 +1,14 @@
+.row-def {
+  text-align: left;
+  color: #c3c3c3;
+}
+
+.this-kill {
+  text-align: right;
+  padding-left: 1rem;
+}
+
+.first-kill {
+  text-align: right;
+  padding-left: 1rem;
+}
