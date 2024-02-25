@@ -47,6 +47,7 @@ input {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .logs-table {
@@ -60,7 +61,7 @@ mat-expansion-panel:nth-child(odd) {
 
 .log_tr {
   cursor: pointer;
-  height: 10vh;
+  height: 3rem;
   border-bottom-style: solid;
   border-bottom-width: thin;
   border-bottom-color: gray;
