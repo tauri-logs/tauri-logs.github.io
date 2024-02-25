@@ -41,3 +41,8 @@
   padding-top: 0;
   padding-bottom: 0;
 }
+
+.images-col {
+  display: flex;
+  gap: 5px;
+}

@@ -6,7 +6,7 @@ import {Member} from "../tauri/models/characterModels/member";
 import {Sort} from "@angular/material/sort";
 import copy from "fast-copy";
 import {RaidDetailHeader} from "../tauri/models/raidDetailHeader/raidDetailHeader";
-import {allianceRaces, RaceEnum, raceImage, reverseRace} from "../tauri/models/enums/raceEnum";
+import {raceImage, reverseRace} from "../tauri/models/enums/raceEnum";
 import {reverseSpec} from "../tauri/models/enums/specEnum";
 import {Icon} from "../tauri/models/raidDetailHeader/icon";
 import {formatNumber} from "@angular/common";
@@ -22,7 +22,6 @@ import {environment} from "../../environments/environment";
 import {TableDataConvertService} from "./multiple-value-table/table-data-convert.service";
 import {Router} from "@angular/router";
 import {Cookie} from "../tauri/models/cookie";
-import {SOO_10_HC, SOO_25_HC} from "../tauri/firstLogs";
 import {TableModel} from "./multiple-value-table/models/tableModel";
 
 interface DialogData {
@@ -52,7 +51,7 @@ export class SpecificLogComponent implements OnInit {
   public additionalInfoTableModel?: TableModel;
   public compositionTableModel?: TableModel;
 
-  public readonly characterHeader = new RaidDetailHeader('character', 'Character', true);
+  public readonly characterHeader = RaidDetailHeader.text('character', 'Character', true);
   private defaultHeaders: MultipleRaidDetailHeaders = new MultipleRaidDetailHeaders(this.headers);
 
   private readonly cookieName = 'logHeaders';
@@ -97,25 +96,29 @@ export class SpecificLogComponent implements OnInit {
 
   initDefaultHeaders() {
     this.defaultHeaders = new MultipleRaidDetailHeaders([
-      new RaidDetailHeader('ilvl', 'Ilvl', false),
-      new RaidDetailHeader('race', 'Race', false, new Icon(this.getRaceTooltip, this.getRaceImage)),
-      new RaidDetailHeader('spec', 'Spec', false, new Icon(this.getSpecTooltip, this.getSpecImage)),
+      RaidDetailHeader.text('ilvl', 'Ilvl', false),
+      RaidDetailHeader.icon('race', 'Race', false, new Icon(this.getRaceTooltip, this.getRaceImage)),
+      RaidDetailHeader.icon('spec', 'Spec', false, new Icon(this.getSpecTooltip, this.getSpecImage)),
       //TODO: Do I want name header to support link to player?
-      new RaidDetailHeader('name', 'Name', false, undefined, this.getClassColor),
-      new RaidDetailHeader('dps', 'DPS', true),
-      new RaidDetailHeader('dmg_done', 'Damage', false),
-      new RaidDetailHeader('heal_done', 'Healing', true),
-      new RaidDetailHeader('percentage_dmg_done', '% of DMG', false),
-      new RaidDetailHeader('percentage_heal_done', '% of Healing', false),
-      new RaidDetailHeader('dmg_taken', 'Damage taken', false),
-      new RaidDetailHeader('dmg_absorb', 'Absorbed dmg', false),
-      new RaidDetailHeader('absorb_done', 'Absorbs done', false),
-      new RaidDetailHeader('overheal', 'Overhealing', false),
-      new RaidDetailHeader('heal_taken', 'Healing taken', false),
-      new RaidDetailHeader('interrupts', 'Interrupts', false),
-      new RaidDetailHeader('dispells', 'Dispells', false),
-      //could be done with Icon array, but w/e
-      new RaidDetailHeader('trinkets', 'Trinkets', true, new Icon(this.getTrinket0Tooltip, this.getTrinket0Image, 28)),
+      RaidDetailHeader.text('name', 'Name', false, this.getClassColor),
+      RaidDetailHeader.text('dps', 'DPS', true),
+      RaidDetailHeader.text('dmg_done', 'Damage', false),
+      RaidDetailHeader.text('heal_done', 'Healing', true),
+      RaidDetailHeader.text('percentage_dmg_done', '% of DMG', false),
+      RaidDetailHeader.text('percentage_heal_done', '% of Healing', false),
+      RaidDetailHeader.text('dmg_taken', 'Damage taken', false),
+      RaidDetailHeader.text('dmg_absorb', 'Absorbed dmg', false),
+      RaidDetailHeader.text('absorb_done', 'Absorbs done', false),
+      RaidDetailHeader.text('overheal', 'Overhealing', false),
+      RaidDetailHeader.text('heal_taken', 'Healing taken', false),
+      RaidDetailHeader.text('interrupts', 'Interrupts', false),
+      RaidDetailHeader.text('dispells', 'Dispells', false),
+      RaidDetailHeader.multipleIcons('trinkets', 'Trinkets', true,
+        [
+          new Icon(this.getTrinket0Tooltip, this.getTrinket0Image, 28),
+          new Icon(this.getTrinket1Tooltip, this.getTrinket1Image, 28)
+        ]
+      ),
     ])
   }
 

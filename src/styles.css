@@ -1,4 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  font-size: 16px;
+
+  --background-dark-color: #202124;
+  --darker-dark-color: #171717;
+  --ligher-dark-color: #303134;
+  --logo-color: #cc6f00;
+
+  background-color: var(--background-dark-color);
+  color: white;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.cdk-overlay-pane {
+  max-width: 100vw !important;
+}
