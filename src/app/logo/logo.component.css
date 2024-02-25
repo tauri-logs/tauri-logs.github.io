@@ -1,4 +1,5 @@
 .logo {
   font-weight: bold;
   color: var(--logo-color);
+  text-decoration: none;
 }

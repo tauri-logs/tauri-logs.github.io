@@ -1,3 +1,6 @@
-<div class="logo" [style]="'font-size: ' + fontSize + '; cursor: ' + cursorStyle + ';'" [routerLink]="routerLink">
-  <span>Logs</span>
+<div class="logo" [style]="'font-size: ' + fontSize + '; cursor: ' + cursorStyle + ';'">
+  <a *ngIf="routerLink" [href]="routerLink" class="logo">
+    <span>Logs</span>
+  </a>
+  <span *ngIf="!routerLink">Logs</span>
 </div>
