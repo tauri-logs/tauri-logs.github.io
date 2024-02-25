@@ -11,19 +11,20 @@
     </span>
   </div>
   <div *ngIf="raidDetail && raidDetail.members" id="additional_info">
-    <h3 *ngIf="data.guild?.name" id="guild_name" [ngStyle]="{'color': data.guild?.faction ? '#e57373':'#29b6f6'}">
+    <h3 *ngIf="data.guild?.name" class="guild_name" [ngStyle]="{'color': data.guild?.faction ? '#e57373':'#29b6f6'}">
       Guild raid - {{ data.guild.name }}</h3>
-    <h3 *ngIf="!data.guild?.name" id="random_raid">Random raid</h3>
+    <h3 *ngIf="!data.guild?.name" id="random_raid" class="guild_name">Random raid</h3>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>Additional info</mat-panel-title>
       </mat-expansion-panel-header>
       <div id="additional_info_expansion_content">
-        <app-multiple-value-table [tableModel]="logStatisticsTableModel"
-                                  style="margin-right: 10px"></app-multiple-value-table>
-        <app-multiple-value-table [tableModel]="additionalInfoTableModel"
-                                  style="margin-right: 10px"></app-multiple-value-table>
-        <app-multiple-value-table [tableModel]="compositionTableModel"></app-multiple-value-table>
+        <app-multiple-value-table [tableModel]="logStatisticsTableModel">
+        </app-multiple-value-table>
+        <app-multiple-value-table [tableModel]="additionalInfoTableModel">
+        </app-multiple-value-table>
+        <app-multiple-value-table [tableModel]="compositionTableModel">
+        </app-multiple-value-table>
       </div>
     </mat-expansion-panel>
   </div>

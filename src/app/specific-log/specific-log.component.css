@@ -14,12 +14,12 @@
   padding: 1vh 1vw;
 }
 
-#guild_name {
-  margin-top: 0;
+.guild_name {
+  margin: 0;
+  white-space: nowrap;
 }
 
 #random_raid {
-  margin-top: 0;
   color: darkorange;
 }
 
@@ -28,12 +28,16 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 5px;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 #additional_info_expansion_content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 /*remove row height scaling (default 1vh 1vw)*/
@@ -45,4 +49,8 @@
 .images-col {
   display: flex;
   gap: 5px;
+}
+
+#additional_info {
+  display: flex;
 }
