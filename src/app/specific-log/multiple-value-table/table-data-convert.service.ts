@@ -6,7 +6,8 @@ import {Member} from "../../tauri/models/characterModels/member";
 import {TableModel} from "./models/tableModel";
 import {Composition} from "../../tauri/models/composition";
 import {getLogByDifficultyAndEncounter} from "../../tauri/firstLogs";
-import {MultipleValueTableStyles} from "./models/MultipleValueTableStyles";
+import {KillComparisonTableModel} from "../kill-comparison-table/models/KillComparisonTableModel";
+import {KillComparisonTableData} from "../kill-comparison-table/models/KillComparisonTableData";
 
 @Injectable({
   providedIn: 'root'
@@ -50,16 +51,13 @@ export class TableDataConvertService {
     return number.toLocaleString('en-US', {minimumIntegerDigits: digits});
   }
 
-  getAdditionalInfoModel(raidDetail: RaidDetail): TableModel {
-    return new TableModel(
-      ['First HC kill', 'This kill'],
-      this.getAdditionalInfo(raidDetail),
-      new MultipleValueTableStyles('', 'padding-left: 10px;')
+  getComparisonTableModel(raidDetail: RaidDetail): KillComparisonTableModel {
+    return new KillComparisonTableModel(
+      this.getAdditionalInfo(raidDetail)
     );
   }
 
-  private getAdditionalInfo(raidDetail: RaidDetail): TablePair[] {
-    console.log("s")
+  private getAdditionalInfo(raidDetail: RaidDetail): KillComparisonTableData[] {
     let avgIlvl = 0; // for loop for performance over reduce
     let dmgDone = 0;
     for (let member of raidDetail.members) {
@@ -72,10 +70,26 @@ export class TableDataConvertService {
     const formattedFirstKillTime = `${Math.floor(firstLog.killTime / 60)}:${Math.floor((firstLog.killTime % 60))}`;
     const formattedKillTIme = `${this.formatNumber(Math.floor(raidDetail.fight_time / 60000), 2)}:${this.formatNumber(Math.floor((raidDetail.fight_time % 60000) / 1000), 2)}`
     return [
-      new TablePair(firstLog.avgIlvl.toFixed(2).toString(), avgIlvl.toFixed(2).toString()),
-      new TablePair(formattedFirstKillTime, formattedKillTIme),
-      new TablePair(firstLog.avgDps.toLocaleString(), avgDps.toLocaleString()),
-      new TablePair(this.formatToShortNotation(firstLog.dmgDone, 2), this.formatToShortNotation(dmgDone, 2)),
+      new KillComparisonTableData(
+        'Average ilvl',
+        avgIlvl.toFixed(2).toString(),
+        firstLog.avgIlvl.toFixed(2).toString()
+      ),
+      new KillComparisonTableData(
+        'Kill time',
+        formattedKillTIme,
+        formattedFirstKillTime
+      ),
+      new KillComparisonTableData(
+        'Average DPS',
+        avgDps.toLocaleString(),
+        firstLog.avgDps.toLocaleString()
+      ),
+      new KillComparisonTableData(
+        'Total DMG done',
+        this.formatToShortNotation(dmgDone, 2),
+        this.formatToShortNotation(firstLog.dmgDone, 2)
+      ),
     ]
   }
 

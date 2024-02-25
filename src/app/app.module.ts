@@ -28,6 +28,7 @@ import {MatSelectModule} from "@angular/material/select";
 import { TwoValueTable } from './specific-log/multiple-value-table/multiple-value-table.component';
 import { HomeSearchComponent } from './home-search/home-search.component';
 import { LogoComponent } from './logo/logo.component';
+import { KillComparisonTableComponent } from './specific-log/kill-comparison-table/kill-comparison-table.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LogoComponent } from './logo/logo.component';
     LogViewSettingsComponent,
     TwoValueTable,
     HomeSearchComponent,
-    LogoComponent
+    LogoComponent,
+    KillComparisonTableComponent
   ],
   imports: [
     BrowserModule,

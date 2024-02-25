@@ -23,6 +23,7 @@ import {TableDataConvertService} from "./multiple-value-table/table-data-convert
 import {Router} from "@angular/router";
 import {Cookie} from "../tauri/models/cookie";
 import {TableModel} from "./multiple-value-table/models/tableModel";
+import {KillComparisonTableModel} from "./kill-comparison-table/models/KillComparisonTableModel";
 
 interface DialogData {
   id: number;
@@ -48,7 +49,7 @@ export class SpecificLogComponent implements OnInit {
   public sortedMembers: Member[] = [];
 
   public logStatisticsTableModel?: TableModel;
-  public additionalInfoTableModel?: TableModel;
+  public killComparisonTableModel?: KillComparisonTableModel;
   public compositionTableModel?: TableModel;
 
   public readonly characterHeader = RaidDetailHeader.text('character', 'Character', true);
@@ -85,7 +86,7 @@ export class SpecificLogComponent implements OnInit {
 
         // setup table models
         this.logStatisticsTableModel = this.tableDataConvertService.getLogStatisticsTableModel(this.raidDetail)
-        this.additionalInfoTableModel = this.tableDataConvertService.getAdditionalInfoModel(this.raidDetail)
+        this.killComparisonTableModel = this.tableDataConvertService.getComparisonTableModel(this.raidDetail)
         this.compositionTableModel = this.tableDataConvertService.getCompositionTableModel(this.raidDetail.members)
       }
     )
