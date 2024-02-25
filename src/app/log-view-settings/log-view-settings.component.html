@@ -16,7 +16,7 @@
     <div class="header" *ngFor="let header of headers" cdkDrag>
       <span>
         <mat-checkbox [(ngModel)]="header.active">
-          {{header.text}}
+          {{header.name}}
         </mat-checkbox>
       </span>
     </div>

@@ -3,18 +3,59 @@ import {Member} from "../characterModels/member";
 
 export class RaidDetailHeader {
   key: string;
-  text: string;
+  name: string;
   active: boolean;
-  img?: Icon;
+  img: Icon | null;
+  images: Icon[];
   style: (member: Member) => string;
 
-  constructor(key: string, text: string, active: boolean = false, img?: Icon,
-              style: (member: Member) => string = function () {return ''}) {
+  private constructor(
+    key: string,
+    name: string,
+    active: boolean = false,
+    images: Icon[],
+    style: (member: Member) => string = function () {
+      return ''
+    }) {
     this.key = key;
-    this.text = text;
+    this.name = name;
     this.active = active;
-    this.img = img;
+    this.images = images;
+    this.img = (images.length > 0) ? images[0] : null;
     this.style = style;
+  }
+
+  private static defaultStyle = (member: Member) => {
+    return ''
+  };
+
+  static icon(
+    key: string,
+    name: string,
+    active: boolean,
+    img: Icon,
+    style: (member: Member) => string = this.defaultStyle
+  ): RaidDetailHeader {
+    return new RaidDetailHeader(key, name, active, [img], style);
+  }
+
+  static multipleIcons(
+    key: string,
+    name: string,
+    active: boolean,
+    images: Icon[],
+    style: (member: Member) => string = this.defaultStyle
+  ): RaidDetailHeader {
+    return new RaidDetailHeader(key, name, active, images, style);
+  }
+
+  static text(
+    key: string,
+    text: string,
+    active: boolean,
+    style: (member: Member) => string = this.defaultStyle
+  ): RaidDetailHeader {
+    return new RaidDetailHeader(key, text, active, [], style);
   }
 
 }
