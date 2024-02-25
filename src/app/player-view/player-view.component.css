@@ -11,11 +11,42 @@
 .header {
   display: flex;
   width: 100%;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 .logo {
   margin-left: 2rem;
-  margin-top: 1rem;
+  /*margin-top: 1rem;*/
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: flex-end;
+  margin-left: 3rem;
+}
+
+.search-input-wrapper {
+  display: flex;
+  border-radius: 50px;
+  border: 2px solid var(--ligher-dark-color);
+  background-color: var(--light-grey);
+  width: 100%;
+  justify-content: center;
+  height: 2.5rem;
+}
+
+.search-input {
+  border: none;
+  width: 30rem;
+  color: white;
+  caret-color: white;
+  font-size: 16px;
+  margin: 0.5rem 0.5rem;
+}
+
+.search-input:focus {
+  outline: none;
 }
 
 input {

@@ -1,6 +1,20 @@
 <div id="player_view">
   <div class="header">
     <app-logo class="logo" [fontSize]="'2rem'" [link]="true"></app-logo>
+    <div class="search-wrapper">
+      <div class="search-input-wrapper">
+        <input class="search-input">
+      </div>
+      <div class="realm-select">
+        <input>
+        <!--          <mat-select id="realmSelect" [(ngModel)]="playerRealm">-->
+        <!--            <mat-option *ngFor="let realm of realms" [value]=realm>{{ realm }}</mat-option>-->
+        <!--          </mat-select>-->
+      </div>
+      <button class="search-button" mat-raised-button>
+        Search for player
+      </button>
+    </div>
   </div>
   <div class="character" *ngIf="character">
     <div id="character_info">

@@ -94,4 +94,5 @@ export class PlayerViewComponent implements OnInit {
   getClassColor: (character: Character) => string = function (character: Character): string {
     return `color: ${classColor[character.class]};`;
   }
+    protected readonly realms = REALM_ARRAY;
 }
