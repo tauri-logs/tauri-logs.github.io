@@ -1,53 +1,53 @@
 <div id="player_view">
   <div class="header">
-    <app-logo class="logo" [fontSize]="'2rem'"></app-logo>
+    <app-logo class="logo" [fontSize]="'2rem'" [link]="true"></app-logo>
   </div>
   <div class="character" *ngIf="character">
     <div id="character_info">
       <h1 id="name_heading">
         <img [src]="getRaceImage(character)" style="padding: 0 10px 0 0"
              [matTooltip]="getRaceTooltip(character)" [matTooltipPosition]="'above'">
-        <span [style]="getClassColor(character)">{{character.name}}</span>
+        <span [style]="getClassColor(character)">{{ character.name }}</span>
       </h1>
       <h2 *ngIf="character.guildName" id="guild_name"
           [ngStyle]="{'color': character.faction_string_class === 'Horde' ? '#e57373':'#29b6f6'}">
-        {{character.guildName}}</h2>
+        {{ character.guildName }}</h2>
     </div>
     <div class="table-wrapper">
       <table>
-        <thead style="display: flex">
-        <mat-form-field class="dateRange">
-          <mat-label>Filter range</mat-label>
-          <mat-date-range-input [rangePicker]="filterRange" class="filter-date-range">
-            <input matStartDate [(ngModel)]="startFilter">
-            <input matEndDate [(ngModel)]="endFilter">
-          </mat-date-range-input>
-          <mat-datepicker-toggle matSuffix [for]="filterRange"></mat-datepicker-toggle>
-          <mat-date-range-picker #filterRange></mat-date-range-picker>
-        </mat-form-field>
-        <mat-form-field class="number-input-wrapper">
-          <mat-label>Amount of logs</mat-label>
-          <input matInput type="number" [(ngModel)]="amountOfLogsFilter" class="number-input">
-        </mat-form-field>
-        <button mat-raised-button
-                [matTooltip]="'filters ' + amountOfLogsFilter + ' logs and afterwards extracts only SOO logs'"
-                (click)="filter()">Search
-        </button>
-        </thead>
-        <tbody id="logs_table">
-        <mat-expansion-panel *ngFor="let week of playerLogs">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{week.startDate.getDate()}}.{{week.startDate.getMonth() + 1}}.{{week.startDate.getFullYear()}}
-              – {{week.endDate.getDate()}}.{{week.endDate.getMonth() + 1}}.{{week.endDate.getFullYear()}}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <tr class="log_tr" (click)="showSpecificLog(log)" *ngFor="let log of week.logs">
-            <td>{{log.encounter_data.encounter_name}} {{log.difficultyName}}</td>
-            <td>{{log.killDate | date: 'dd. MM. HH:mm'}}</td>
-          </tr>
-        </mat-expansion-panel>
-        </tbody>
+        <div class="table-header">
+          <mat-form-field class="dateRange">
+            <mat-label>Filter range</mat-label>
+            <mat-date-range-input [rangePicker]="filterRange" class="filter-date-range">
+              <input matStartDate [(ngModel)]="startFilter">
+              <input matEndDate [(ngModel)]="endFilter">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="filterRange"></mat-datepicker-toggle>
+            <mat-date-range-picker #filterRange></mat-date-range-picker>
+          </mat-form-field>
+          <mat-form-field class="number-input-wrapper">
+            <mat-label>Amount of logs</mat-label>
+            <input matInput type="number" [(ngModel)]="amountOfLogsFilter" class="number-input">
+          </mat-form-field>
+          <button class="search-button" mat-raised-button
+                  [matTooltip]="'filters ' + amountOfLogsFilter + ' logs and afterwards extracts only SOO logs'"
+                  (click)="filter()">Search
+          </button>
+        </div>
+        <div class="logs-table">
+          <mat-expansion-panel *ngFor="let week of playerLogs">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ week.startDate.getDate() }}.{{ week.startDate.getMonth() + 1 }}.{{ week.startDate.getFullYear() }}
+                – {{ week.endDate.getDate() }}.{{ week.endDate.getMonth() + 1 }}.{{ week.endDate.getFullYear() }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <tr class="log_tr" (click)="showSpecificLog(log)" *ngFor="let log of week.logs">
+              <td>{{ log.encounter_data.encounter_name }} {{ log.difficultyName }}</td>
+              <td>{{ log.killDate | date: 'dd. MM. HH:mm' }}</td>
+            </tr>
+          </mat-expansion-panel>
+        </div>
       </table>
     </div>
   </div>

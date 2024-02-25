@@ -10,37 +10,45 @@
 
 .header {
   display: flex;
-  padding-left: 2rem;
-  padding-top: 1rem;
   width: 100%;
 }
 
-.filter-date-range {
-  padding-left: 1rem;
+.logo {
+  margin-left: 2rem;
+  margin-top: 1rem;
 }
 
 input {
   background-color: var(--light-grey);
 }
 
+.number-input-wrapper {
+  background-color: var(--light-grey);
+  width: 6rem;
+}
+
+
 .dateRange {
   background-color: var(--light-grey);
 }
 
+.search-button {
+  margin-bottom: 20px;
+}
+
+/* because material angular has some input 44px and some 45px */
 :host ::ng-deep .mat-form-field-flex {
   height: 45px;
 }
 
-.number-input-wrapper {
+.table-header {
   background-color: var(--light-grey);
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
-thead {
-  background-color: var(--light-grey);
-  padding: 0.5rem;
-}
-
-#logs_table {
+.logs-table {
   display: flex;
   flex-direction: column;
 }
