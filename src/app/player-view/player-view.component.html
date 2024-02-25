@@ -14,41 +14,39 @@
         {{ character.guildName }}</h2>
     </div>
     <div class="table-wrapper">
-      <table>
-        <div class="table-header">
-          <mat-form-field class="dateRange">
-            <mat-label>Filter range</mat-label>
-            <mat-date-range-input [rangePicker]="filterRange" class="filter-date-range">
-              <input matStartDate [(ngModel)]="startFilter">
-              <input matEndDate [(ngModel)]="endFilter">
-            </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]="filterRange"></mat-datepicker-toggle>
-            <mat-date-range-picker #filterRange></mat-date-range-picker>
-          </mat-form-field>
-          <mat-form-field class="number-input-wrapper">
-            <mat-label>Amount of logs</mat-label>
-            <input matInput type="number" [(ngModel)]="amountOfLogsFilter" class="number-input">
-          </mat-form-field>
-          <button class="search-button" mat-raised-button
-                  [matTooltip]="'filters ' + amountOfLogsFilter + ' logs and afterwards extracts only SOO logs'"
-                  (click)="filter()">Search
-          </button>
-        </div>
-        <div class="logs-table">
-          <mat-expansion-panel *ngFor="let week of playerLogs">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{ week.startDate.getDate() }}.{{ week.startDate.getMonth() + 1 }}.{{ week.startDate.getFullYear() }}
-                – {{ week.endDate.getDate() }}.{{ week.endDate.getMonth() + 1 }}.{{ week.endDate.getFullYear() }}
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <tr class="log_tr" (click)="showSpecificLog(log)" *ngFor="let log of week.logs">
-              <td>{{ log.encounter_data.encounter_name }} {{ log.difficultyName }}</td>
-              <td>{{ log.killDate | date: 'dd. MM. HH:mm' }}</td>
-            </tr>
-          </mat-expansion-panel>
-        </div>
-      </table>
+      <div class="table-header">
+        <mat-form-field class="dateRange">
+          <mat-label>Filter range</mat-label>
+          <mat-date-range-input [rangePicker]="filterRange" class="filter-date-range">
+            <input matStartDate [(ngModel)]="startFilter">
+            <input matEndDate [(ngModel)]="endFilter">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="filterRange"></mat-datepicker-toggle>
+          <mat-date-range-picker #filterRange></mat-date-range-picker>
+        </mat-form-field>
+        <mat-form-field class="number-input-wrapper">
+          <mat-label>Amount of logs</mat-label>
+          <input matInput type="number" [(ngModel)]="amountOfLogsFilter" class="number-input">
+        </mat-form-field>
+        <button class="search-button" mat-raised-button
+                [matTooltip]="'filters ' + amountOfLogsFilter + ' logs and afterwards extracts only SOO logs'"
+                (click)="filter()">Search
+        </button>
+      </div>
+      <div class="logs-table">
+        <mat-expansion-panel *ngFor="let week of playerLogs">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ week.startDate.getDate() }}.{{ week.startDate.getMonth() + 1 }}.{{ week.startDate.getFullYear() }}
+              – {{ week.endDate.getDate() }}.{{ week.endDate.getMonth() + 1 }}.{{ week.endDate.getFullYear() }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <tr class="log_tr" (click)="showSpecificLog(log)" *ngFor="let log of week.logs">
+            <td>{{ log.encounter_data.encounter_name }} {{ log.difficultyName }}</td>
+            <td>{{ log.killDate | date: 'dd. MM. HH:mm' }}</td>
+          </tr>
+        </mat-expansion-panel>
+      </div>
     </div>
   </div>
   <div *ngIf="!character" class="loading">
