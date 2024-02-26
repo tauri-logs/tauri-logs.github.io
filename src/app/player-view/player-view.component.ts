@@ -4,7 +4,7 @@ import {Log} from "../tauri/models/logModels/log";
 import {Week} from "../tauri/week";
 import {MatDialog} from "@angular/material/dialog";
 import {SpecificLogComponent} from "../specific-log/specific-log.component";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Character} from "../tauri/models/characterModels/character";
 import {REALM_ARRAY, RealmEnum} from "../tauri/models/enums/realmEnum";
 import {Member} from "../tauri/models/characterModels/member";
@@ -28,9 +28,19 @@ export class PlayerViewComponent implements OnInit {
   public amountOfLogsFilter: number = 0;
   public character?: Character;
 
+  playerName: string = '';
+  playerRealm: RealmEnum = RealmEnum.EVERMOON;
+  realms: RealmEnum[] = REALM_ARRAY;
+
+  goToPlayerView(playerName: string, playerRealm: RealmEnum) {
+    //TODO: handle promise rejection
+    this.router.navigate(['/player', playerName, playerRealm]);
+  }
+
   constructor(private tauriService: TauriService,
               private dialog: MatDialog,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -94,5 +104,4 @@ export class PlayerViewComponent implements OnInit {
   getClassColor: (character: Character) => string = function (character: Character): string {
     return `color: ${classColor[character.class]};`;
   }
-    protected readonly realms = REALM_ARRAY;
 }

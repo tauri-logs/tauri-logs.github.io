@@ -17,7 +17,6 @@
 
 .logo {
   margin-left: 2rem;
-  /*margin-top: 1rem;*/
 }
 
 .search-wrapper {
@@ -34,11 +33,12 @@
   width: 100%;
   justify-content: center;
   height: 2.5rem;
+  align-items: center;
 }
 
 .search-input {
   border: none;
-  width: 30rem;
+  width: 20rem;
   color: white;
   caret-color: white;
   font-size: 16px;
@@ -47,6 +47,10 @@
 
 .search-input:focus {
   outline: none;
+}
+
+.realm-select {
+  width: 10rem;
 }
 
 input {
@@ -61,10 +65,6 @@ input {
 
 .dateRange {
   background-color: var(--light-grey);
-}
-
-.search-button {
-  margin-bottom: 20px;
 }
 
 /* because material angular has some input 44px and some 45px */
@@ -118,6 +118,10 @@ mat-expansion-panel:nth-child(odd) {
 
 .small-text {
   font-size: small;
+}
+
+.character {
+  margin-top: 1rem;
 }
 
 #name_heading {
