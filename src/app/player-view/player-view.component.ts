@@ -49,6 +49,8 @@ export class PlayerViewComponent implements OnInit {
       const playerName = params['name'];
       const playerRealm: RealmEnum = params['realm'];
       if (playerName.length && REALM_ARRAY.includes(playerRealm)) {
+        this.playerName = playerName;
+        this.playerRealm = playerRealm;
         this.tauriService.getCharacter(playerName, playerRealm).subscribe(
           response => {
             this.character = response;
