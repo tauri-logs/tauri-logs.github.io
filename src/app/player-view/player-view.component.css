@@ -8,37 +8,78 @@
   --light-grey: #424242;
 }
 
+@media (max-width: 700px) {
+  .header {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid var(--ligher-dark-color);
+    background-color: var(--light-grey);
+    width: 98%;
+  }
+
+  .logo {
+    justify-self: start;
+    margin-left: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .search-wrapper {
+    place-self: center;
+    display: flex;
+    align-items: flex-end;
+    width: min(35rem, 100%);
+  }
+
+  .search-input-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 2.5rem;
+    align-items: center;
+  }
+}
+
+@media (min-width: 700px) {
+  .header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    align-items: center;
+  }
+
+  .logo {
+    justify-self: start;
+    margin-left: 2rem;
+    font-size: 2rem;
+  }
+
+  .search-wrapper {
+    place-self: center;
+    display: flex;
+    align-items: flex-end;
+    width: min(35rem, 100%);
+  }
+
+  .search-input-wrapper {
+    display: flex;
+    border-radius: 50px;
+    border: 2px solid var(--ligher-dark-color);
+    background-color: var(--light-grey);
+    width: 100%;
+    justify-content: center;
+    height: 2.5rem;
+    align-items: center;
+  }
+}
+
 .header {
-  display: flex;
-  width: 100%;
-  align-items: center;
   margin-top: 1rem;
-}
-
-.logo {
-  margin-left: 2rem;
-}
-
-.search-wrapper {
-  display: flex;
-  align-items: flex-end;
-  margin-left: 3rem;
-}
-
-.search-input-wrapper {
-  display: flex;
-  border-radius: 50px;
-  border: 2px solid var(--ligher-dark-color);
-  background-color: var(--light-grey);
-  width: 100%;
-  justify-content: center;
-  height: 2.5rem;
-  align-items: center;
 }
 
 .search-input {
   border: none;
-  width: 20rem;
+  width: min(20rem, 100%);
   color: white;
   caret-color: white;
   font-size: 16px;
@@ -82,6 +123,13 @@ input {
   border-radius: 4px;
 }
 
+.search-filters-button {
+  /* because material angular has 20px bottom padding */
+  margin-bottom: 20px;
+  /* material angular has 45px height */
+  height: 45px;
+}
+
 .logs-table {
   display: flex;
   flex-direction: column;
@@ -103,7 +151,7 @@ mat-expansion-panel:nth-child(odd) {
   justify-content: space-between;
 }
 
-.log_tr:hover td{
+.log_tr:hover td {
   color: darkorange;
 }
 
