@@ -29,6 +29,7 @@ import { TwoValueTable } from './specific-log/multiple-value-table/multiple-valu
 import { HomeSearchComponent } from './home-search/home-search.component';
 import { LogoComponent } from './logo/logo.component';
 import { KillComparisonTableComponent } from './specific-log/kill-comparison-table/kill-comparison-table.component';
+import { HeaderSearchBarComponent } from './header-search-bar/header-search-bar.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { KillComparisonTableComponent } from './specific-log/kill-comparison-tab
     TwoValueTable,
     HomeSearchComponent,
     LogoComponent,
-    KillComparisonTableComponent
+    KillComparisonTableComponent,
+    HeaderSearchBarComponent
   ],
   imports: [
     BrowserModule,

@@ -30,17 +30,10 @@ export class PlayerViewComponent implements OnInit {
 
   playerName: string = '';
   playerRealm: RealmEnum = RealmEnum.EVERMOON;
-  realms: RealmEnum[] = REALM_ARRAY;
-
-  goToPlayerView(playerName: string, playerRealm: RealmEnum) {
-    //TODO: handle promise rejection
-    this.router.navigate(['/player', playerName, playerRealm]);
-  }
 
   constructor(private tauriService: TauriService,
               private dialog: MatDialog,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -106,4 +99,5 @@ export class PlayerViewComponent implements OnInit {
   getClassColor: (character: Character) => string = function (character: Character): string {
     return `color: ${classColor[character.class]};`;
   }
+  protected readonly requestAnimationFrame = requestAnimationFrame;
 }
