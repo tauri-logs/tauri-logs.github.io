@@ -13,12 +13,13 @@ export class HeaderSearchBarComponent implements OnInit {
   @Input() playerName: string = '';
   @Input() playerRealm: RealmEnum = RealmEnum.EVERMOON;
 
+  constructor(private router: Router) {
+  }
+
   goToPlayerView(playerName: string, playerRealm: RealmEnum) {
     //TODO: handle promise rejection
     this.router.navigate(['/player', playerName, playerRealm]);
   }
-
-  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }

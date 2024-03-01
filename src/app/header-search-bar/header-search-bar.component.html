@@ -1,16 +1,16 @@
 <div class="header">
-  <app-logo class="logo" [fontSize]="'1em'" [link]="true"></app-logo>
+  <app-logo [fontSize]="'1em'" [link]="true" class="logo"></app-logo>
   <div class="search-wrapper">
     <div class="search-input-wrapper">
-      <input class="search-input" [(ngModel)]="playerName" (keydown.enter)="goToPlayerView(playerName, playerRealm)">
+      <input (keydown.enter)="goToPlayerView(playerName, playerRealm)" [(ngModel)]="playerName" class="search-input">
       <div class="realm-select">
-        <mat-select id="realmSelect" [(ngModel)]="playerRealm">
+        <mat-select [(ngModel)]="playerRealm" id="realmSelect">
           <mat-option *ngFor="let realm of realms" [value]=realm class="realm-select-option">
             {{ realm }}
           </mat-option>
         </mat-select>
       </div>
-      <button class="search-button" mat-icon-button (click)="goToPlayerView(playerName, playerRealm)">
+      <button (click)="goToPlayerView(playerName, playerRealm)" class="search-button" mat-icon-button>
         <mat-icon>search</mat-icon>
       </button>
     </div>

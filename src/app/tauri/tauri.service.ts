@@ -21,6 +21,22 @@ export class TauriService {
   constructor(private http: HttpClient) {
   }
 
+  static getTrinketImgUrl(race: RaceEnum, trinket?: Trinket): string {
+    let imgUrl: string;
+    if (trinket) {
+      imgUrl = `${environment.iconUrl}medium/${trinket.icon}.png`;
+    } else {
+      // doesn't really matter if it's neutral here, since it's used only for img generation
+      const faction = allianceRaces.includes(race) ? FactionEnum.ALLIANCE : FactionEnum.HORDE;
+      imgUrl = `${environment.baseHref}/assets/factions/${faction}.png`;
+    }
+    return imgUrl;
+  }
+
+  static getTrinketTooltip(trinket?: Trinket): string {
+    return trinket ? `${trinket.name} ${trinket.ilevel}+ ilvl` : `Trinket data are not available for old logs.`;
+  }
+
   getPlayerRaidLogs(name: string, realm: string, limit: number): Observable<Log[]> {
     return this.http.post(environment.apiUrl, {
       "url": "raid-player",
@@ -93,22 +109,6 @@ export class TauriService {
         //@ts-ignore
         return response.response
       }));
-  }
-
-  static getTrinketImgUrl(race: RaceEnum, trinket?: Trinket): string {
-    let imgUrl: string;
-    if (trinket) {
-      imgUrl = `${environment.iconUrl}medium/${trinket.icon}.png`;
-    } else {
-      // doesn't really matter if it's neutral here, since it's used only for img generation
-      const faction = allianceRaces.includes(race) ? FactionEnum.ALLIANCE : FactionEnum.HORDE;
-      imgUrl = `${environment.baseHref}/assets/factions/${faction}.png`;
-    }
-    return imgUrl;
-  }
-
-  static getTrinketTooltip(trinket?: Trinket): string {
-    return trinket ? `${trinket.name} ${trinket.ilevel}+ ilvl` : `Trinket data are not available for old logs.`;
   }
 
 }

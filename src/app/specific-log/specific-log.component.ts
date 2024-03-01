@@ -39,20 +39,16 @@ interface DialogData {
 })
 export class SpecificLogComponent implements OnInit {
 
-  private obtainedResponse: boolean = false;
-  private setupHeaders: boolean = false;
-
   public rows: string[] = [];
   public headers: RaidDetailHeader[] = [];
-
   public raidDetail?: RaidDetail;
   public sortedMembers: Member[] = [];
-
   public logStatisticsTableModel?: TableModel;
   public killComparisonTableModel?: KillComparisonTableModel;
   public compositionTableModel?: TableModel;
-
   public readonly characterHeader = RaidDetailHeader.text('character', 'Character', true);
+  private obtainedResponse: boolean = false;
+  private setupHeaders: boolean = false;
   private defaultHeaders: MultipleRaidDetailHeaders = new MultipleRaidDetailHeaders(this.headers);
 
   private readonly cookieName = 'logHeaders';

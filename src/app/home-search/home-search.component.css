@@ -61,7 +61,7 @@
   border: 1px solid #303134;
   border-radius: 4px;
   color: #e8eaed;
-  font-family: arial,sans-serif;
+  font-family: arial, sans-serif;
   padding: 0 16px;
   line-height: 27px;
   height: 36px;
@@ -73,7 +73,7 @@
 }
 
 .search-button:hover {
-  box-shadow: 0 1px 3px rgba(23,23,23,0.24);
+  box-shadow: 0 1px 3px rgba(23, 23, 23, 0.24);
   background-color: #303134;
   border: 1px solid #5f6368;
   color: #e8eaed;

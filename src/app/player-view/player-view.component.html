@@ -1,15 +1,15 @@
 <div id="player_view">
-  <app-header-search-bar class="header" [playerName]="playerName" [playerRealm]="playerRealm">
+  <app-header-search-bar [playerName]="playerName" [playerRealm]="playerRealm" class="header">
   </app-header-search-bar>
-  <div class="character" *ngIf="character">
+  <div *ngIf="character" class="character">
     <div id="character_info">
       <h1 id="name_heading">
-        <img [src]="getRaceImage(character)" style="padding: 0 10px 0 0"
-             [matTooltip]="getRaceTooltip(character)" [matTooltipPosition]="'above'">
+        <img [matTooltipPosition]="'above'" [matTooltip]="getRaceTooltip(character)"
+             [src]="getRaceImage(character)" style="padding: 0 10px 0 0">
         <span [style]="getClassColor(character)">{{ character.name }}</span>
       </h1>
-      <h2 *ngIf="character.guildName" id="guild_name"
-          [ngStyle]="{'color': character.faction_string_class === 'Horde' ? '#e57373':'#29b6f6'}">
+      <h2 *ngIf="character.guildName" [ngStyle]="{'color': character.faction_string_class === 'Horde' ? '#e57373':'#29b6f6'}"
+          id="guild_name">
         {{ character.guildName }}</h2>
     </div>
     <div class="table-wrapper">
@@ -17,19 +17,19 @@
         <mat-form-field class="dateRange">
           <mat-label>Filter range</mat-label>
           <mat-date-range-input [rangePicker]="filterRange" class="filter-date-range">
-            <input matStartDate [(ngModel)]="startFilter">
-            <input matEndDate [(ngModel)]="endFilter">
+            <input [(ngModel)]="startFilter" matStartDate>
+            <input [(ngModel)]="endFilter" matEndDate>
           </mat-date-range-input>
-          <mat-datepicker-toggle matSuffix [for]="filterRange"></mat-datepicker-toggle>
+          <mat-datepicker-toggle [for]="filterRange" matSuffix></mat-datepicker-toggle>
           <mat-date-range-picker #filterRange></mat-date-range-picker>
         </mat-form-field>
         <mat-form-field class="number-input-wrapper">
           <mat-label>Amount of logs</mat-label>
-          <input matInput type="number" [(ngModel)]="amountOfLogsFilter" class="number-input">
+          <input [(ngModel)]="amountOfLogsFilter" class="number-input" matInput type="number">
         </mat-form-field>
-        <button class="search-filters-button" mat-raised-button
-                [matTooltip]="'filters ' + amountOfLogsFilter + ' logs and afterwards extracts only SOO logs'"
-                (click)="filter()">Search
+        <button (click)="filter()" [matTooltip]="'filters ' + amountOfLogsFilter + ' logs and afterwards extracts only SOO logs'"
+                class="search-filters-button"
+                mat-raised-button>Search
         </button>
       </div>
       <div class="logs-table">
@@ -40,7 +40,7 @@
               – {{ week.endDate.getDate() }}.{{ week.endDate.getMonth() + 1 }}.{{ week.endDate.getFullYear() }}
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <tr class="log_tr" (click)="showSpecificLog(log)" *ngFor="let log of week.logs">
+          <tr (click)="showSpecificLog(log)" *ngFor="let log of week.logs" class="log_tr">
             <td>{{ log.encounter_data.encounter_name }} {{ log.difficultyName }}</td>
             <td>{{ log.killDate | date: 'dd. MM. HH:mm' }}</td>
           </tr>
@@ -54,10 +54,10 @@
   </div>
   <div *ngIf="!character && error" class="error">
     <h1 class="error-header">
-      {{error.errorHeader}}
+      {{ error.errorHeader }}
     </h1>
     <div class="error-text">
-      {{error.errorString}}
+      {{ error.errorString }}
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {REALM_ARRAY, RealmEnum} from "../tauri/models/enums/realmEnum";
 import {Router} from "@angular/router";
 
@@ -12,7 +12,9 @@ export class HomeSearchComponent implements OnInit {
   playerName: string = '';
   playerRealm: RealmEnum = RealmEnum.EVERMOON;
   realms: RealmEnum[] = REALM_ARRAY;
-  constructor(private router: Router) { }
+
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }

@@ -30,6 +30,7 @@ export class PlayerViewComponent implements OnInit {
   playerName: string = '';
   playerRealm: RealmEnum = RealmEnum.EVERMOON;
   error: PlayerSearchError | null = null;
+  protected readonly requestAnimationFrame = requestAnimationFrame;
 
   constructor(private tauriService: TauriService,
               private dialog: MatDialog,
@@ -123,5 +124,4 @@ export class PlayerViewComponent implements OnInit {
   getClassColor: (character: Character) => string = function (character: Character): string {
     return `color: ${classColor[character.class]};`;
   }
-  protected readonly requestAnimationFrame = requestAnimationFrame;
 }

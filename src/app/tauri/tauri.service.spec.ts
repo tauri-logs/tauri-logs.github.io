@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { TauriService } from './tauri.service';
+import {TauriService} from './tauri.service';
 
 describe('TauriService', () => {
   let service: TauriService;

@@ -2,18 +2,18 @@
   <div style="display: flex; justify-content: space-between; flex-direction: row;">
     <h3>{{ data.boss }}</h3>
     <span>
-      <button mat-icon-button (click)="showSettings()">
+      <button (click)="showSettings()" mat-icon-button>
           <mat-icon>settings</mat-icon>
       </button>
-      <button mat-icon-button mat-dialog-close>
+      <button mat-dialog-close mat-icon-button>
           <mat-icon>close</mat-icon>
       </button>
     </span>
   </div>
   <div *ngIf="raidDetail && raidDetail.members" id="additional_info">
-    <h3 *ngIf="data.guild?.name" class="guild_name" [ngStyle]="{'color': data.guild?.faction ? '#e57373':'#29b6f6'}">
+    <h3 *ngIf="data.guild?.name" [ngStyle]="{'color': data.guild?.faction ? '#e57373':'#29b6f6'}" class="guild_name">
       Guild raid - {{ data.guild.name }}</h3>
-    <h3 *ngIf="!data.guild?.name" id="random_raid" class="guild_name">Random raid</h3>
+    <h3 *ngIf="!data.guild?.name" class="guild_name" id="random_raid">Random raid</h3>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>Additional info</mat-panel-title>
@@ -28,43 +28,43 @@
       </div>
     </mat-expansion-panel>
   </div>
-  <table *ngIf="dataLoaded()" mat-table [dataSource]="sortedMembers"
-         class="mat-elevation-z0 modal-size"
-         matSort (matSortChange)="sortData($event)"
+  <table (matSortChange)="sortData($event)" *ngIf="dataLoaded()" [dataSource]="sortedMembers"
          [matSortStart]="'desc'"
+         class="mat-elevation-z0 modal-size" mat-table
+         matSort
          matSortActive="dmg_done"
          matSortDirection="desc">
     <ng-container [matColumnDef]="characterHeader.key">
-      <th mat-header-cell *matHeaderCellDef class="header-col">
+      <th *matHeaderCellDef class="header-col" mat-header-cell>
         Character
       </th>
-      <td mat-cell *matCellDef="let member" class="header-col">
+      <td *matCellDef="let member" class="header-col" mat-cell>
         <div style="display: flex; align-items: end;">
           <span>{{ member.ilvl }}</span>
-          <img width="21" height="21" [src]="getRaceImage(member)" style="padding: 0 10px"
-               [matTooltip]="getRaceTooltip(member)" [matTooltipPosition]="'above'">
-          <img width="21" height="21" [src]="getSpecImage(member)"
-               [matTooltip]="getSpecTooltip(member)" [matTooltipPosition]="'above'">
+          <img [matTooltipPosition]="'above'" [matTooltip]="getRaceTooltip(member)" [src]="getRaceImage(member)" height="21"
+               style="padding: 0 10px" width="21">
+          <img [matTooltipPosition]="'above'" [matTooltip]="getSpecTooltip(member)" [src]="getSpecImage(member)"
+               height="21" width="21">
           <span (click)="goToMemberView(member)" [style]="getClassColor(member) + 'padding: 0 10px;cursor: pointer;'"
           >{{ member.name }}</span>
         </div>
       </td>
     </ng-container>
     <ng-container *ngFor="let header of headers" [matColumnDef]="header.key">
-      <th mat-header-cell *matHeaderCellDef [mat-sort-header]="header.key" class="header-col">
+      <th *matHeaderCellDef [mat-sort-header]="header.key" class="header-col" mat-header-cell>
         {{ header.name }}
       </th>
-      <td mat-cell *matCellDef="let member" class="header-col">
+      <td *matCellDef="let member" class="header-col" mat-cell>
         <span *ngIf="!header.img" [style]="header.style(member)">{{ getMemberAttribute(member, header.key) }}</span>
         <div *ngIf="header.images.length > 0" class="images-col">
-          <img *ngFor="let image of header.images" [width]="image.dimension" [height]="image.dimension"
-               [src]="image.path(member)" class="header-col" style="padding-left: 0; padding-right: 0;"
-               [matTooltip]="image.tooltip(member)" [matTooltipPosition]="'above'" alt="{{image.tooltip(member)}}"/>
+          <img *ngFor="let image of header.images" [height]="image.dimension" [matTooltipPosition]="'above'"
+               [matTooltip]="image.tooltip(member)" [src]="image.path(member)" [width]="image.dimension"
+               alt="{{image.tooltip(member)}}" class="header-col" style="padding-left: 0; padding-right: 0;"/>
         </div>
       </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="rows; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: rows;"></tr>
+    <tr *matHeaderRowDef="rows; sticky: true" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: rows;" mat-row></tr>
   </table>
   <div *ngIf="!dataLoaded()" class="modal-size modal-loading">
     <mat-spinner></mat-spinner>
