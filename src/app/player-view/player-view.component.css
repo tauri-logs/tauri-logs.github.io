@@ -108,3 +108,8 @@ mat-expansion-panel:nth-child(odd) {
 #guild_name {
   margin: 0.5rem 0 0;
 }
+
+.error {
+  margin-top: 20svh;
+  text-align: center;
+}

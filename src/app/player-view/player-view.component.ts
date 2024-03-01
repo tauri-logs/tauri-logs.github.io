@@ -4,16 +4,15 @@ import {Log} from "../tauri/models/logModels/log";
 import {Week} from "../tauri/week";
 import {MatDialog} from "@angular/material/dialog";
 import {SpecificLogComponent} from "../specific-log/specific-log.component";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {Character} from "../tauri/models/characterModels/character";
 import {REALM_ARRAY, RealmEnum} from "../tauri/models/enums/realmEnum";
-import {Member} from "../tauri/models/characterModels/member";
 import {raceImage, reverseRace} from "../tauri/models/enums/raceEnum";
 import {genderImage} from "../tauri/models/enums/genderEnum";
-import {reverseSpec} from "../tauri/models/enums/specEnum";
 import {classColor} from "../tauri/models/enums/classEnum";
 import {environment} from '../../environments/environment';
 import {RaidMapEnum} from "../tauri/models/enums/raidMapEnum";
+import {PlayerSearchError} from "./model/PlayerSearchError";
 
 @Component({
   selector: 'app-player-view',
@@ -30,6 +29,7 @@ export class PlayerViewComponent implements OnInit {
 
   playerName: string = '';
   playerRealm: RealmEnum = RealmEnum.EVERMOON;
+  error: PlayerSearchError | null = null;
 
   constructor(private tauriService: TauriService,
               private dialog: MatDialog,
@@ -41,25 +41,49 @@ export class PlayerViewComponent implements OnInit {
       this.character = undefined;
       const playerName = params['name'];
       const playerRealm: RealmEnum = params['realm'];
-      if (playerName.length && REALM_ARRAY.includes(playerRealm)) {
-        this.playerName = playerName;
-        this.playerRealm = playerRealm;
-        this.tauriService.getCharacter(playerName, playerRealm).subscribe(
-          response => {
-            this.character = response;
-            this.amountOfLogsFilter = 50;
-            this.filter();
-          },
-          error => {
-            //TODO: implement popup service
-            if (error.status === 502) {
-              console.log("Tauri api is down");
-            } else {
-              console.log(error.error.errorstring);
-            }
-          }
+
+      if (!playerName.length) {
+        this.error = new PlayerSearchError(
+          "Invalid request",
+          `Player name is invalid`
         );
+        return;
       }
+
+      if (!REALM_ARRAY.includes(playerRealm)) {
+        this.error = new PlayerSearchError(
+          "Invalid request",
+          `Realm: '${playerRealm}' is invalid`
+        );
+        return;
+      }
+
+      this.playerName = playerName
+      this.playerRealm = playerRealm;
+      this.tauriService.getCharacter(playerName, playerRealm).subscribe(
+        response => {
+          this.character = response;
+          this.amountOfLogsFilter = 50;
+          this.filter();
+        },
+        error => {
+          let header;
+          let message;
+          if (error.status === 502) {
+            header = "Tauri API is down";
+            message = "Please try again later.";
+            console.log("Tauri api is down");
+          } else if (error.status === 400 && error.error?.errorcode === 6) {
+            header = "Player not found";
+            message = "Please check the name and realm.";
+          } else {
+            header = "Unknown error";
+            message = error.error?.errorstring ?? `Status: ${error.status}`;
+            console.log(error.status, error.error);
+          }
+          this.error = new PlayerSearchError(header, message);
+        }
+      );
     })
   }
 

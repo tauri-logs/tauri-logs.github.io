@@ -48,9 +48,16 @@
       </div>
     </div>
   </div>
-  <div *ngIf="!character" class="loading">
+  <div *ngIf="!character && !error" class="loading">
     <mat-spinner></mat-spinner>
     <p>Retrieving character data from Tauri.</p>
-    <p class="small-text">(Tauri api might be down if you have enough time to read this.)</p>
+  </div>
+  <div *ngIf="!character && error" class="error">
+    <h1 class="error-header">
+      {{error.errorHeader}}
+    </h1>
+    <div class="error-text">
+      {{error.errorString}}
+    </div>
   </div>
 </div>
