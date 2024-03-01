@@ -9,13 +9,7 @@
 }
 
 .header {
-  display: flex;
   width: 100%;
-}
-
-.logo {
-  margin-left: 2rem;
-  margin-top: 1rem;
 }
 
 input {
@@ -32,10 +26,6 @@ input {
   background-color: var(--light-grey);
 }
 
-.search-button {
-  margin-bottom: 20px;
-}
-
 /* because material angular has some input 44px and some 45px */
 :host ::ng-deep .mat-form-field-flex {
   height: 45px;
@@ -49,6 +39,13 @@ input {
   flex-wrap: wrap;
   justify-content: center;
   border-radius: 4px;
+}
+
+.search-filters-button {
+  /* because material angular has 20px bottom padding */
+  margin-bottom: 20px;
+  /* material angular has 45px height */
+  height: 45px;
 }
 
 .logs-table {
@@ -72,7 +69,7 @@ mat-expansion-panel:nth-child(odd) {
   justify-content: space-between;
 }
 
-.log_tr:hover td{
+.log_tr:hover td {
   color: darkorange;
 }
 
@@ -87,6 +84,10 @@ mat-expansion-panel:nth-child(odd) {
 
 .small-text {
   font-size: small;
+}
+
+.character {
+  margin-top: 1rem;
 }
 
 #name_heading {
@@ -106,4 +107,9 @@ mat-expansion-panel:nth-child(odd) {
 
 #guild_name {
   margin: 0.5rem 0 0;
+}
+
+.error {
+  margin-top: 20svh;
+  text-align: center;
 }

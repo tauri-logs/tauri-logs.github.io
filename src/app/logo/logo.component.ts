@@ -16,7 +16,8 @@ export class LogoComponent implements OnInit {
   cursorStyle!: string;
   routerLink!: string | null;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.cursorStyle = this.link ? 'pointer' : 'default';

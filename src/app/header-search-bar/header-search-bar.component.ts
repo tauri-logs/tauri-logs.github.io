@@ -1,26 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {REALM_ARRAY, RealmEnum} from "../tauri/models/enums/realmEnum";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-home-search',
-  templateUrl: './home-search.component.html',
-  styleUrls: ['./home-search.component.css']
+  selector: 'app-header-search-bar',
+  templateUrl: './header-search-bar.component.html',
+  styleUrls: ['./header-search-bar.component.css']
 })
-export class HomeSearchComponent implements OnInit {
+export class HeaderSearchBarComponent implements OnInit {
 
-  playerName: string = '';
-  playerRealm: RealmEnum = RealmEnum.EVERMOON;
   realms: RealmEnum[] = REALM_ARRAY;
+  @Input() playerName: string = '';
+  @Input() playerRealm: RealmEnum = RealmEnum.EVERMOON;
 
   constructor(private router: Router) {
-  }
-
-  ngOnInit(): void {
   }
 
   goToPlayerView(playerName: string, playerRealm: RealmEnum) {
     //TODO: handle promise rejection
     this.router.navigate(['/player', playerName, playerRealm]);
+  }
+
+  ngOnInit(): void {
   }
 }

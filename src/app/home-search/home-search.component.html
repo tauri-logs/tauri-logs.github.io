@@ -2,18 +2,18 @@
   <div class="search">
     <app-logo [fontSize]="'7.5rem'"></app-logo>
     <div class="search-input-wrapper">
-      <input class="search-input" matInput type="search"
-             [(ngModel)]="playerName" [placeholder]="'Player name'"
-             (keydown.enter)="goToPlayerView(playerName, playerRealm)">
+      <input (keydown.enter)="goToPlayerView(playerName, playerRealm)" [(ngModel)]="playerName" [placeholder]="'Player name'"
+             class="search-input" matInput
+             type="search">
     </div>
 
     <div class="search-buttons">
       <div class="realm-select">
-        <mat-select id="realmSelect" [(ngModel)]="playerRealm">
+        <mat-select [(ngModel)]="playerRealm" id="realmSelect">
           <mat-option *ngFor="let realm of realms" [value]=realm>{{ realm }}</mat-option>
         </mat-select>
       </div>
-      <button class="search-button" mat-raised-button (click)="goToPlayerView(playerName, playerRealm)">
+      <button (click)="goToPlayerView(playerName, playerRealm)" class="search-button" mat-raised-button>
         Search for player
       </button>
     </div>

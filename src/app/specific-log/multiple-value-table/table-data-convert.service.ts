@@ -24,6 +24,16 @@ export class TableDataConvertService {
     );
   }
 
+  getCompositionTableModel(members: Member[]): TableModel {
+    return new TableModel(['Composition', ''], this.getComposition(members));
+  }
+
+  getComparisonTableModel(raidDetail: RaidDetail): KillComparisonTableModel {
+    return new KillComparisonTableModel(
+      this.getAdditionalInfo(raidDetail)
+    );
+  }
+
   private getLogStatistics(raidDetail: RaidDetail): TablePair[] {
     return [
       new TablePair('Boss', raidDetail.encounter_data.encounter_name),
@@ -31,10 +41,6 @@ export class TableDataConvertService {
       new TablePair('Wipes', this.formatNumber(raidDetail.wipes, 1)),
       new TablePair('Ressurects/Deaths', `${this.formatNumber(raidDetail.resurrects_fight, 2)}/${this.formatNumber(raidDetail.deaths_fight, 2)}`),
     ];
-  }
-
-  getCompositionTableModel(members: Member[]): TableModel {
-    return new TableModel(['Composition', ''], this.getComposition(members));
   }
 
   private getComposition(members: Member[]): TablePair[] {
@@ -49,12 +55,6 @@ export class TableDataConvertService {
 
   private formatNumber(number: number, digits: number): string {
     return number.toLocaleString('en-US', {minimumIntegerDigits: digits});
-  }
-
-  getComparisonTableModel(raidDetail: RaidDetail): KillComparisonTableModel {
-    return new KillComparisonTableModel(
-      this.getAdditionalInfo(raidDetail)
-    );
   }
 
   private getAdditionalInfo(raidDetail: RaidDetail): KillComparisonTableData[] {

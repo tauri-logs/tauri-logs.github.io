@@ -1,11 +1,11 @@
 <mat-dialog-content style="max-height: 90vh;">
   <span style="display: flex; justify-content: space-between;">
     <h3>Setup what you see in logs</h3>
-    <button mat-icon-button mat-dialog-close>
+    <button mat-dialog-close mat-icon-button>
         <mat-icon>close</mat-icon>
     </button>
   </span>
-  <div cdkDropList class="headers-list" (cdkDropListDropped)="drop($event)">
+  <div (cdkDropListDropped)="drop($event)" cdkDropList class="headers-list">
     <div *ngIf="characterHeader" class="header">
       <span>
         <mat-checkbox [(ngModel)]="characterHeader.active">
@@ -13,10 +13,10 @@
         </mat-checkbox>
       </span>
     </div>
-    <div class="header" *ngFor="let header of headers" cdkDrag>
+    <div *ngFor="let header of headers" cdkDrag class="header">
       <span>
         <mat-checkbox [(ngModel)]="header.active">
-          {{header.name}}
+          {{ header.name }}
         </mat-checkbox>
       </span>
     </div>

@@ -12,7 +12,9 @@ export class SideBarComponent implements OnInit {
   playerName: string = '';
   playerRealm: RealmEnum = RealmEnum.EVERMOON;
   realms: RealmEnum[] = REALM_ARRAY;
-  constructor(private router: Router) { }
+
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }

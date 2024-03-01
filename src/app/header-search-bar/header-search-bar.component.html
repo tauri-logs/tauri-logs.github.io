@@ -1,0 +1,18 @@
+<div class="header">
+  <app-logo [fontSize]="'1em'" [link]="true" class="logo"></app-logo>
+  <div class="search-wrapper">
+    <div class="search-input-wrapper">
+      <input (keydown.enter)="goToPlayerView(playerName, playerRealm)" [(ngModel)]="playerName" class="search-input">
+      <div class="realm-select">
+        <mat-select [(ngModel)]="playerRealm" id="realmSelect">
+          <mat-option *ngFor="let realm of realms" [value]=realm class="realm-select-option">
+            {{ realm }}
+          </mat-option>
+        </mat-select>
+      </div>
+      <button (click)="goToPlayerView(playerName, playerRealm)" class="search-button" mat-icon-button>
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

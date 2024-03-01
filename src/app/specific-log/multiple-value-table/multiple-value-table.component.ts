@@ -10,7 +10,8 @@ export class TwoValueTable implements OnInit {
 
   @Input() tableModel?: TableModel;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

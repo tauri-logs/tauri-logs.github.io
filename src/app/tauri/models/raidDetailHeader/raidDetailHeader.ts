@@ -25,10 +25,6 @@ export class RaidDetailHeader {
     this.style = style;
   }
 
-  private static defaultStyle = (member: Member) => {
-    return ''
-  };
-
   static icon(
     key: string,
     name: string,
@@ -57,5 +53,9 @@ export class RaidDetailHeader {
   ): RaidDetailHeader {
     return new RaidDetailHeader(key, text, active, [], style);
   }
+
+  private static defaultStyle = (member: Member) => {
+    return ''
+  };
 
 }
