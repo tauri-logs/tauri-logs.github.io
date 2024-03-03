@@ -1,5 +1,5 @@
 .headers-list {
-  width: 20vw;
+  min-width: 20vw;
   max-width: 100%;
   border: solid 1px #ccc;
   min-height: 60px;
