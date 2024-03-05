@@ -2,7 +2,8 @@
   <div class="search">
     <app-logo [fontSize]="'7.5rem'"></app-logo>
     <div class="search-input-wrapper">
-      <input (keydown.enter)="goToPlayerView(playerName, playerRealm)" [(ngModel)]="playerName" [placeholder]="'Player name'"
+      <input (keydown.enter)="goToPlayerView(playerName, playerRealm)" [(ngModel)]="playerName"
+             [placeholder]="'Player name'"
              class="search-input" matInput
              type="search">
     </div>
@@ -18,7 +19,18 @@
       </button>
     </div>
   </div>
-  <div class="empty-space">
+  <div class="favourite-players">
+    <h3 class="favourite-players-header">Favourite Players</h3>
+    <div *ngFor="let playerLog of favoritePlayerLogs | keyvalue" class="favourite-player-wrapper">
+      <div class="favourite-player">
+        <a class="favourite-player-link" [href]="'/player/' + playerLog.key.name + '/' + playerLog.key.realm"
+        >{{ playerLog.key.name }}</a>
+        <span *ngIf="playerLog.value">
+        killed last boss on {{ playerLog.value?.killDate | date: 'dd. MM. YYYY HH:mm' }}
+        </span>
+        <span *ngIf="!playerLog.value">did not kill any boss</span>
+      </div>
+    </div>
   </div>
   <div class="footer">
     <span>Open source</span>

@@ -48,7 +48,11 @@ export class TauriService {
     }, {headers: {'Content-Type': 'application/json'}}).pipe(
       map(response => {
         //@ts-ignore
-        return response.response.logs;
+        const logs: Log[] = response.response.logs;
+        logs.forEach(log => {
+          log.killDate = new Date(log.killtime * 1000);
+        });
+        return logs;
       }));
   }
 
@@ -88,7 +92,6 @@ export class TauriService {
           weekStart = week.startDate.valueOf() / 1000;
           weeks.push(week);
         }
-        log.killDate = new Date(log.killtime * 1000);
         // @ts-ignore
         log.difficultyName = RAID_DIFFICULTIES[log.difficulty];
         week.logs.push(log);

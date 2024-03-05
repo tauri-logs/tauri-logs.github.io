@@ -97,3 +97,22 @@ a:hover {
   position: fixed;
   width: 100%;
 }
+
+.favourite-players {
+  margin-top: 3rem;
+}
+
+.favourite-players-header {
+  text-align: center;
+  color: var(--logo-color)
+}
+
+.favourite-player {
+  color: #e8eaed;
+}
+
+.favourite-player-link {
+  /*color: #e8eaed;*/
+  color: lightblue;
+  text-decoration: underline;
+}
